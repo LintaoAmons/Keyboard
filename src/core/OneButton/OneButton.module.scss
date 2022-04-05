@@ -10,27 +10,32 @@
 	border-color: black;
 }
 
-.size1 {
+.size10 {
 	@include button;
 	width: 50px
 }
 
-.size2 {
+.size20 {
 	@include button;
 	width: 85px;
 }
 
-.size3 {
+.size25 {
+	@include button;
+	width: 100px;
+}
+
+.size30 {
 	@include button;
 	width: 120px;
 }
 
-.size4 {
+.size40 {
 	@include button;
-	flex-grow: 5;
+	width: 135px;
 }
 
-.size5 {
+.size50 {
 	@include button;
 	flex-grow: 6;
 }

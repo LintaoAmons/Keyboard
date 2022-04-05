@@ -16,11 +16,12 @@ export enum Modifier {
 const OneButton: React.FC<OneButtonProps> = (props) => {
   const buttonSize : (size?: number) => string = (size) => {
     switch (size) {
-      case 2: return styles.size2
-      case 3: return styles.size3
-      case 4: return styles.size3
-      case 5: return styles.size4
-      default: return styles.size1
+      case 20: return styles.size20
+      case 25: return styles.size25
+      case 30: return styles.size30
+      case 40: return styles.size40
+      case 50: return styles.size50
+      default: return styles.size10
     }
   }
 

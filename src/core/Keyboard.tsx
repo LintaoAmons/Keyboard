@@ -19,10 +19,10 @@ const Keyboard: React.FC = () => {
         <OneButton keycode='0'/>
         <OneButton keycode='-'/>
         <OneButton keycode='='/>
-        <OneButton keycode='backspace' size={3}/>
+        <OneButton keycode='backspace' size={30}/>
       </div>
       <div className={styles.row1}>
-        <OneButton keycode='tab' size={2}/>
+        <OneButton keycode='tab' size={20}/>
         <OneButton keycode='q' />
         <OneButton keycode='w'/>
         <OneButton keycode='e'/>
@@ -35,7 +35,22 @@ const Keyboard: React.FC = () => {
         <OneButton keycode='p'/>
         <OneButton keycode='['/>
         <OneButton keycode=']'/>
-        <OneButton keycode='\' size={2}/>
+        <OneButton keycode='\' size={20}/>
+      </div>
+      <div className={styles.row3}>
+        <OneButton keycode='control' size={25}/>
+        <OneButton keycode='a' />
+        <OneButton keycode='s'/>
+        <OneButton keycode='d'/>
+        <OneButton keycode='f'/>
+        <OneButton keycode='g'/>
+        <OneButton keycode='h'/>
+        <OneButton keycode='j'/>
+        <OneButton keycode='k'/>
+        <OneButton keycode='l'/>
+        <OneButton keycode=';'/>
+        <OneButton keycode="'"/>
+        <OneButton keycode='Enter' size={40}/>
       </div>
     </div>
   )
