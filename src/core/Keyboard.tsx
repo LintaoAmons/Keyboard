@@ -5,7 +5,7 @@ import styles from './Keyboard.module.scss'
 const Keyboard: React.FC = () => {
   return (
     <div>
-      <div className={styles.row0}>
+      <div className={styles.row1}>
         <OneButton keycode='esc'/>
         <OneButton keycode='1'/>
         <OneButton keycode='2'/>
@@ -21,7 +21,7 @@ const Keyboard: React.FC = () => {
         <OneButton keycode='='/>
         <OneButton keycode='backspace' size={30}/>
       </div>
-      <div className={styles.row1}>
+      <div className={styles.row2}>
         <OneButton keycode='tab' size={20}/>
         <OneButton keycode='q' />
         <OneButton keycode='w'/>
@@ -51,6 +51,27 @@ const Keyboard: React.FC = () => {
         <OneButton keycode=';'/>
         <OneButton keycode="'"/>
         <OneButton keycode='Enter' size={40}/>
+      </div>
+      <div className={styles.row4}>
+        <OneButton keycode='shift' size={40}/>
+        <OneButton keycode='z' />
+        <OneButton keycode='x'/>
+        <OneButton keycode='c'/>
+        <OneButton keycode='v'/>
+        <OneButton keycode='b'/>
+        <OneButton keycode='n'/>
+        <OneButton keycode='m'/>
+        <OneButton keycode='m'/>
+        <OneButton keycode='.'/>
+        <OneButton keycode='/'/>
+        <OneButton keycode="shift" size={50}/>
+      </div>
+      <div className={styles.row5}>
+        <OneButton keycode='Placeholder' hidden={true}/>
+        <OneButton keycode='alt'/>
+        <OneButton keycode='cmd'/>
+        <OneButton keycode='space' size={100}/>
+        <OneButton keycode='right cmd'/>
       </div>
     </div>
   )
