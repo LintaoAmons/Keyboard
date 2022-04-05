@@ -1,6 +1,7 @@
 export interface OneButtonProps {
   keycode: String;
-  modifiers: Modifier[]
+  modifiers?: Modifier[]
+  description?: String;
 }
 export enum Modifier {
   CMD,
@@ -11,7 +12,7 @@ export enum Modifier {
 
 const OneButton: React.FC<OneButtonProps> = (props) => {
   return (
-    <div>button</div>
+    <div>{props.keycode}</div>
   )
 }
 
