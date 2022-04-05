@@ -13,7 +13,9 @@ export enum Modifier {
 
 const OneButton: React.FC<OneButtonProps> = (props) => {
   return (
-    <div className={styles.button}>{props.keycode}</div>
+    <div className={styles.button}>
+      <span>{props.keycode}</span>
+    </div>
   )
 }
 
