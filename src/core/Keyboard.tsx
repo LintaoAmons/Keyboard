@@ -4,6 +4,7 @@ import styles from './Keyboard.module.scss'
 import { useState } from "react";
 
 interface KeyMapConfig {
+  // TODO 如何把这个 list 变成一个 map
   keyMapItmes: KeyMapItem[];
 }
 
@@ -14,7 +15,18 @@ interface KeyMapItem {
 }
 
 const Keyboard: React.FC = () => {
-  const [config, useConfig] = useState<KeyMapConfig>({} as KeyMapConfig)
+  const [config, useConfig] = useState<KeyMapConfig>(
+    {
+      keyMapItmes: [
+        { keycode: 'q', modifiers: [Modifier.ALT], description: "description" }
+      ]
+    }
+  )
+
+  const getCorrespondingDescription: (keycode: string) => string | undefined = (keycode) => {
+    const desc = config.keyMapItmes.find(e => e.keycode == keycode)?.description
+    return desc == undefined ? undefined : desc
+  }
 
   return (
     <div>
@@ -36,7 +48,7 @@ const Keyboard: React.FC = () => {
       </div>
       <div className={styles.row2}>
         <OneButton keycode='tab' size={20} />
-        <OneButton keycode='q' description="lintao"/>
+        <OneButton keycode='q' description={getCorrespondingDescription('q')} />
         <OneButton keycode='w' />
         <OneButton keycode='e' />
         <OneButton keycode='r' />
