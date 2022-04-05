@@ -1,0 +1,8 @@
+@mixin row {
+	display: flex;
+	height: 70px;
+}
+
+.row0 {
+	@include row;
+}
