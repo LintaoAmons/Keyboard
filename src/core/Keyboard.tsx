@@ -2,6 +2,7 @@ import { OneButton } from "./OneButton/OneButton";
 import { Modifier } from "./OneButton/OneButton";
 import styles from './Keyboard.module.scss'
 import { useState } from "react";
+import { json } from "stream/consumers";
 
 interface KeyMapConfig {
   // TODO 如何把这个 list 变成一个 map
@@ -15,7 +16,7 @@ interface KeyMapItem {
 }
 
 const Keyboard: React.FC = () => {
-  const [config, useConfig] = useState<KeyMapConfig>(
+  const [config, setConfig] = useState<KeyMapConfig>(
     {
       keyMapItmes: [
         { keycode: 'q', modifiers: [Modifier.ALT], description: "description" }
@@ -33,6 +34,10 @@ const Keyboard: React.FC = () => {
       size={props.size}
       hidden={props.hidden}
       description={getCorrespondingDescription(props.keycode)} />)
+  }
+
+  const handleChange = (e: any) => {
+    setConfig(JSON.parse(e.target.value))
   }
 
   return (
@@ -104,6 +109,9 @@ const Keyboard: React.FC = () => {
         <KeyWrapper keycode='cmd' />
         <KeyWrapper keycode='space' size={100} />
         <KeyWrapper keycode='right cmd' />
+      </div>
+      <div>
+        <input type="text" name="config" id="config" defaultValue={JSON.stringify(config)} onBlur={handleChange} />
       </div>
     </div>
   )
