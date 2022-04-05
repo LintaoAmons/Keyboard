@@ -28,8 +28,17 @@ const OneButton: React.FC<OneButtonProps> = (props) => {
     }
   }
 
+  const hasKeyMapping: (description?: string) => string | null = description => {
+    if ( description == null ) return null
+    return styles.hasKeyMapping
+  }
+
   const calculateStyle: (size?: number, hidden?: boolean) => string = (size, hidden) => {
-    return `${(props.hidden == true) ? styles.hidden : null} ${buttonSize(props.size)}`
+    return `
+    ${(props.hidden == true) ? styles.hidden : null} 
+    ${buttonSize(props.size)}
+    ${hasKeyMapping(props.description)}
+    `
   }
 
   return (

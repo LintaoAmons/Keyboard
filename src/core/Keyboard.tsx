@@ -36,7 +36,7 @@ const Keyboard: React.FC = () => {
       </div>
       <div className={styles.row2}>
         <OneButton keycode='tab' size={20} />
-        <OneButton keycode='q' />
+        <OneButton keycode='q' description="lintao"/>
         <OneButton keycode='w' />
         <OneButton keycode='e' />
         <OneButton keycode='r' />
