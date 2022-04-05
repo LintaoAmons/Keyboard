@@ -29,7 +29,7 @@ const OneButton: React.FC<OneButtonProps> = (props) => {
   }
 
   const hasKeyMapping: (description?: string) => string | null = description => {
-    if ( description == null ) return null
+    if (description == null) return null
     return styles.hasKeyMapping
   }
 
@@ -42,7 +42,7 @@ const OneButton: React.FC<OneButtonProps> = (props) => {
   }
 
   return (
-    <div className={calculateStyle(props.size, props.hidden)}>
+    <div className={calculateStyle(props.size, props.hidden)} >
       <span>{props.keycode}</span>
     </div>
   )
