@@ -1,3 +1,4 @@
+import styles from './OneButton.module.scss';
 export interface OneButtonProps {
   keycode: String;
   modifiers?: Modifier[]
@@ -12,7 +13,7 @@ export enum Modifier {
 
 const OneButton: React.FC<OneButtonProps> = (props) => {
   return (
-    <div>{props.keycode}</div>
+    <div className={styles.button}>{props.keycode}</div>
   )
 }
 
