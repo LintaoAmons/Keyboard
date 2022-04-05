@@ -1,10 +1,10 @@
 import { sign } from 'crypto';
 import styles from './OneButton.module.scss';
 export interface OneButtonProps {
-  keycode: String;
+  keycode: string;
   size?: number;
-  modifiers?: Modifier[]
-  description?: String;
+  modifiers?: Modifier[];
+  description?: string;
   hidden?: boolean;
 }
 

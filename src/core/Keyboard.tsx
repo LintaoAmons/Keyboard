@@ -1,8 +1,21 @@
 import { OneButton } from "./OneButton/OneButton";
 import { Modifier } from "./OneButton/OneButton";
 import styles from './Keyboard.module.scss'
+import { useState } from "react";
+
+interface KeyMapConfig {
+  keyMapItmes: KeyMapItem[];
+}
+
+interface KeyMapItem {
+  keycode: string;
+  modifiers: Modifier[];
+  description: string;
+}
 
 const Keyboard: React.FC = () => {
+  const [config, useConfig] = useState<KeyMapConfig>({} as KeyMapConfig)
+
   return (
     <div>
       <div className={styles.row1}>
