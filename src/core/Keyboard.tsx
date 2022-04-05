@@ -21,6 +21,22 @@ const Keyboard: React.FC = () => {
         <OneButton keycode='='/>
         <OneButton keycode='backspace' size={3}/>
       </div>
+      <div className={styles.row1}>
+        <OneButton keycode='tab' size={2}/>
+        <OneButton keycode='q' />
+        <OneButton keycode='w'/>
+        <OneButton keycode='e'/>
+        <OneButton keycode='r'/>
+        <OneButton keycode='t'/>
+        <OneButton keycode='y'/>
+        <OneButton keycode='u'/>
+        <OneButton keycode='i'/>
+        <OneButton keycode='o'/>
+        <OneButton keycode='p'/>
+        <OneButton keycode='['/>
+        <OneButton keycode=']'/>
+        <OneButton keycode='\' size={2}/>
+      </div>
     </div>
   )
 }
