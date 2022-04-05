@@ -1,3 +1,9 @@
+.keyboardContainer {
+	display: flex;
+	flex-direction: column;
+	width: 1028px;
+}
+
 @mixin row {
 	display: flex;
 	height: 70px;
@@ -22,4 +28,8 @@
 // 好像没必要 row 12345, 算了，反正写都写了
 .row5 {
 	@include row;
+}
+
+.config {
+	width: 800px;
 }

@@ -41,7 +41,7 @@ const Keyboard: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={styles.keyboardContainer}>
       <div className={styles.row1}>
         <KeyWrapper keycode='esc' />
         <KeyWrapper keycode='1' />
@@ -111,7 +111,8 @@ const Keyboard: React.FC = () => {
         <KeyWrapper keycode='right cmd' />
       </div>
       <div>
-        <input type="text" name="config" id="config" defaultValue={JSON.stringify(config)} onBlur={handleChange} />
+        <input className={styles.config}
+        type="text" name="config" id="config" defaultValue={JSON.stringify(config)} onBlur={handleChange} />
       </div>
     </div>
   )
