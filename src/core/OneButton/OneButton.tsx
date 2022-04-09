@@ -1,18 +1,12 @@
-import { sign } from 'crypto';
+import {Modifier} from '../CoreTypes';
 import styles from './OneButton.module.scss';
+
 export interface OneButtonProps {
   keycode: string;
   size?: number;
   modifiers?: Modifier[];
   description?: string;
   hidden?: boolean;
-}
-
-export enum Modifier {
-  CMD,
-  CTRL,
-  SHIFT,
-  ALT,
 }
 
 const OneButton: React.FC<OneButtonProps> = (props) => {
@@ -35,8 +29,8 @@ const OneButton: React.FC<OneButtonProps> = (props) => {
 
   const calculateStyle: (size?: number, hidden?: boolean) => string = (size, hidden) => {
     return `
-    ${(props.hidden == true) ? styles.hidden : null} 
-    ${buttonSize(props.size)}
+    ${(hidden === true) ? styles.hidden : null} 
+    ${buttonSize(size)}
     ${hasKeyMapping(props.description)}
     `
   }
