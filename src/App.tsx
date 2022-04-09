@@ -19,7 +19,7 @@ function App() {
         <div className="App">
             <h1>Lintao's Keyboard</h1>
             <Keyboard config={config}/>
-            {/*<ConfigSetter config={config} setConfig={setConfig}/>*/}
+            <ConfigSetter setConfig={setConfig}/>
             <KeyMapOverview/>
         </div>
     );
