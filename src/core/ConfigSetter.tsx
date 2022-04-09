@@ -25,6 +25,7 @@ const ConfigSetter: React.FC<ConfigSetterProps> = props => {
 
     return (
         <div>
+            <h2>Config</h2>
             <input className={styles.config}
                    type="text" name="config" id="config"
                    defaultValue={JSON.stringify(initList)}

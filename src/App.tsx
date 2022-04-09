@@ -20,7 +20,7 @@ function App() {
             <h1>Lintao's Keyboard</h1>
             <Keyboard config={config}/>
             <ConfigSetter setConfig={setConfig}/>
-            <KeyMapOverview/>
+            <KeyMapOverview config={config}/>
         </div>
     );
 }
