@@ -1,7 +1,7 @@
 import { OneButton } from "./OneButton/OneButton";
 import { Modifier } from "./OneButton/OneButton";
 import styles from './Keyboard.module.scss'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { json } from "stream/consumers";
 
 interface KeyMapConfig {
@@ -16,16 +16,20 @@ interface KeyMapItem {
 }
 
 const Keyboard: React.FC = () => {
-  const [config, setConfig] = useState<KeyMapConfig>(
-    {
-      keyMapItmes: [
-        { keycode: 'q', modifiers: [Modifier.ALT], description: "description" }
-      ]
-    }
+  const initState: KeyMapConfig = {
+    keyMapItmes: [
+      { keycode: 'q', modifiers: [Modifier.ALT], description: "description" }
+    ]
+  }
+  const [config, setConfig] = useState<KeyMapConfig>(initState)
+  const [configMap, setConfigMap] = useState<Map<String, KeyMapItem>>(
+    new Map<String, KeyMapItem>([
+      ['q', initState.keyMapItmes[0]]
+    ])
   )
 
   const getCorrespondingDescription: (keycode: string) => string | undefined = (keycode) => {
-    const desc = config.keyMapItmes.find(e => e.keycode == keycode)?.description
+    const desc = configMap.get(keycode)?.description
     return desc == undefined ? undefined : desc
   }
 
@@ -37,7 +41,15 @@ const Keyboard: React.FC = () => {
   }
 
   const handleChange = (e: any) => {
-    setConfig(JSON.parse(e.target.value))
+    const config = JSON.parse(e.target.value) as KeyMapConfig
+    setConfig(config)
+
+
+    const newConfigMap = new Map<String, KeyMapItem>()
+    config.keyMapItmes.forEach(element => {
+      newConfigMap.set(element.keycode, element)
+    });
+    setConfigMap(newConfigMap)
   }
 
   return (
@@ -112,7 +124,7 @@ const Keyboard: React.FC = () => {
       </div>
       <div>
         <input className={styles.config}
-        type="text" name="config" id="config" defaultValue={JSON.stringify(config)} onBlur={handleChange} />
+          type="text" name="config" id="config" defaultValue={JSON.stringify(config)} onBlur={handleChange} />
       </div>
     </div>
   )
