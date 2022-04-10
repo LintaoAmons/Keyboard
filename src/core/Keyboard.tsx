@@ -68,7 +68,7 @@ const Keyboard: React.FC<KeyboardProps> = (props) => {
                 <KeyWrapper keycode='\' size={20}/>
             </div>
             <div className={styles.row3}>
-                <KeyWrapper keycode='control' size={25}/>
+                <KeyWrapper keycode='ctrl' size={25}/>
                 <KeyWrapper keycode='a'/>
                 <KeyWrapper keycode='s'/>
                 <KeyWrapper keycode='d'/>
@@ -94,14 +94,14 @@ const Keyboard: React.FC<KeyboardProps> = (props) => {
                 <KeyWrapper keycode=','/>
                 <KeyWrapper keycode='.'/>
                 <KeyWrapper keycode='/'/>
-                <KeyWrapper keycode="shift" size={50}/>
+                <KeyWrapper keycode="right shift" size={50}/>
             </div>
             <div className={styles.row5}>
                 <KeyWrapper keycode='Placeholder' hideButton={true}/>
                 <KeyWrapper keycode='alt'/>
                 <KeyWrapper keycode='cmd'/>
                 <KeyWrapper keycode='space' size={100}/>
-                <KeyWrapper keycode='right cmd'/>
+                <KeyWrapper keycode='hyper'/>
             </div>
         </div>
     )

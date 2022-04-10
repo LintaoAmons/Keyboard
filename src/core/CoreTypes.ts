@@ -12,6 +12,5 @@ export enum Modifier {
     CTRL = "CTRL",
     SHIFT = "SHIFT",
     ALT = "ALT",
+    HYPER = "HYPER"
 }
-
-export const hyper = [Modifier.CMD, Modifier.CTRL, Modifier.SHIFT, Modifier.ALT]

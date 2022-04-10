@@ -33,8 +33,16 @@ const OneButton: React.FC<OneButtonProps> = (props) => {
 
     const showHighlight = (description?: string) => {
         const show = props.highlightConfig.get(props.keycode) === true
-        if (description == null || !show) return null
-        return styles.showHighlight
+        if (!show) return null
+
+        if (['ctrl', 'alt', 'cmd', 'shift', 'hyper'].includes(props.keycode)) {
+            return styles.hightlightModifier
+        }
+        if (description == null ) {
+            return null
+        } else {
+            return styles.showHighlight
+        }
     }
 
     const calculateStyle = (size?: number, hideButton?: boolean) => {

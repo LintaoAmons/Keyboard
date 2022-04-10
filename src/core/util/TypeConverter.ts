@@ -1,4 +1,4 @@
-import {KeyMapConfig, KeyMapItem} from "../CoreTypes";
+import {KeyMapConfig, KeyMapItem, Modifier} from "../CoreTypes";
 
 
 class TypeConverter {
@@ -15,6 +15,20 @@ class TypeConverter {
         return out
     }
 
+    static modifierEnumToKeycode = (modifier: Modifier) => {
+        switch (modifier) {
+            case Modifier.ALT:
+                return "alt"
+            case Modifier.CMD:
+                return 'cmd'
+            case Modifier.CTRL:
+                return 'ctrl'
+            case Modifier.SHIFT:
+                return 'shift'
+            case Modifier.HYPER:
+                return 'hyper'
+        }
+    }
 }
 
 

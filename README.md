@@ -20,3 +20,5 @@ docker run -d -p 3000:3000 lintao0o0/keyboard:0.0.3
 - [ ] Overview item add highlight button to allow keyboard interaction by using things like `surgingkey`
   - [x] 当点击`highlight me`的时候, highlight 对应的键
   - [ ] `highlight` with modifiers
+- [ ] Add scenario
+- [ ] string type keycode to enum
