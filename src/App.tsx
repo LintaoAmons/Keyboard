@@ -8,13 +8,14 @@ import {ConfigSetter} from "./core/ConfigSetter/ConfigSetter";
 
 export const initState: KeyMapConfig = new Map<string, KeyMapItem>(
     [
-        ['f', {keycode: 'f', modifiers: [Modifier.HYPER], description: "open firefox"}],
-        ['j', {keycode: 'j', modifiers: [Modifier.HYPER], description: "open Joplin"}],
-        ['k', {keycode: 'k', modifiers: [Modifier.HYPER], description: "open Terminal"}],
-        ['l', {keycode: 'l', modifiers: [Modifier.HYPER], description: "open File Explorer"}],
-        ['u', {keycode: 'u', modifiers: [Modifier.HYPER], description: "open Draw.io"}],
-        ['i', {keycode: 'i', modifiers: [Modifier.HYPER], description: "open IDEA"}],
-        ['o', {keycode: 'o', modifiers: [Modifier.HYPER], description: "open Vscode"}],
+        ['f', {keycode: 'f', modifiers: [Modifier.HYPER], description: "打开 firefox 浏览器"}],
+        ['j', {keycode: 'j', modifiers: [Modifier.HYPER], description: "打开 Joplin"}],
+        ['k', {keycode: 'k', modifiers: [Modifier.HYPER], description: "打开 Terminal"}],
+        ['l', {keycode: 'l', modifiers: [Modifier.HYPER], description: "打开 File Explorer"}],
+        [';', {keycode: ';', modifiers: [Modifier.HYPER], description: "打开 微信"}],
+        ['u', {keycode: 'u', modifiers: [Modifier.HYPER], description: "打开 Draw.io"}],
+        ['i', {keycode: 'i', modifiers: [Modifier.HYPER], description: "打开 IDEA"}],
+        ['o', {keycode: 'o', modifiers: [Modifier.HYPER], description: "打开 Vscode"}],
 
         ['a', {keycode: 'a', modifiers: [Modifier.HYPER], description: "window to left half"}],
         ['s', {keycode: 's', modifiers: [Modifier.HYPER], description: "window to bottom half"}],
