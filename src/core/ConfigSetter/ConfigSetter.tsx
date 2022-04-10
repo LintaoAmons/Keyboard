@@ -1,7 +1,7 @@
-import {KeyMapConfig, KeyMapItem} from "./CoreTypes";
+import {KeyMapConfig, KeyMapItem} from "../CoreTypes";
 import React, {Dispatch, SetStateAction} from "react";
-import styles from "./Keyboard.module.scss";
-import {initState} from "../App";
+import styles from "./ConfigSetter.module.scss";
+import {initState} from "../../App";
 
 interface ConfigSetterProps {
     setConfig: Dispatch<SetStateAction<KeyMapConfig>>,

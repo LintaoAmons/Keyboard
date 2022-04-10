@@ -3,7 +3,7 @@ import {Keyboard} from './core/Keyboard'
 import {KeyMapOverview} from './core/KeyMapOverview/KeyMapOverview';
 import './App.css';
 import {KeyMapConfig, KeyMapItem, Modifier} from "./core/CoreTypes";
-import {ConfigSetter} from "./core/ConfigSetter";
+import {ConfigSetter} from "./core/ConfigSetter/ConfigSetter";
 
 
 export const initState: KeyMapConfig = new Map<String, KeyMapItem>(
