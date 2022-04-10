@@ -15,6 +15,14 @@ export const initState: KeyMapConfig = new Map<string, KeyMapItem>(
         ['u', {keycode: 'u', modifiers: [Modifier.HYPER], description: "open Draw.io"}],
         ['i', {keycode: 'i', modifiers: [Modifier.HYPER], description: "open IDEA"}],
         ['o', {keycode: 'o', modifiers: [Modifier.HYPER], description: "open Vscode"}],
+
+        ['a', {keycode: 'a', modifiers: [Modifier.HYPER], description: "window to left half"}],
+        ['s', {keycode: 's', modifiers: [Modifier.HYPER], description: "window to bottom half"}],
+        ['d', {keycode: 'd', modifiers: [Modifier.HYPER], description: "window to right half"}],
+        ['w', {keycode: 'w', modifiers: [Modifier.HYPER], description: "window to top half"}],
+        ['z', {keycode: 'z', modifiers: [Modifier.HYPER], description: "window to full size"}],
+        ['e', {keycode: 'e', modifiers: [Modifier.HYPER], description: "window to previous display"}],
+        ['r', {keycode: 'r', modifiers: [Modifier.HYPER], description: "window to next display"}],
     ]
 )
 
@@ -31,6 +39,7 @@ function App() {
     }
 
     const highLightSpecific = (keycode: string[]) => {
+        window.scrollTo(0, 0)
         const newHighlightTable = new Map<string, boolean>();
         keycode.forEach(it => newHighlightTable.set(it, true))
         setHighlightConfig(newHighlightTable)
