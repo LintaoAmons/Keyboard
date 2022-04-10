@@ -14,6 +14,7 @@ const KeyMapOverview: React.FC<KeyMapOverviewProps> = (props) => {
                 <span className={styles.keycode}>{item.keycode}</span>
                 <span className={styles.modifiers}>{item.modifiers?.join(",")}</span>
                 <span className={styles.description}>{item.description}</span>
+                <button>highlight me</button>
             </div>)
     }
 

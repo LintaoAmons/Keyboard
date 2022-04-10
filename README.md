@@ -9,5 +9,6 @@
    3. 配置序列化，可简单上传下载
 
 # TODO
-- [ ] 配置实例
-- [ ] Modifier 在Config中可读，而不是现在的`1, 2, 3, 4`
+- [x] 配置实例
+- [x] Modifier 在Config中可读，而不是现在的`1, 2, 3, 4`
+- [ ] Overview item add highlight button to allow keyboard interaction by using things like `surgingkey`
