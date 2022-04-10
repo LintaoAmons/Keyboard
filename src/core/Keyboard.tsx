@@ -1,6 +1,6 @@
 import {OneButton} from "./OneButton/OneButton";
 import styles from './Keyboard.module.scss'
-import React, {Dispatch, SetStateAction} from "react";
+import React from "react";
 import {KeyMapConfig} from "./CoreTypes";
 
 interface KeyWrapperProps {
