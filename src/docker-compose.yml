@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  keboard:
+    image: 'lintao0o0/keyboard:0.0.4'
+    ports:
+      - '3000:3000'
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    external: true
