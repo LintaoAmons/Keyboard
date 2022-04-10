@@ -12,3 +12,5 @@
 - [x] 配置实例
 - [x] Modifier 在Config中可读，而不是现在的`1, 2, 3, 4`
 - [ ] Overview item add highlight button to allow keyboard interaction by using things like `surgingkey`
+  - [x] 当点击`highlight me`的时候, highlight 对应的键
+  - [ ] `highlight` with modifiers

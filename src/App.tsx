@@ -43,7 +43,7 @@ function App() {
             <h1>Lintao's Keyboard</h1>
             <Keyboard config={config} highlightConfig={highlightConfig}/>
             <ConfigSetter setConfig={setConfig}/>
-            <KeyMapOverview config={config}/>
+            <KeyMapOverview config={config} highlightFunction={highLightSpecific}/>
         </div>
     );
 }

@@ -4,9 +4,14 @@ import React from "react";
 
 interface KeyMapOverviewProps {
     config: KeyMapConfig,
+    highlightFunction: (keycodes: string[]) => void,
 }
 
 const KeyMapOverview: React.FC<KeyMapOverviewProps> = (props) => {
+
+    const handleClick = (e: any) => {
+        props.highlightFunction([e.target.value])
+    }
 
     const renderConfigItem: (item: KeyMapItem) => JSX.Element = (item) => {
         return (
@@ -14,7 +19,7 @@ const KeyMapOverview: React.FC<KeyMapOverviewProps> = (props) => {
                 <span className={styles.keycode}>{item.keycode}</span>
                 <span className={styles.modifiers}>{item.modifiers?.join(",")}</span>
                 <span className={styles.description}>{item.description}</span>
-                <button>highlight me</button>
+                <button onClick={handleClick} value={item.keycode}>highlight me</button>
             </div>)
     }
 
