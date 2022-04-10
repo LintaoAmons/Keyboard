@@ -10,7 +10,7 @@ interface ConfigSetterProps {
 
 const ConfigSetter: React.FC<ConfigSetterProps> = props => {
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const configList = JSON.parse(e.target.value) as Array<KeyMapItem>
         props.setConfig(TypeConverter.configListToMap(configList))
     }

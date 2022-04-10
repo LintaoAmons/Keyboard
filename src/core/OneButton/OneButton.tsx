@@ -7,7 +7,8 @@ export interface OneButtonProps {
     size?: number;
     modifiers?: Modifier[];
     description?: string;
-    hidden?: boolean;
+    hideButton?: boolean;
+    highlightConfig: Map<string, boolean>;
 }
 
 const OneButton: React.FC<OneButtonProps> = (props) => {
@@ -30,20 +31,21 @@ const OneButton: React.FC<OneButtonProps> = (props) => {
         }
     }
 
-    const showHighlight = (description?: string, show: boolean = true) => {
+    const showHighlight = (description?: string) => {
+        const show = props.highlightConfig.get(props.keycode) === true
         if (description == null || !show) return null
         return styles.showHighlight
     }
 
-    const calculateStyle = (size?: number, hidden?: boolean) => {
-        return `${(hidden === true) ? styles.hidden : null} 
+    const calculateStyle = (size?: number, hideButton?: boolean) => {
+        return `${(hideButton === true) ? styles.hidden : null} 
                 ${buttonSize(size)}
                 ${showHighlight(props.description)}
                 `
     }
 
     return (
-        <div className={calculateStyle(props.size, props.hidden)}>
+        <div className={calculateStyle(props.size, props.hideButton)}>
             <span>{props.keycode}</span>
         </div>
     )

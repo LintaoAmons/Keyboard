@@ -1,31 +1,36 @@
 import {OneButton} from "./OneButton/OneButton";
 import styles from './Keyboard.module.scss'
 import React from "react";
-import {KeyMapConfig} from "./CoreTypes";
+import {KeyMapConfig, KeyMapItem} from "./CoreTypes";
 
 interface KeyWrapperProps {
-    keycode: string,
-    size?: number,
-    hidden?: boolean
+    keycode: string;
+    size?: number;
+    hideButton?: boolean;
+    showHighlight?: boolean;
 }
 
 
 interface KeyboardProps {
-    config: KeyMapConfig,
+    config: KeyMapConfig;
+    highlightConfig: Map<string, boolean>;
 }
 
 const Keyboard: React.FC<KeyboardProps> = (props) => {
 
+    const highLightSpecific = (item: KeyMapItem) => {
+
+    }
+
     const KeyWrapper: React.FC<KeyWrapperProps> = (propsInside) => {
-        const getCorrespondingDescription: (keycode: string) => string | undefined = (keycode) => {
-            const desc = props.config.get(keycode)?.description
-            return desc === undefined ? undefined : desc
-        }
+        const desc = props.config.get(propsInside.keycode)?.description
 
         return (<OneButton keycode={propsInside.keycode}
                            size={propsInside.size}
-                           hidden={propsInside.hidden}
-                           description={getCorrespondingDescription(propsInside.keycode)}/>)
+                           hideButton={propsInside.hideButton}
+                           description={desc}
+                           highlightConfig={props.highlightConfig}
+        />)
     }
 
     return (
@@ -92,7 +97,7 @@ const Keyboard: React.FC<KeyboardProps> = (props) => {
                 <KeyWrapper keycode="shift" size={50}/>
             </div>
             <div className={styles.row5}>
-                <KeyWrapper keycode='Placeholder' hidden={true}/>
+                <KeyWrapper keycode='Placeholder' hideButton={true}/>
                 <KeyWrapper keycode='alt'/>
                 <KeyWrapper keycode='cmd'/>
                 <KeyWrapper keycode='space' size={100}/>
