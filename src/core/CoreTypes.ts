@@ -2,8 +2,9 @@ export type KeyMapConfig = Map<String, KeyMapItem>
 
 export interface KeyMapItem {
     keycode: string;
-    modifiers: Modifier[];
+    modifiers?: Modifier[];
     description: string;
+    scenario?: string[];
 }
 
 export enum Modifier {
