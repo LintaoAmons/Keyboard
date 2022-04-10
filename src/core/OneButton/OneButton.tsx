@@ -11,7 +11,7 @@ export interface OneButtonProps {
 }
 
 const OneButton: React.FC<OneButtonProps> = (props) => {
-    const buttonSize: (size?: number) => string = (size) => {
+    const buttonSize = (size?: number) => {
         switch (size) {
             case 20:
                 return styles.size20
@@ -30,17 +30,16 @@ const OneButton: React.FC<OneButtonProps> = (props) => {
         }
     }
 
-    const hasKeyMapping: (description?: string) => string | null = description => {
-        if (description == null) return null
-        return styles.hasKeyMapping
+    const showHighlight = (description?: string, show: boolean = true) => {
+        if (description == null || !show) return null
+        return styles.showHighlight
     }
 
-    const calculateStyle: (size?: number, hidden?: boolean) => string = (size, hidden) => {
-        return `
-    ${(hidden === true) ? styles.hidden : null} 
-    ${buttonSize(size)}
-    ${hasKeyMapping(props.description)}
-    `
+    const calculateStyle = (size?: number, hidden?: boolean) => {
+        return `${(hidden === true) ? styles.hidden : null} 
+                ${buttonSize(size)}
+                ${showHighlight(props.description)}
+                `
     }
 
     return (
