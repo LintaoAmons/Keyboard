@@ -9,34 +9,36 @@ interface KeyMapOverviewProps {
 const KeyMapOverview: React.FC<KeyMapOverviewProps> = (props) => {
 
     const renderConfigItem: (item: KeyMapItem) => JSX.Element = (item) => {
-        return (<div>
-            <span>{item.keycode}</span>
-            <span>{item.modifiers}</span>
-            <span>{item.description}</span>
-        </div>)
+        return (
+            <div className={styles.item}>
+                <span className={styles.keycode}>{item.keycode}</span>
+                <span className={styles.modifiers}>{item.modifiers}</span>
+                <span className={styles.description}>{item.description}</span>
+            </div>)
+    }
+
+    const renderConfigItemHeader: () => JSX.Element = () => {
+        return (
+            <div className={styles.item}>
+                <span className={styles.keycode}>Keycode</span>
+                <span className={styles.modifiers}>Modifiers</span>
+                <span className={styles.description}>Description</span>
+            </div>
+        )
     }
 
     const renderConfigItems: () => JSX.Element = () => {
         let items = Array.from(props.config.values())
         return (
-            <ul>
-                {
-                    items.map(ele => renderConfigItem(ele))
-                }
-            </ul>
-        )
-
+            <div className={styles.itemsContainer}>
+                {renderConfigItemHeader()}
+                {items.map(ele => renderConfigItem(ele))}
+            </div>)
     }
 
-    const items = Array.from(props.config.values())
     return <div className={styles.container}>
         <h1 className={styles.header}>OVERVIEW</h1>
-        <ul>
-            {renderConfigItems()}
-            <li>Item 1</li>
-            <li>Item 2</li>
-        </ul>
-
+        {renderConfigItems()}
     </div>
 }
 

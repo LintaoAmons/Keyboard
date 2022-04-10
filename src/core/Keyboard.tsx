@@ -86,7 +86,7 @@ const Keyboard: React.FC<KeyboardProps> = (props) => {
                 <KeyWrapper keycode='b'/>
                 <KeyWrapper keycode='n'/>
                 <KeyWrapper keycode='m'/>
-                <KeyWrapper keycode='m'/>
+                <KeyWrapper keycode=','/>
                 <KeyWrapper keycode='.'/>
                 <KeyWrapper keycode='/'/>
                 <KeyWrapper keycode="shift" size={50}/>
