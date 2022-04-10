@@ -12,7 +12,7 @@ const KeyMapOverview: React.FC<KeyMapOverviewProps> = (props) => {
         return (
             <div className={styles.item}>
                 <span className={styles.keycode}>{item.keycode}</span>
-                <span className={styles.modifiers}>{item.modifiers}</span>
+                <span className={styles.modifiers}>{item.modifiers?.join(",")}</span>
                 <span className={styles.description}>{item.description}</span>
             </div>)
     }
