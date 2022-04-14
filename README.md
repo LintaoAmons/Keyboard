@@ -11,7 +11,7 @@
 # Try with Docker
 
 ```bash
-docker run -d -p 3000:3000 lintao0o0/keyboard:0.0.3
+docker run -d -p 3000:3000 lintao0o0/keyboard:0.0.4
 ```
 
 # TODO
@@ -23,3 +23,4 @@ docker run -d -p 3000:3000 lintao0o0/keyboard:0.0.3
 - [ ] Add scenario
 - [ ] string type keycode to enum
 - [ ] 通过点击键盘的按键，交互式地增加快捷键配置
+- [ ] Add github icon link to ui
