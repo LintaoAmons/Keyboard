@@ -1,11 +1,7 @@
-FROM node:14.19.1-alpine
+FROM nginx:stable-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /usr/share/nginx/html
 
-COPY package.json .
-RUN npm install
+COPY build /usr/share/nginx/html
 
-ADD . /usr/src/app
-
-CMD ["npm", "start"]
 EXPOSE 3000
