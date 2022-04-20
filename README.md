@@ -11,7 +11,7 @@
 # Try with Docker
 
 ```bash
-docker run -d -p 80:80 lintao0o0/keyboard:0.1.3
+docker run -d -p 80:80 lintao0o0/keyboard:0.1.4
 ```
 
 # TODO

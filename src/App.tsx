@@ -46,7 +46,7 @@ function App() {
         setHighlightConfig(newHighlightTable)
     }
 
-    useEffect(highLightDefaultToTrue)
+    useEffect(highLightDefaultToTrue, [])
 
     return (
         <div className="App">
