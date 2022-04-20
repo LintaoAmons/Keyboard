@@ -5,7 +5,6 @@ import './App.css';
 import {KeyMapConfig, KeyMapItem, Modifier} from "./core/CoreTypes";
 import {ConfigSetter} from "./core/ConfigSetter/ConfigSetter";
 import {Title} from "./core/Title/Title";
-import {AiFillGithub} from "react-icons/ai";
 
 export const initState: KeyMapConfig = new Map<string, KeyMapItem>(
     [
@@ -47,7 +46,7 @@ function App() {
         setHighlightConfig(newHighlightTable)
     }
 
-    useEffect(highLightDefaultToTrue, [])
+    useEffect(highLightDefaultToTrue)
 
     return (
         <div className="App">

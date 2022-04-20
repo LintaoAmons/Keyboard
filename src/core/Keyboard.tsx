@@ -1,7 +1,7 @@
 import {OneButton} from "./OneButton/OneButton";
 import styles from './Keyboard.module.scss'
 import React from "react";
-import {KeyMapConfig, KeyMapItem} from "./CoreTypes";
+import {KeyMapConfig} from "./CoreTypes";
 
 interface KeyWrapperProps {
     keycode: string;
@@ -17,10 +17,6 @@ interface KeyboardProps {
 }
 
 const Keyboard: React.FC<KeyboardProps> = (props) => {
-
-    const highLightSpecific = (item: KeyMapItem) => {
-
-    }
 
     const KeyWrapper: React.FC<KeyWrapperProps> = (propsInside) => {
         const desc = props.config.get(propsInside.keycode)?.description
