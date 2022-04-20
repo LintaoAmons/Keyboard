@@ -4,7 +4,8 @@ import {KeyMapOverview} from './core/KeyMapOverview/KeyMapOverview';
 import './App.css';
 import {KeyMapConfig, KeyMapItem, Modifier} from "./core/CoreTypes";
 import {ConfigSetter} from "./core/ConfigSetter/ConfigSetter";
-
+import {Title} from "./core/Title/Title";
+import {AiFillGithub} from "react-icons/ai";
 
 export const initState: KeyMapConfig = new Map<string, KeyMapItem>(
     [
@@ -50,7 +51,8 @@ function App() {
 
     return (
         <div className="App">
-            <h1>Lintao's Keyboard</h1>
+            <Title/>
+
             <Keyboard config={config} highlightConfig={highlightConfig}/>
             <ConfigSetter setConfig={setConfig}/>
             <KeyMapOverview config={config} highlightFunction={highLightSpecific}/>
