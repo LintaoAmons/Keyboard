@@ -28,14 +28,13 @@ function App() {
 
     useEffect(() => {
         setCurrentConfig(scenarios.find(it => it.name === currentScenario)!!.config)
-    }, [currentScenario])
+    }, [currentScenario, scenarios])
 
     useEffect(initHighlight, [currentConfig])
 
     return (
         <div className="App">
             <Title/>
-            {/*TODO config should be send by current scenario*/}
             <Keyboard config={currentConfig} highlightConfig={highlightConfig}/>
             <ConfigSetter currentConfig={scenarios} setConfig={setScenarios} currentScenario={currentScenario}
                           setCurrentScenario={setCurrentScenario}/>
