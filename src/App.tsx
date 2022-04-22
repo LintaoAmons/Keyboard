@@ -13,9 +13,9 @@ function App() {
     const [currentConfig, setCurrentConfig] = useState<ScenarioConfig>(allScenarios)
     const [highlightConfig, setHighlightConfig] = useState<Map<string, boolean>>(new Map())
 
-    const highLightDefaultToTrue = () => {
+    const initHighlight = () => {
         const newHighlightTable = new Map<string, boolean>();
-        scenarios[0].config.forEach(it => newHighlightTable.set(it.keycode, true))
+        currentConfig.forEach(it => newHighlightTable.set(it.keycode, true))
         setHighlightConfig(newHighlightTable)
     }
 
@@ -26,10 +26,11 @@ function App() {
         setHighlightConfig(newHighlightTable)
     }
 
-    useEffect(highLightDefaultToTrue, [])
     useEffect(() => {
         setCurrentConfig(scenarios.find(it => it.name === currentScenario)!!.config)
     }, [currentScenario])
+
+    useEffect(initHighlight, [currentConfig])
 
     return (
         <div className="App">
