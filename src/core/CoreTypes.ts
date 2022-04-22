@@ -1,10 +1,16 @@
-export type KeyMapConfig = Map<String, KeyMapItem>
+export type Scenarios = Scenario[]
+
+export interface Scenario {
+    name: string;
+    config: ScenarioConfig;
+}
+
+export type ScenarioConfig  = KeyMapItem[]
 
 export interface KeyMapItem {
     keycode: string;
     modifiers?: Modifier[];
     description: string;
-    scenario?: string[];
 }
 
 export enum Modifier {

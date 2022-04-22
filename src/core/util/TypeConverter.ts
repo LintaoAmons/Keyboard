@@ -1,13 +1,7 @@
-import {KeyMapConfig, KeyMapItem, Modifier} from "../CoreTypes";
+import {KeyMapItem, Modifier} from "../CoreTypes";
 
 
 class TypeConverter {
-    static configMapToList = (configMap: KeyMapConfig) => {
-        const out = new Array<KeyMapItem>();
-        Array.from(configMap.values())
-            .forEach(it => out.push(it))
-        return out
-    }
 
     static configListToMap = (configList: KeyMapItem[]) => {
         const out = new Map()

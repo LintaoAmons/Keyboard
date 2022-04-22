@@ -1,7 +1,8 @@
 import {OneButton} from "./OneButton/OneButton";
 import styles from './Keyboard.module.scss'
-import React from "react";
-import {KeyMapConfig} from "./CoreTypes";
+import React, {useEffect, useState} from "react";
+import {KeyMapItem, ScenarioConfig} from "./CoreTypes";
+import {TypeConverter} from "./util/TypeConverter";
 
 interface KeyWrapperProps {
     keycode: string;
@@ -10,16 +11,19 @@ interface KeyWrapperProps {
     showHighlight?: boolean;
 }
 
+export type configMap = Map<string, KeyMapItem> // key is the Keycode
 
 interface KeyboardProps {
-    config: KeyMapConfig;
+    config: ScenarioConfig;
     highlightConfig: Map<string, boolean>;
 }
 
 const Keyboard: React.FC<KeyboardProps> = (props) => {
+    const [configMap, setConfigMap] =
+        useState<configMap>(TypeConverter.configListToMap(props.config))
 
     const KeyWrapper: React.FC<KeyWrapperProps> = (propsInside) => {
-        const desc = props.config.get(propsInside.keycode)?.description
+        const desc = configMap.get(propsInside.keycode)?.description
 
         return (<OneButton keycode={propsInside.keycode}
                            size={propsInside.size}
@@ -28,6 +32,8 @@ const Keyboard: React.FC<KeyboardProps> = (props) => {
                            highlightConfig={props.highlightConfig}
         />)
     }
+
+    useEffect(() => setConfigMap(TypeConverter.configListToMap(props.config)), [props.config])
 
     return (
         <div className={styles.keyboardContainer}>

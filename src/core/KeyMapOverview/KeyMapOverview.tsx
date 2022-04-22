@@ -1,17 +1,17 @@
 import styles from './KeyMapOverview.module.scss'
-import {KeyMapConfig, KeyMapItem} from "../CoreTypes";
+import {KeyMapItem, ScenarioConfig} from "../CoreTypes";
 import React from "react";
 import {TypeConverter} from "../util/TypeConverter";
 
 interface KeyMapOverviewProps {
-    config: KeyMapConfig,
+    config: ScenarioConfig,
     highlightFunction: (keycodes: string[]) => void,
 }
 
 const KeyMapOverview: React.FC<KeyMapOverviewProps> = (props) => {
 
     const handleClick = (e: any) => {
-        const configItem = props.config.get(e.target.value)
+        const configItem = props.config.find(i => i.keycode === e.target.value)
         const modifiers = configItem!!.modifiers!!.map(it => TypeConverter.modifierEnumToKeycode(it))
         props.highlightFunction([configItem!!.keycode, ...modifiers])
     }
