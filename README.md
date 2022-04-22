@@ -12,11 +12,11 @@
 
 - copy the following command and run it in your terminal
     ```bash
-    $ docker run -d -p 80:80 lintao0o0/keyboard:0.1.4
+    $ docker run -d -p 80:80 lintao0o0/keyboard:0.2.0
     ```
 - then go to `http://localhost:80`
 
 # TODO
-- [ ] Add scenario
+- [x] Add scenario
 - [ ] string type keycode to enum
 - [ ] 通过点击键盘的按键，交互式地增加快捷键配置
