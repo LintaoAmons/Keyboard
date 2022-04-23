@@ -12,8 +12,12 @@ interface ConfigSetterProps {
 const ConfigSetter: React.FC<ConfigSetterProps> = props => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const scenarios = JSON.parse(e.target.value) as Scenarios
-        props.setConfig(scenarios)
+        if (e.target.value) {
+            const scenarios = JSON.parse(e.target.value) as Scenarios
+            props.setConfig(scenarios)
+        } else {
+            e.target.value = JSON.stringify(props.currentConfig);
+        }
     }
 
     const handleChangeScenarios = (e: React.ChangeEvent<HTMLSelectElement>) => {

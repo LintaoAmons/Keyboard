@@ -27,7 +27,9 @@ function App() {
     }
 
     useEffect(() => {
-        setCurrentConfig(scenarios.find(it => it.name === currentScenario)!!.config)
+        const scenario = scenarios.find(it => it.name === currentScenario);
+        const config = scenario === undefined ? scenarios[0].config : scenario.config;
+        setCurrentConfig(config)
     }, [currentScenario, scenarios])
 
     useEffect(initHighlight, [currentConfig])
