@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-npm run build
+ npm run build
 
 version=$(cat package.json | jq -r ".version")
 echo "🤡 version: $version ===================="

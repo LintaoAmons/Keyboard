@@ -2,20 +2,20 @@ import React, {useEffect, useState} from 'react';
 import {Keyboard} from './core/Keyboard'
 import {KeyMapOverview} from './core/KeyMapOverview/KeyMapOverview';
 import './App.css';
-import {ScenarioConfig, Scenarios} from "./core/CoreTypes";
+import {Scenario, Scenarios} from "./core/CoreTypes";
 import {ConfigSetter} from "./core/ConfigSetter/ConfigSetter";
 import {Title} from "./core/Title/Title";
 import {allScenarios, initScenarios} from "./initConfig";
 
+
 function App() {
     const [scenarios, setScenarios] = useState<Scenarios>(initScenarios)
-    const [currentScenario, setCurrentScenario] = useState<string>("AllScenarios")
-    const [currentConfig, setCurrentConfig] = useState<ScenarioConfig>(allScenarios)
+    const [currentScenario, setCurrentScenario] = useState<Scenario>(allScenarios)
     const [highlightConfig, setHighlightConfig] = useState<Map<string, boolean>>(new Map())
 
     const initHighlight = () => {
         const newHighlightTable = new Map<string, boolean>();
-        currentConfig.forEach(it => newHighlightTable.set(it.keycode, true))
+        currentScenario.config.forEach(it => newHighlightTable.set(it.keycode, true))
         setHighlightConfig(newHighlightTable)
     }
 
@@ -27,20 +27,23 @@ function App() {
     }
 
     useEffect(() => {
-        const scenario = scenarios.find(it => it.name === currentScenario);
-        const config = scenario === undefined ? scenarios[0].config : scenario.config;
-        setCurrentConfig(config)
+        const scenario = scenarios.find(it => it.name === currentScenario.name);
+        const config = scenario === undefined ? scenarios[0] : scenario;
+        setCurrentScenario(config)
     }, [currentScenario, scenarios])
 
-    useEffect(initHighlight, [currentConfig])
+    useEffect(initHighlight, [currentScenario])
 
     return (
         <div className="App">
             <Title/>
-            <Keyboard config={currentConfig} highlightConfig={highlightConfig}/>
-            <ConfigSetter currentConfig={scenarios} setConfig={setScenarios} currentScenario={currentScenario}
-                          setCurrentScenario={setCurrentScenario}/>
-            <KeyMapOverview config={currentConfig} highlightFunction={highLightSpecific}/>
+            <Keyboard config={currentScenario.config} highlightConfig={highlightConfig}/>
+            <ConfigSetter scenarios={scenarios}
+                          setConfig={setScenarios}
+                          currentScenario={currentScenario}
+                          setCurrentScenario={setCurrentScenario}
+                          setHighlight={setHighlightConfig}/>
+            <KeyMapOverview scenario={currentScenario} highlightFunction={highLightSpecific}/>
         </div>
     );
 }
