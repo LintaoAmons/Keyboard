@@ -35,7 +35,8 @@ const OneButton: React.FC<OneButtonProps> = (props) => {
         const show = props.highlightConfig.get(props.keycode) === true
         if (!show) return null
 
-        if (['ctrl', 'alt', 'cmd', 'shift', 'hyper'].includes(props.keycode)) {
+        // TODO: switch hardcoded modifier to enum
+        if (['ctrl', 'alt', 'cmd', 'shift', 'hyper', 'tab'].includes(props.keycode)) {
             return styles.hightlightModifier
         }
         if (description == null ) {

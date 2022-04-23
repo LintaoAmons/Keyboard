@@ -21,6 +21,8 @@ class TypeConverter {
                 return 'shift'
             case Modifier.HYPER:
                 return 'hyper'
+            case Modifier.TAB:
+                return 'tab'
         }
     }
 }

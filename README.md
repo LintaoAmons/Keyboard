@@ -19,5 +19,6 @@
 # TODO
 - [x] Add scenario
 - [x] fix scenario switch highlight
+- [ ] key sequence shortcuts visualization
 - [ ] string type keycode to enum
 - [ ] 通过点击键盘的按键，交互式地增加快捷键配置

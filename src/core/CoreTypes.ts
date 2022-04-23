@@ -18,5 +18,6 @@ export enum Modifier {
     CTRL = "CTRL",
     SHIFT = "SHIFT",
     ALT = "ALT",
+    TAB = "TAB",
     HYPER = "HYPER"
 }
