@@ -45,6 +45,13 @@ const keyRemap: ScenarioConfig = [
     {keycode: '=', modifiers: [Modifier.TAB], description: 'F12', achieveBy: 'karabiner'},
 ]
 
+const terminal: ScenarioConfig = [
+    {keycode: 'h', modifiers: [Modifier.CTRL, Modifier.CMD], description: "Select left tmux pane", achieveBy:"HammerSpoon"},
+    {keycode: 'l', modifiers: [Modifier.CTRL, Modifier.CMD], description: "Select right tmux pane", achieveBy:"HammerSpoon"},
+    {keycode: 'h', modifiers: [Modifier.CTRL], description: "Select left Vim window", achieveBy:"HammerSpoon"},
+    {keycode: 'l', modifiers: [Modifier.CTRL], description: "Select right Vim window", achieveBy:"HammerSpoon"},
+]
+
 
 export const initScenarios: Scenarios = [
     {
@@ -54,6 +61,10 @@ export const initScenarios: Scenarios = [
     {
         name: 'Firefox',
         config: firefox
+    },
+    {
+        name: 'terminal',
+        config: terminal
     },
     {
         name: '改键',

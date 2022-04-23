@@ -12,7 +12,7 @@
 
 - copy the following command and run it in your terminal
     ```bash
-    $ docker run -d -p 80:80 lintao0o0/keyboard:0.2.2
+    $ docker run -d -p 80:80 lintao0o0/keyboard:0.2.3
     ```
 - then go to `http://localhost:80`
 
