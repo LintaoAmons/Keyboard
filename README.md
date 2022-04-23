@@ -14,7 +14,7 @@
     ```bash
     $ docker run -d -p 3000:80 lintao0o0/keyboard:0.2.5
     ```
-- then go to `http://localhost:80`
+- then go to `http://localhost:3000`
 
 # TODO
 - [x] Add scenario
