@@ -11,6 +11,7 @@ export interface KeyMapItem {
     keycode: string;
     modifiers?: Modifier[];
     description: string;
+    achieveBy?: string;
 }
 
 export enum Modifier {

@@ -18,10 +18,11 @@ const KeyMapOverview: React.FC<KeyMapOverviewProps> = (props) => {
 
     const renderConfigItem: (item: KeyMapItem) => JSX.Element = (item) => {
         return (
-            <div className={styles.item}>
+            <div className={styles.item} key={`overview-${item.keycode}`}>
                 <span className={styles.keycode}>{item.keycode}</span>
                 <span className={styles.modifiers}>{item.modifiers?.join(",")}</span>
                 <span className={styles.description}>{item.description}</span>
+                <span className={styles.achievedBy}>{item.achieveBy}</span>
                 <button onClick={handleClick} value={item.keycode}>highlight me</button>
             </div>)
     }
@@ -32,6 +33,7 @@ const KeyMapOverview: React.FC<KeyMapOverviewProps> = (props) => {
                 <span className={styles.keycode}>Keycode</span>
                 <span className={styles.modifiers}>Modifiers</span>
                 <span className={styles.description}>Description</span>
+                <span className={styles.achievedBy}>AchieveBy</span>
             </div>
         )
     }

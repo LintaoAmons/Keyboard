@@ -25,7 +25,8 @@ const ConfigSetter: React.FC<ConfigSetterProps> = props => {
             <h2>Config</h2>
             <label htmlFor="scenarios">Choose Scenario: </label>
             <select value={props.currentScenario} name="scenarios" id="scenarios" onChange={handleChangeScenarios}>
-                {props.currentConfig.map(it => <option value={it.name}>{it.name}</option>)}
+                {props.currentConfig.map(it =>
+                    <option value={it.name} key={`scenario-${it.name}`}>{it.name}</option>)}
             </select>
             <input className={styles.config}
                    type="text"
