@@ -12,7 +12,7 @@
 
 - copy the following command and run it in your terminal
     ```bash
-    $ docker run -d -p 3000:80 lintao0o0/keyboard:0.2.5
+    $ docker run -d -p 3000:80 lintao0o0/keyboard:0.2.6
     ```
 - then go to `http://localhost:3000`
 
