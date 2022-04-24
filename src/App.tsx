@@ -1,11 +1,11 @@
-import { useEffect, useState, useMemo } from 'react';
-import Keyboard from './core/Keyboard';
-import { KeyMapOverview } from './core/KeyMapOverview/KeyMapOverview';
+import {useEffect, useMemo, useState} from 'react';
+import Keyboard from './core/Keyboard/Keyboard';
+import {KeyMapOverview} from './core/KeyMapOverview/KeyMapOverview';
 import './App.css';
-import { Scenario, Scenarios } from './core/CoreTypes';
-import { ConfigSetter } from './core/ConfigSetter/ConfigSetter';
+import {Scenario, Scenarios} from './core/CoreTypes';
+import {ConfigSetter} from './core/ConfigSetter/ConfigSetter';
 import Title from './core/Title/Title';
-import { allScenarios, initScenarios } from './initConfig';
+import {allScenarios, initScenarios} from './initConfig';
 
 function App() {
     const [scenarios, setScenarios] = useState<Scenarios>(initScenarios);
@@ -13,8 +13,7 @@ function App() {
     const [highlightConfig, setHighlightConfig] = useState<Map<string, boolean>>(new Map());
     const targetScenario = useMemo(() => {
         const scenario = scenarios.find((it) => it.name === currentScenario.name);
-        const target = scenario === undefined ? scenarios[0] : scenario;
-        return target;
+        return scenario === undefined ? scenarios[0] : scenario;
     }, [scenarios, currentScenario]);
 
     const initHighlight = () => {

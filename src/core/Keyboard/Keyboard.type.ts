@@ -1,4 +1,4 @@
-import type { KeyMapItem } from './CoreTypes';
+import type { KeyMapItem } from '../CoreTypes';
 
 export interface KeyboardItem {
     keycode: string;
