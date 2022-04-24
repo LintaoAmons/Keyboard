@@ -94,7 +94,7 @@ export const keyboardList: { style: string; list: KeyboardItem[] }[] = [
                 keycode: ']',
             },
             {
-                keycode: <span>\</span>,
+                keycode: '\\',
                 size: 20,
             },
         ],

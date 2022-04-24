@@ -1,8 +1,8 @@
-import type { ReactNode, FC } from 'react';
+import type { FC } from 'react';
 import styles from './OneButton.module.scss';
 
 export interface OneButtonProps {
-    keycode: ReactNode;
+    keycode: string;
     highlightConfig: Map<string, boolean>;
     size?: number;
     description?: string;
@@ -32,7 +32,7 @@ const OneButton: FC<OneButtonProps> = (props) => {
     };
 
     const showHighlight = () => {
-        const show = highlightConfig?.get(keycode?.toString() || '') === true;
+        const show = highlightConfig?.get(keycode) === true;
         if (!show) return null;
 
         // TODO: switch hardcoded modifier to enum

@@ -1,8 +1,7 @@
-import type { ReactNode } from 'react';
 import type { KeyMapItem } from './CoreTypes';
 
 export interface KeyboardItem {
-    keycode: ReactNode;
+    keycode: string;
     size?: number;
     hideButton?: boolean;
     showHighlight?: boolean;

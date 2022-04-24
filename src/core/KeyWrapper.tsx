@@ -10,7 +10,7 @@ interface KeyWrapperProps {
 
 const KeyWrapper: FC<KeyWrapperProps> = (props) => {
     const { keyboardItem, config, highlightConfig } = props;
-    const desc = config.get(keyboardItem.keycode?.toString() || '')?.description;
+    const desc = config.get(keyboardItem.keycode)?.description;
 
     return <OneButton {...keyboardItem} description={desc} highlightConfig={highlightConfig} />;
 };
