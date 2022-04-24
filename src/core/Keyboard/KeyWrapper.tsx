@@ -1,5 +1,5 @@
 import { type FC, memo } from 'react';
-import { OneButton } from '../OneButton/OneButton';
+import { OneButton } from './OneButton/OneButton';
 import type { KeyboardItem, ConfigMap } from './Keyboard.type';
 
 interface KeyWrapperProps {

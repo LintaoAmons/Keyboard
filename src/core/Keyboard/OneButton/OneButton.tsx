@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type {FC} from 'react';
 import styles from './OneButton.module.scss';
 
 export interface OneButtonProps {
@@ -9,22 +9,31 @@ export interface OneButtonProps {
     hideButton?: boolean;
 }
 
+export enum ButtonSize {
+    SIZE20,
+    SIZE25,
+    SIZE30,
+    SIZE40,
+    SIZE50,
+    SIZE100,
+}
+
 const OneButton: FC<OneButtonProps> = (props) => {
     const { keycode, size = styles.size10, description, hideButton, highlightConfig } = props;
 
     const buttonSize = () => {
         switch (size) {
-            case 20:
+            case ButtonSize.SIZE20:
                 return styles.size20;
-            case 25:
+            case ButtonSize.SIZE25:
                 return styles.size25;
-            case 30:
+            case ButtonSize.SIZE30:
                 return styles.size30;
-            case 40:
+            case ButtonSize.SIZE40:
                 return styles.size40;
-            case 50:
+            case ButtonSize.SIZE50:
                 return styles.size50;
-            case 100:
+            case ButtonSize.SIZE100:
                 return styles.size100;
             default:
                 return styles.size10;

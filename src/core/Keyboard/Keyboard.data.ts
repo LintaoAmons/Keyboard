@@ -1,5 +1,6 @@
-import type { KeyboardItem } from './Keyboard.type';
+import type {KeyboardItem} from './Keyboard.type';
 import styles from './Keyboard.module.scss';
+import {ButtonSize} from "./OneButton/OneButton";
 
 export const keyboardList: { style: string; list: KeyboardItem[] }[] = [
     {
@@ -46,7 +47,7 @@ export const keyboardList: { style: string; list: KeyboardItem[] }[] = [
             },
             {
                 keycode: 'backspace',
-                size: 30,
+                size: ButtonSize.SIZE30,
             },
         ],
     },
@@ -55,7 +56,7 @@ export const keyboardList: { style: string; list: KeyboardItem[] }[] = [
         list: [
             {
                 keycode: 'tab',
-                size: 20,
+                size: ButtonSize.SIZE20,
             },
             {
                 keycode: 'q',
@@ -95,7 +96,7 @@ export const keyboardList: { style: string; list: KeyboardItem[] }[] = [
             },
             {
                 keycode: '\\',
-                size: 20,
+                size: ButtonSize.SIZE20,
             },
         ],
     },
@@ -104,7 +105,7 @@ export const keyboardList: { style: string; list: KeyboardItem[] }[] = [
         list: [
             {
                 keycode: 'ctrl',
-                size: 25,
+                size: ButtonSize.SIZE25,
             },
             {
                 keycode: 'a',
@@ -141,7 +142,7 @@ export const keyboardList: { style: string; list: KeyboardItem[] }[] = [
             },
             {
                 keycode: 'Enter',
-                size: 40,
+                size: ButtonSize.SIZE40,
             },
         ],
     },
@@ -150,7 +151,7 @@ export const keyboardList: { style: string; list: KeyboardItem[] }[] = [
         list: [
             {
                 keycode: 'shift',
-                size: 40,
+                size: ButtonSize.SIZE40,
             },
             {
                 keycode: 'z',
@@ -184,7 +185,7 @@ export const keyboardList: { style: string; list: KeyboardItem[] }[] = [
             },
             {
                 keycode: 'right shift',
-                size: 50,
+                size: ButtonSize.SIZE50,
             },
         ],
     },
@@ -203,7 +204,7 @@ export const keyboardList: { style: string; list: KeyboardItem[] }[] = [
             },
             {
                 keycode: 'space',
-                size: 100,
+                size: ButtonSize.SIZE100,
             },
             {
                 keycode: 'hyper',
