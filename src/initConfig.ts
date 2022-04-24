@@ -1,71 +1,4 @@
-import { Modifier, Scenario, ScenarioConfig, Scenarios } from './core/CoreTypes';
-
-const firefox: ScenarioConfig = [
-    {
-        keycode: 'h',
-        modifiers: [Modifier.CTRL, Modifier.CMD],
-        description: '切换到左边的标签页',
-        achieveBy: 'HammerSpoon',
-    },
-    {
-        keycode: 'l',
-        modifiers: [Modifier.CTRL, Modifier.CMD],
-        description: '切换到右边的标签页',
-        achieveBy: 'HammerSpoon',
-    },
-    {
-        keycode: '8',
-        modifiers: [Modifier.TAB],
-        description: '搜索标签页',
-        achieveBy: 'Simple Tab Groups',
-    },
-];
-
-const keyRemap: ScenarioConfig = [
-    { keycode: 'h', modifiers: [Modifier.TAB], description: '左', achieveBy: 'karabiner' },
-    { keycode: 'j', modifiers: [Modifier.TAB], description: '右', achieveBy: 'karabiner' },
-    { keycode: 'k', modifiers: [Modifier.TAB], description: '上', achieveBy: 'karabiner' },
-    { keycode: 'l', modifiers: [Modifier.TAB], description: '下', achieveBy: 'karabiner' },
-    { keycode: '1', modifiers: [Modifier.TAB], description: 'F1', achieveBy: 'karabiner' },
-    { keycode: '2', modifiers: [Modifier.TAB], description: 'F2', achieveBy: 'karabiner' },
-    { keycode: '3', modifiers: [Modifier.TAB], description: 'F3', achieveBy: 'karabiner' },
-    { keycode: '4', modifiers: [Modifier.TAB], description: 'F4', achieveBy: 'karabiner' },
-    { keycode: '5', modifiers: [Modifier.TAB], description: 'F5', achieveBy: 'karabiner' },
-    { keycode: '6', modifiers: [Modifier.TAB], description: 'F6', achieveBy: 'karabiner' },
-    { keycode: '7', modifiers: [Modifier.TAB], description: 'F7', achieveBy: 'karabiner' },
-    { keycode: '8', modifiers: [Modifier.TAB], description: 'F8', achieveBy: 'karabiner' },
-    { keycode: '9', modifiers: [Modifier.TAB], description: 'F9', achieveBy: 'karabiner' },
-    { keycode: '0', modifiers: [Modifier.TAB], description: 'F10', achieveBy: 'karabiner' },
-    { keycode: '-', modifiers: [Modifier.TAB], description: 'F11', achieveBy: 'karabiner' },
-    { keycode: '=', modifiers: [Modifier.TAB], description: 'F12', achieveBy: 'karabiner' },
-];
-
-const terminal: ScenarioConfig = [
-    {
-        keycode: 'h',
-        modifiers: [Modifier.CTRL, Modifier.CMD],
-        description: 'Select left tmux pane',
-        achieveBy: 'HammerSpoon',
-    },
-    {
-        keycode: 'l',
-        modifiers: [Modifier.CTRL, Modifier.CMD],
-        description: 'Select right tmux pane',
-        achieveBy: 'HammerSpoon',
-    },
-    {
-        keycode: 'h',
-        modifiers: [Modifier.CTRL],
-        description: 'Select left Vim window',
-        achieveBy: 'HammerSpoon',
-    },
-    {
-        keycode: 'l',
-        modifiers: [Modifier.CTRL],
-        description: 'Select right Vim window',
-        achieveBy: 'HammerSpoon',
-    },
-];
+import {Modifier, Scenario, Scenarios} from './core/CoreTypes';
 
 export const allScenarios: Scenario = {
     name: 'AllScenarios',
@@ -170,18 +103,85 @@ export const allScenarios: Scenario = {
     ],
 };
 
+const firefox: Scenario = {
+    name: 'Firefox',
+    config: [
+        {
+            keycode: 'h',
+            modifiers: [Modifier.CTRL, Modifier.CMD],
+            description: '切换到左边的标签页',
+            achieveBy: 'HammerSpoon',
+        },
+        {
+            keycode: 'l',
+            modifiers: [Modifier.CTRL, Modifier.CMD],
+            description: '切换到右边的标签页',
+            achieveBy: 'HammerSpoon',
+        },
+        {
+            keycode: '8',
+            modifiers: [Modifier.TAB],
+            description: '搜索标签页',
+            achieveBy: 'Simple Tab Groups',
+        },
+    ],
+};
+
+const terminal: Scenario = {
+    name: 'terminal',
+    config: [
+        {
+            keycode: 'h',
+            modifiers: [Modifier.CTRL, Modifier.CMD],
+            description: 'Select left tmux pane',
+            achieveBy: 'HammerSpoon',
+        },
+        {
+            keycode: 'l',
+            modifiers: [Modifier.CTRL, Modifier.CMD],
+            description: 'Select right tmux pane',
+            achieveBy: 'HammerSpoon',
+        },
+        {
+            keycode: 'h',
+            modifiers: [Modifier.CTRL],
+            description: 'Select left Vim window',
+            achieveBy: 'HammerSpoon',
+        },
+        {
+            keycode: 'l',
+            modifiers: [Modifier.CTRL],
+            description: 'Select right Vim window',
+            achieveBy: 'HammerSpoon',
+        },
+    ],
+};
+
+const keyRemap: Scenario = {
+    name: '改键',
+    config: [
+        {keycode: 'h', modifiers: [Modifier.TAB], description: '左', achieveBy: 'karabiner'},
+        {keycode: 'j', modifiers: [Modifier.TAB], description: '右', achieveBy: 'karabiner'},
+        {keycode: 'k', modifiers: [Modifier.TAB], description: '上', achieveBy: 'karabiner'},
+        {keycode: 'l', modifiers: [Modifier.TAB], description: '下', achieveBy: 'karabiner'},
+        {keycode: '1', modifiers: [Modifier.TAB], description: 'F1', achieveBy: 'karabiner'},
+        {keycode: '2', modifiers: [Modifier.TAB], description: 'F2', achieveBy: 'karabiner'},
+        {keycode: '3', modifiers: [Modifier.TAB], description: 'F3', achieveBy: 'karabiner'},
+        {keycode: '4', modifiers: [Modifier.TAB], description: 'F4', achieveBy: 'karabiner'},
+        {keycode: '5', modifiers: [Modifier.TAB], description: 'F5', achieveBy: 'karabiner'},
+        {keycode: '6', modifiers: [Modifier.TAB], description: 'F6', achieveBy: 'karabiner'},
+        {keycode: '7', modifiers: [Modifier.TAB], description: 'F7', achieveBy: 'karabiner'},
+        {keycode: '8', modifiers: [Modifier.TAB], description: 'F8', achieveBy: 'karabiner'},
+        {keycode: '9', modifiers: [Modifier.TAB], description: 'F9', achieveBy: 'karabiner'},
+        {keycode: '0', modifiers: [Modifier.TAB], description: 'F10', achieveBy: 'karabiner'},
+        {keycode: '-', modifiers: [Modifier.TAB], description: 'F11', achieveBy: 'karabiner'},
+        {keycode: '=', modifiers: [Modifier.TAB], description: 'F12', achieveBy: 'karabiner'},
+    ],
+};
+
 export const initScenarios: Scenarios = [
     allScenarios,
-    {
-        name: 'Firefox',
-        config: firefox,
-    },
-    {
-        name: 'terminal',
-        config: terminal,
-    },
-    {
-        name: '改键',
-        config: keyRemap,
-    },
+    firefox,
+    terminal,
+    keyRemap,
 ];
