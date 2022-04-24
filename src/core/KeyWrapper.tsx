@@ -8,8 +8,8 @@ interface KeyWrapperProps {
     highlightConfig: Map<string, boolean>;
 }
 
-const KeyWrapper: FC<KeyWrapperProps> = (propsInside) => {
-    const { keyboardItem, config, highlightConfig } = propsInside;
+const KeyWrapper: FC<KeyWrapperProps> = (props) => {
+    const { keyboardItem, config, highlightConfig } = props;
     const desc = config.get(keyboardItem.keycode?.toString() || '')?.description;
 
     return <OneButton {...keyboardItem} description={desc} highlightConfig={highlightConfig} />;
