@@ -1,22 +1,9 @@
-import { type FC, type ReactNode, useEffect, useState } from 'react';
-import { OneButton } from './OneButton/OneButton';
+import { type FC, useEffect, useState } from 'react';
 import styles from './Keyboard.module.scss';
-import { KeyMapItem, ScenarioConfig } from './CoreTypes';
+import type { ScenarioConfig } from './CoreTypes';
 import { TypeConverter } from './util/TypeConverter';
-
-interface KeyboardItem {
-    keycode: ReactNode;
-    size?: number;
-    hideButton?: boolean;
-    showHighlight?: boolean;
-}
-interface KeyWrapperProps {
-    keyboardItem: KeyboardItem;
-    config: configMap;
-    highlightConfig: Map<string, boolean>;
-}
-
-export type configMap = Map<string, KeyMapItem>; // key is the Keycode
+import type { KeyboardItem, ConfigMap } from './Keyboard.type';
+import KeyWrapper from './KeyWrapper';
 
 interface KeyboardProps {
     config: ScenarioConfig;
@@ -234,17 +221,10 @@ const keyboardList: { style: string; list: KeyboardItem[] }[] = [
     },
 ];
 
-const KeyWrapper: FC<KeyWrapperProps> = (propsInside) => {
-    const { keyboardItem, config, highlightConfig } = propsInside;
-    const desc = config.get(keyboardItem.keycode?.toString() || '')?.description;
-
-    return <OneButton {...keyboardItem} description={desc} highlightConfig={highlightConfig} />;
-};
-
 const Keyboard: FC<KeyboardProps> = (props) => {
     const { config, highlightConfig } = props;
 
-    const [configMap, setConfigMap] = useState<configMap>(TypeConverter.configListToMap(config));
+    const [configMap, setConfigMap] = useState<ConfigMap>(TypeConverter.configListToMap(config));
 
     useEffect(() => setConfigMap(TypeConverter.configListToMap(config)), [config]);
 
