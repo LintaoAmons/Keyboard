@@ -5,13 +5,13 @@ import styles from './ConfigSetter.module.scss';
 interface ConfigSetterProps {
     scenarios: Scenarios;
     setConfig: Dispatch<SetStateAction<Scenarios>>;
-    currentScenario: Scenario;
+    targetScenario: Scenario;
     setCurrentScenario: Dispatch<SetStateAction<Scenario>>;
     setHighlight: Dispatch<SetStateAction<Map<string, boolean>>>;
 }
 
 const ConfigSetter: FC<ConfigSetterProps> = (props) => {
-    const { scenarios, setConfig, currentScenario, setCurrentScenario, setHighlight } = props;
+    const { scenarios, setConfig, targetScenario, setCurrentScenario, setHighlight } = props;
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value) {
             const scenariosNew = JSON.parse(e.target.value) as Scenarios;
@@ -24,9 +24,9 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
     };
 
     const handleChangeScenarios = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const targetScenario = scenarios.find((it) => it.name === e.target.value);
-        if (targetScenario) {
-            setCurrentScenario(targetScenario);
+        const target = scenarios.find((it) => it.name === e.target.value);
+        if (target) {
+            setCurrentScenario(target);
         }
     };
 
@@ -37,7 +37,7 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
                 Choose Scenario:{' '}
             </label>
             <select
-                value={currentScenario.name}
+                value={targetScenario.name}
                 name="scenarios"
                 id="scenarios"
                 onChange={handleChangeScenarios}>
