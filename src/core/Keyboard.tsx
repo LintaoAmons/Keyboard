@@ -1,112 +1,269 @@
-import {OneButton} from "./OneButton/OneButton";
-import styles from './Keyboard.module.scss'
-import React, {useEffect, useState} from "react";
-import {KeyMapItem, ScenarioConfig} from "./CoreTypes";
-import {TypeConverter} from "./util/TypeConverter";
+import { type FC, type ReactNode, useEffect, useState } from 'react';
+import { OneButton } from './OneButton/OneButton';
+import styles from './Keyboard.module.scss';
+import { KeyMapItem, ScenarioConfig } from './CoreTypes';
+import { TypeConverter } from './util/TypeConverter';
 
-interface KeyWrapperProps {
-    keycode: string;
+interface KeyboardItem {
+    keycode: ReactNode;
     size?: number;
     hideButton?: boolean;
     showHighlight?: boolean;
 }
+interface KeyWrapperProps {
+    keyboardItem: KeyboardItem;
+    config: configMap;
+    highlightConfig: Map<string, boolean>;
+}
 
-export type configMap = Map<string, KeyMapItem> // key is the Keycode
+export type configMap = Map<string, KeyMapItem>; // key is the Keycode
 
 interface KeyboardProps {
     config: ScenarioConfig;
     highlightConfig: Map<string, boolean>;
 }
 
-const Keyboard: React.FC<KeyboardProps> = (props) => {
-    const [configMap, setConfigMap] =
-        useState<configMap>(TypeConverter.configListToMap(props.config))
+const keyboardList: { style: string; list: KeyboardItem[] }[] = [
+    {
+        style: styles.row1,
+        list: [
+            {
+                keycode: 'esc',
+            },
+            {
+                keycode: '1',
+            },
+            {
+                keycode: '2',
+            },
+            {
+                keycode: '3',
+            },
+            {
+                keycode: '4',
+            },
+            {
+                keycode: '5',
+            },
+            {
+                keycode: '6',
+            },
+            {
+                keycode: '7',
+            },
+            {
+                keycode: '8',
+            },
+            {
+                keycode: '9',
+            },
+            {
+                keycode: '0',
+            },
+            {
+                keycode: '-',
+            },
+            {
+                keycode: '=',
+            },
+            {
+                keycode: 'backspace',
+                size: 30,
+            },
+        ],
+    },
+    {
+        style: styles.row2,
+        list: [
+            {
+                keycode: 'tab',
+                size: 20,
+            },
+            {
+                keycode: 'q',
+            },
+            {
+                keycode: 'w',
+            },
+            {
+                keycode: 'e',
+            },
+            {
+                keycode: 'r',
+            },
+            {
+                keycode: 't',
+            },
+            {
+                keycode: 'y',
+            },
+            {
+                keycode: 'u',
+            },
+            {
+                keycode: 'i',
+            },
+            {
+                keycode: 'o',
+            },
+            {
+                keycode: 'p',
+            },
+            {
+                keycode: '[',
+            },
+            {
+                keycode: ']',
+            },
+            {
+                keycode: <span>\</span>,
+                size: 20,
+            },
+        ],
+    },
+    {
+        style: styles.row3,
+        list: [
+            {
+                keycode: 'ctrl',
+                size: 25,
+            },
+            {
+                keycode: 'a',
+            },
+            {
+                keycode: 's',
+            },
+            {
+                keycode: 'd',
+            },
+            {
+                keycode: 'f',
+            },
+            {
+                keycode: 'g',
+            },
+            {
+                keycode: 'h',
+            },
+            {
+                keycode: 'j',
+            },
+            {
+                keycode: 'k',
+            },
+            {
+                keycode: 'l',
+            },
+            {
+                keycode: ';',
+            },
+            {
+                keycode: "'",
+            },
+            {
+                keycode: 'Enter',
+                size: 40,
+            },
+        ],
+    },
+    {
+        style: styles.row4,
+        list: [
+            {
+                keycode: 'shift',
+                size: 40,
+            },
+            {
+                keycode: 'z',
+            },
+            {
+                keycode: 'x',
+            },
+            {
+                keycode: 'c',
+            },
+            {
+                keycode: 'v',
+            },
+            {
+                keycode: 'b',
+            },
+            {
+                keycode: 'n',
+            },
+            {
+                keycode: 'm',
+            },
+            {
+                keycode: ',',
+            },
+            {
+                keycode: '.',
+            },
+            {
+                keycode: '/',
+            },
+            {
+                keycode: 'right shift',
+                size: 50,
+            },
+        ],
+    },
+    {
+        style: styles.row5,
+        list: [
+            {
+                keycode: 'Placeholder',
+                hideButton: true,
+            },
+            {
+                keycode: 'alt',
+            },
+            {
+                keycode: 'cmd',
+            },
+            {
+                keycode: 'space',
+                size: 100,
+            },
+            {
+                keycode: 'hyper',
+            },
+        ],
+    },
+];
 
-    const KeyWrapper: React.FC<KeyWrapperProps> = (propsInside) => {
-        const desc = configMap.get(propsInside.keycode)?.description
+const KeyWrapper: FC<KeyWrapperProps> = (propsInside) => {
+    const { keyboardItem, config, highlightConfig } = propsInside;
+    const desc = config.get(keyboardItem.keycode?.toString() || '')?.description;
 
-        return (<OneButton keycode={propsInside.keycode}
-                           size={propsInside.size}
-                           hideButton={propsInside.hideButton}
-                           description={desc}
-                           highlightConfig={props.highlightConfig}
-        />)
-    }
+    return <OneButton {...keyboardItem} description={desc} highlightConfig={highlightConfig} />;
+};
 
-    useEffect(() => setConfigMap(TypeConverter.configListToMap(props.config)), [props.config])
+const Keyboard: FC<KeyboardProps> = (props) => {
+    const { config, highlightConfig } = props;
+
+    const [configMap, setConfigMap] = useState<configMap>(TypeConverter.configListToMap(config));
+
+    useEffect(() => setConfigMap(TypeConverter.configListToMap(config)), [config]);
 
     return (
         <div className={styles.keyboardContainer}>
-            <div className={styles.row1}>
-                <KeyWrapper keycode='esc'/>
-                <KeyWrapper keycode='1'/>
-                <KeyWrapper keycode='2'/>
-                <KeyWrapper keycode='3'/>
-                <KeyWrapper keycode='4'/>
-                <KeyWrapper keycode='5'/>
-                <KeyWrapper keycode='6'/>
-                <KeyWrapper keycode='7'/>
-                <KeyWrapper keycode='8'/>
-                <KeyWrapper keycode='9'/>
-                <KeyWrapper keycode='0'/>
-                <KeyWrapper keycode='-'/>
-                <KeyWrapper keycode='='/>
-                <KeyWrapper keycode='backspace' size={30}/>
-            </div>
-            <div className={styles.row2}>
-                <KeyWrapper keycode='tab' size={20}/>
-                <KeyWrapper keycode='q'/>
-                <KeyWrapper keycode='w'/>
-                <KeyWrapper keycode='e'/>
-                <KeyWrapper keycode='r'/>
-                <KeyWrapper keycode='t'/>
-                <KeyWrapper keycode='y'/>
-                <KeyWrapper keycode='u'/>
-                <KeyWrapper keycode='i'/>
-                <KeyWrapper keycode='o'/>
-                <KeyWrapper keycode='p'/>
-                <KeyWrapper keycode='['/>
-                <KeyWrapper keycode=']'/>
-                <KeyWrapper keycode='\' size={20}/>
-            </div>
-            <div className={styles.row3}>
-                <KeyWrapper keycode='ctrl' size={25}/>
-                <KeyWrapper keycode='a'/>
-                <KeyWrapper keycode='s'/>
-                <KeyWrapper keycode='d'/>
-                <KeyWrapper keycode='f'/>
-                <KeyWrapper keycode='g'/>
-                <KeyWrapper keycode='h'/>
-                <KeyWrapper keycode='j'/>
-                <KeyWrapper keycode='k'/>
-                <KeyWrapper keycode='l'/>
-                <KeyWrapper keycode=';'/>
-                <KeyWrapper keycode="'"/>
-                <KeyWrapper keycode='Enter' size={40}/>
-            </div>
-            <div className={styles.row4}>
-                <KeyWrapper keycode='shift' size={40}/>
-                <KeyWrapper keycode='z'/>
-                <KeyWrapper keycode='x'/>
-                <KeyWrapper keycode='c'/>
-                <KeyWrapper keycode='v'/>
-                <KeyWrapper keycode='b'/>
-                <KeyWrapper keycode='n'/>
-                <KeyWrapper keycode='m'/>
-                <KeyWrapper keycode=','/>
-                <KeyWrapper keycode='.'/>
-                <KeyWrapper keycode='/'/>
-                <KeyWrapper keycode="right shift" size={50}/>
-            </div>
-            <div className={styles.row5}>
-                <KeyWrapper keycode='Placeholder' hideButton={true}/>
-                <KeyWrapper keycode='alt'/>
-                <KeyWrapper keycode='cmd'/>
-                <KeyWrapper keycode='space' size={100}/>
-                <KeyWrapper keycode='hyper'/>
-            </div>
+            {keyboardList.map((key, idx) => (
+                <div className={key.style} key={idx}>
+                    {key.list.map((item, keyIdx) => (
+                        <KeyWrapper
+                            keyboardItem={item}
+                            key={`KeyWrapper${keyIdx}`}
+                            config={configMap}
+                            highlightConfig={highlightConfig}
+                        />
+                    ))}
+                </div>
+            ))}
         </div>
-    )
-}
+    );
+};
 
-export {Keyboard};
+export default Keyboard;

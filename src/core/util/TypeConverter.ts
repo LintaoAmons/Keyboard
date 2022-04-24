@@ -1,31 +1,30 @@
-import {KeyMapItem, Modifier} from "../CoreTypes";
-
+import { KeyMapItem, Modifier } from '../CoreTypes';
 
 class TypeConverter {
-
     static configListToMap = (configList: KeyMapItem[]) => {
-        const out = new Map()
-        configList.forEach(it => out.set(it.keycode, it))
-        return out
-    }
+        const out = new Map();
+        configList.forEach((it) => out.set(it.keycode, it));
+        return out;
+    };
 
     static modifierEnumToKeycode = (modifier: Modifier) => {
         switch (modifier) {
             case Modifier.ALT:
-                return "alt"
+                return 'alt';
             case Modifier.CMD:
-                return 'cmd'
+                return 'cmd';
             case Modifier.CTRL:
-                return 'ctrl'
+                return 'ctrl';
             case Modifier.SHIFT:
-                return 'shift'
+                return 'shift';
             case Modifier.HYPER:
-                return 'hyper'
+                return 'hyper';
             case Modifier.TAB:
-                return 'tab'
+                return 'tab';
+            default:
+                return '';
         }
-    }
+    };
 }
 
-
-export {TypeConverter}
+export { TypeConverter };
