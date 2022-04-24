@@ -1,63 +1,60 @@
-import {Modifier} from '../CoreTypes';
+import type { FC } from 'react';
 import styles from './OneButton.module.scss';
-import React from "react";
 
 export interface OneButtonProps {
     keycode: string;
+    highlightConfig: Map<string, boolean>;
     size?: number;
-    modifiers?: Modifier[];
     description?: string;
     hideButton?: boolean;
-    highlightConfig: Map<string, boolean>;
 }
 
-const OneButton: React.FC<OneButtonProps> = (props) => {
-    const buttonSize = (size?: number) => {
+const OneButton: FC<OneButtonProps> = (props) => {
+    const { keycode, size = styles.size10, description, hideButton, highlightConfig } = props;
+
+    const buttonSize = () => {
         switch (size) {
             case 20:
-                return styles.size20
+                return styles.size20;
             case 25:
-                return styles.size25
+                return styles.size25;
             case 30:
-                return styles.size30
+                return styles.size30;
             case 40:
-                return styles.size40
+                return styles.size40;
             case 50:
-                return styles.size50
+                return styles.size50;
             case 100:
-                return styles.size100
+                return styles.size100;
             default:
-                return styles.size10
+                return styles.size10;
         }
-    }
+    };
 
-    const showHighlight = (description?: string) => {
-        const show = props.highlightConfig.get(props.keycode) === true
-        if (!show) return null
+    const showHighlight = () => {
+        const show = highlightConfig?.get(keycode) === true;
+        if (!show) return null;
 
         // TODO: switch hardcoded modifier to enum
-        if (['ctrl', 'alt', 'cmd', 'shift', 'hyper', 'tab'].includes(props.keycode)) {
-            return styles.hightlightModifier
+        if (['ctrl', 'alt', 'cmd', 'shift', 'hyper', 'tab'].includes(keycode?.toString() || '')) {
+            return styles.hightlightModifier;
         }
-        if (description == null ) {
-            return null
-        } else {
-            return styles.showHighlight
+        if (description == null) {
+            return null;
         }
-    }
+        return styles.showHighlight;
+    };
 
-    const calculateStyle = (size?: number, hideButton?: boolean) => {
-        return `${(hideButton === true) ? styles.hidden : null} 
-                ${buttonSize(size)}
-                ${showHighlight(props.description)}
-                `
-    }
+    const calculateStyle = () => `${hideButton === true ? styles.hidden : null} 
+                ${buttonSize()}
+                ${showHighlight()}
+                `;
 
     return (
-        <div className={calculateStyle(props.size, props.hideButton)}>
-            <span>{props.keycode}</span>
+        <div className={calculateStyle()}>
+            <span>{keycode}</span>
         </div>
-    )
-}
+    );
+};
 
-export {OneButton};
+export { OneButton };
