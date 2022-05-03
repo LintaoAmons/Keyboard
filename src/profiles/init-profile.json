@@ -1,0 +1,422 @@
+[
+  {
+    "name": "All Place",
+    "config": [
+      {
+        "keycode": "f",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "打开 firefox 浏览器",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "j",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "打开 Joplin",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "k",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "打开 Terminal",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "l",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "打开 File Explorer",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": ";",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "打开 微信",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "u",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "打开 Draw.io",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "i",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "打开 IDEA",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "o",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "打开 Vscode",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "v",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "Alfred 剪贴板历史",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "a",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "window to left half",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "s",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "window to bottom half",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "d",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "window to right half",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "w",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "window to top half",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "z",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "window to full size",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "e",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "window to previous display",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "r",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "window to next display",
+        "achieveBy": "HammerSpoon"
+      }
+    ]
+  },
+  {
+    "name": "Firefox",
+    "config": [
+      {
+        "keycode": "h",
+        "modifiers": [
+          "CTRL",
+          "CMD"
+        ],
+        "description": "切换到左边的标签页",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "l",
+        "modifiers": [
+          "CTRL",
+          "CMD"
+        ],
+        "description": "切换到右边的标签页",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "8",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "搜索标签页",
+        "achieveBy": "Simple Tab Groups"
+      }
+    ]
+  },
+  {
+    "name": "Terminal",
+    "config": [
+      {
+        "keycode": "j",
+        "modifiers": [
+          "CTRL",
+          "CMD"
+        ],
+        "description": "Select down tmux pane",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "k",
+        "modifiers": [
+          "CTRL",
+          "CMD"
+        ],
+        "description": "Select up tmux pane",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "h",
+        "modifiers": [
+          "CTRL",
+          "CMD"
+        ],
+        "description": "Select left tmux pane",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "l",
+        "modifiers": [
+          "CTRL",
+          "CMD"
+        ],
+        "description": "Select right tmux pane",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "[",
+        "modifiers": [
+          "CTRL",
+          "CMD"
+        ],
+        "description": "Switch to previous session",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "]",
+        "modifiers": [
+          "CTRL",
+          "CMD"
+        ],
+        "description": "Switch to next session",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "1",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "Switch to window 1",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "2",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "Switch to window 2",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "3",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "Switch to window 3",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "4",
+        "modifiers": [
+          "HYPER"
+        ],
+        "description": "Switch to window 4",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "h",
+        "modifiers": [
+          "CTRL"
+        ],
+        "description": "Select left Vim window",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "l",
+        "modifiers": [
+          "CTRL"
+        ],
+        "description": "Select right Vim window",
+        "achieveBy": "HammerSpoon"
+      },
+      {
+        "keycode": "u",
+        "modifiers": [
+          "CTRL"
+        ],
+        "description": "toggle lazygit",
+        "achieveBy": ".zshrc"
+      },
+      {
+        "keycode": "o",
+        "modifiers": [
+          "CTRL"
+        ],
+        "description": "toggle lf, the file explorer",
+        "achieveBy": ".zshrc"
+      }
+    ]
+  },
+  {
+    "name": "改键",
+    "config": [
+      {
+        "keycode": "h",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "左",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "j",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "右",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "k",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "上",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "l",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "下",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "1",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F1",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "2",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F2",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "3",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F3",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "4",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F4",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "5",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F5",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "6",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F6",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "7",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F7",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "8",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F8",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "9",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F9",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "0",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F10",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "-",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F11",
+        "achieveBy": "karabiner"
+      },
+      {
+        "keycode": "=",
+        "modifiers": [
+          "TAB"
+        ],
+        "description": "F12",
+        "achieveBy": "karabiner"
+      }
+    ]
+  }
+]

@@ -20,7 +20,8 @@
 - [x] Add scenario
 - [x] fix scenario switch highlight
 - [ ] 多profile，保存设置，但是需要设置文件大小上限
-  - [ ] initProfile from ts file to json file
+  - [x] initProfile from ts file to json file
+  - [ ] save settings from web directly
 - [ ] key sequence shortcuts visualization
 - [ ] string type keycode to enum
 - [ ] highlightMe button --> clickable row
