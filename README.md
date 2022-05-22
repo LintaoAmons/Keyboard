@@ -19,9 +19,12 @@
 # TODO
 - [x] Add scenario
 - [x] fix scenario switch highlight
-- [ ] 多profile，保存设置，但是需要设置文件大小上限
-  - [x] initProfile from ts file to json file
-  - [ ] save settings from web directly
+- [ ] 用户可以保存修改以及直接从系统中调出自己的配置（不用粘贴进来）
+  - [x] Backend impl (https://github.com/LintaoAmons/keyboard-backend)
+  - [x] 提升开发体验
+    - [x] Api generate from openApi 
+    - [x] Nginx reverse proxy
+  - [ ] replace `core/type` with generated type
 - [ ] key sequence shortcuts visualization
 - [ ] string type keycode to enum
 - [ ] highlightMe button --> clickable row
