@@ -40,7 +40,8 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
                 value={targetScenario.name}
                 name="scenarios"
                 id="scenarios"
-                onChange={handleChangeScenarios}>
+                onChange={handleChangeScenarios}
+            >
                 {scenarios.map((it) => (
                     <option value={it.name} key={`scenario-${it.name}`}>
                         {it.name}
