@@ -1,4 +1,5 @@
-import { type FC, Dispatch, SetStateAction } from 'react';
+import moment from 'moment';
+import { type FC, Dispatch, SetStateAction, useState } from 'react';
 import { Api, KeyboardConfig, Scenario } from '../../generated_apis/Api';
 import styles from './ConfigSetter.module.scss';
 
@@ -12,6 +13,8 @@ interface ConfigSetterProps {
 
 const ConfigSetter: FC<ConfigSetterProps> = (props) => {
     const { scenarios, setConfig, targetScenario, setCurrentScenario, setHighlight } = props;
+    const [configId, setConfigId] = useState<number>(1);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value) {
             const scenariosNew = JSON.parse(e.target.value) as Scenario[];
@@ -30,10 +33,22 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
         }
     };
 
+    const saveData = () => {
+        const keyboardConfig: KeyboardConfig = {
+            id: configId,
+            createdAt: moment().format("yyyy-MM-DD[T]hh:mm:ss[Z]"),
+            createdBy: 'web',
+            scenarios,
+        };
+        new Api().keyboardConfig.save(keyboardConfig);
+    };
+
     const loadData = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newConfigId = parseInt(e.target.value, 2);
         const fetchData = async () => {
-            const response = await new Api().keyboardConfig.getById(parseInt(e.target.value, 2));
+            const response = await new Api().keyboardConfig.getById(newConfigId);
             const data = (await response.json()) as KeyboardConfig;
+            setConfigId(newConfigId);
             setConfig(data.scenarios);
         };
 
@@ -82,6 +97,7 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
                 defaultValue={JSON.stringify(scenarios)}
                 onBlur={handleChange}
             />
+            <button onClick={saveData}>Save</button>
         </div>
     );
 };
