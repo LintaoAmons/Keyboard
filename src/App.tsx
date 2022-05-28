@@ -2,10 +2,23 @@ import { useEffect, useMemo, useState } from 'react';
 import Keyboard from './core/Keyboard/Keyboard';
 import { KeyMapOverview } from './core/KeyMapOverview/KeyMapOverview';
 import './App.css';
-import { Scenario, Api } from './generated_apis/Api';
+import { Scenario, Api, Modifier, KeyboardConfig } from './generated_apis/Api';
 import { ConfigSetter } from './core/ConfigSetter/ConfigSetter';
 import Title from './core/Title/Title';
-import { initScenarios } from './initConfig';
+
+const initScenarios: Scenario[] = [
+    {
+        name: 'init',
+        config: [
+            {
+                keycode: 'f',
+                modifiers: [Modifier.CMD],
+                description: '打开 firefox 浏览器',
+                achieveBy: 'HammerSpoon',
+            },
+        ],
+    },
+];
 
 function App() {
     const [scenarios, setScenarios] = useState<Scenario[]>(initScenarios);
@@ -29,18 +42,22 @@ function App() {
         setHighlightConfig(newHighlightTable);
     };
 
-    const testApi = () => {
-        const api = new Api();
-        api.keyboardConfig.getById(1);
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await new Api().keyboardConfig.getById(1);
+            const data = await response.json() as KeyboardConfig;
+            setScenarios(data.scenarios);
+        };
 
+        fetchData().catch(console.error);
+        initHighlight();
+    }, []);
     useEffect(initHighlight, [targetScenario]);
 
     return (
         <div className="App">
             <Title />
             <Keyboard config={targetScenario.config} highlightConfig={highlightConfig} />
-            <button onClick={testApi}>Test api</button>
             <ConfigSetter
                 scenarios={scenarios}
                 setConfig={setScenarios}
