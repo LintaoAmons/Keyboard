@@ -49,7 +49,7 @@ function App() {
             setScenarios(data.scenarios);
         };
 
-        fetchData().catch(console.error);
+        fetchData()
         initHighlight();
     }, []);
 

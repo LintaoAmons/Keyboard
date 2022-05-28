@@ -44,33 +44,36 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
         <div>
             <h2>Config</h2>
 
-            <label htmlFor="load-config">
-                {' '}
-                LoadConfig:
-                <input
-                    type="text"
-                    name="load-config"
-                    id="load-config"
-                    defaultValue="1"
-                    onBlur={loadData}
-                />
-            </label>
+            <div>
+                <label htmlFor="load-config">
+                    {' '}
+                    LoadConfig:
+                    <input
+                        type="text"
+                        name="load-config"
+                        id="load-config"
+                        defaultValue="1"
+                        onBlur={loadData}
+                    />
+                </label>
 
-            <label htmlFor="scenarios" id="scenarios">
-                Choose Scenario:{' '}
-            </label>
-            <select
-                value={targetScenario.name}
-                name="scenarios"
-                id="scenarios"
-                onChange={handleChangeScenarios}
-            >
-                {scenarios.map((it) => (
-                    <option value={it.name} key={`scenario-${it.name}`}>
-                        {it.name}
-                    </option>
-                ))}
-            </select>
+                <label htmlFor="scenarios" id="scenarios">
+                    Choose Scenario:{' '}
+                </label>
+                <select
+                    value={targetScenario.name}
+                    name="scenarios"
+                    id="scenarios"
+                    onChange={handleChangeScenarios}
+                >
+                    {scenarios.map((it) => (
+                        <option value={it.name} key={`scenario-${it.name}`}>
+                            {it.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
             <input
                 className={styles.config}
                 type="text"
