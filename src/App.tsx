@@ -52,6 +52,7 @@ function App() {
         fetchData().catch(console.error);
         initHighlight();
     }, []);
+
     useEffect(initHighlight, [targetScenario]);
 
     return (

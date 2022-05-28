@@ -1,5 +1,5 @@
 import { type FC, Dispatch, SetStateAction } from 'react';
-import { Scenario } from "../../generated_apis/Api";
+import { Api, KeyboardConfig, Scenario } from '../../generated_apis/Api';
 import styles from './ConfigSetter.module.scss';
 
 interface ConfigSetterProps {
@@ -30,9 +30,32 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
         }
     };
 
+    const loadData = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const fetchData = async () => {
+            const response = await new Api().keyboardConfig.getById(parseInt(e.target.value, 2));
+            const data = (await response.json()) as KeyboardConfig;
+            setConfig(data.scenarios);
+        };
+
+        fetchData();
+    };
+
     return (
         <div>
             <h2>Config</h2>
+
+            <label htmlFor="load-config">
+                {' '}
+                LoadConfig:
+                <input
+                    type="text"
+                    name="load-config"
+                    id="load-config"
+                    defaultValue="1"
+                    onBlur={loadData}
+                />
+            </label>
+
             <label htmlFor="scenarios" id="scenarios">
                 Choose Scenario:{' '}
             </label>

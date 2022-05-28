@@ -1,10 +1,10 @@
-import {type FC, useEffect, useState} from 'react';
+import { type FC, useEffect, useState } from 'react';
 import styles from './Keyboard.module.scss';
-import { KeyMapItem } from "../../generated_apis/Api";
-import {TypeConverter} from '../util/TypeConverter';
-import type {ConfigMap} from './Keyboard.type';
+import { KeyMapItem } from '../../generated_apis/Api';
+import { TypeConverter } from '../util/TypeConverter';
+import type { ConfigMap } from './Keyboard.type';
 import KeyWrapper from './KeyWrapper';
-import {keyboardList} from './Keyboard.data';
+import { keyboardList } from './Keyboard.data';
 
 interface KeyboardProps {
     config: KeyMapItem[];
@@ -12,7 +12,7 @@ interface KeyboardProps {
 }
 
 const Keyboard: FC<KeyboardProps> = (props) => {
-    const {config, highlightConfig} = props;
+    const { config, highlightConfig } = props;
 
     const [configMap, setConfigMap] = useState<ConfigMap>(TypeConverter.configListToMap(config));
 
