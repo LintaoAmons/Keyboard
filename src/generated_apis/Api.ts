@@ -9,9 +9,18 @@
  * ---------------------------------------------------------------
  */
 
+export enum Modifier {
+    CMD = 'CMD',
+    CTRL = 'CTRL',
+    SHIFT = 'SHIFT',
+    ALT = 'ALT',
+    TAB = 'TAB',
+    HYPER = 'HYPER',
+}
+
 export interface KeyMapItem {
     keycode: string;
-    modifiers: ('CMD' | 'CTRL' | 'SHIFT' | 'ALT' | 'TAB' | 'HYPER')[];
+    modifiers: Modifier[];
     description: string;
     achieveBy: string;
 }

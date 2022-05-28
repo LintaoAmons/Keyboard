@@ -1,10 +1,10 @@
 import { type FC, Dispatch, SetStateAction } from 'react';
-import { Scenario, Scenarios } from '../CoreTypes';
+import { Scenario } from "../../generated_apis/Api";
 import styles from './ConfigSetter.module.scss';
 
 interface ConfigSetterProps {
-    scenarios: Scenarios;
-    setConfig: Dispatch<SetStateAction<Scenarios>>;
+    scenarios: Scenario[];
+    setConfig: Dispatch<SetStateAction<Scenario[]>>;
     targetScenario: Scenario;
     setCurrentScenario: Dispatch<SetStateAction<Scenario>>;
     setHighlight: Dispatch<SetStateAction<Map<string, boolean>>>;
@@ -14,7 +14,7 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
     const { scenarios, setConfig, targetScenario, setCurrentScenario, setHighlight } = props;
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value) {
-            const scenariosNew = JSON.parse(e.target.value) as Scenarios;
+            const scenariosNew = JSON.parse(e.target.value) as Scenario[];
             setConfig(scenariosNew);
             setCurrentScenario(scenariosNew[0]);
             setHighlight(new Map());

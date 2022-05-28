@@ -1,4 +1,4 @@
-import { KeyMapItem, Modifier } from '../CoreTypes';
+import { KeyMapItem, Modifier } from "../../generated_apis/Api";
 
 class TypeConverter {
     static configListToMap = (configList: KeyMapItem[]) => {

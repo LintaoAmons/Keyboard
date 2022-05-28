@@ -2,14 +2,13 @@ import { useEffect, useMemo, useState } from 'react';
 import Keyboard from './core/Keyboard/Keyboard';
 import { KeyMapOverview } from './core/KeyMapOverview/KeyMapOverview';
 import './App.css';
-import { Scenario, Scenarios } from './core/CoreTypes';
+import { Scenario, Api } from './generated_apis/Api';
 import { ConfigSetter } from './core/ConfigSetter/ConfigSetter';
 import Title from './core/Title/Title';
 import { initScenarios } from './initConfig';
-import { Api } from './generated_apis/Api';
 
 function App() {
-    const [scenarios, setScenarios] = useState<Scenarios>(initScenarios);
+    const [scenarios, setScenarios] = useState<Scenario[]>(initScenarios);
     const [currentScenario, setCurrentScenario] = useState<Scenario>(initScenarios[0]);
     const [highlightConfig, setHighlightConfig] = useState<Map<string, boolean>>(new Map());
     const targetScenario = useMemo(() => {

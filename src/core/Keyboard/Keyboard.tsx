@@ -1,13 +1,13 @@
 import {type FC, useEffect, useState} from 'react';
 import styles from './Keyboard.module.scss';
-import type {ScenarioConfig} from '../CoreTypes';
+import { KeyMapItem } from "../../generated_apis/Api";
 import {TypeConverter} from '../util/TypeConverter';
 import type {ConfigMap} from './Keyboard.type';
 import KeyWrapper from './KeyWrapper';
 import {keyboardList} from './Keyboard.data';
 
 interface KeyboardProps {
-    config: ScenarioConfig;
+    config: KeyMapItem[];
     highlightConfig: Map<string, boolean>;
 }
 

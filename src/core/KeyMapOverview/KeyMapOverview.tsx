@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import styles from './KeyMapOverview.module.scss';
-import { KeyMapItem, Scenario } from '../CoreTypes';
 import { TypeConverter } from '../util/TypeConverter';
+import { KeyMapItem, Scenario } from '../../generated_apis/Api';
 
 interface KeyMapOverviewProps {
     scenario: Scenario;

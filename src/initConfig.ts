@@ -1,4 +1,4 @@
 import profile from './profiles/init-profile.json';
-import { Scenarios } from './core/CoreTypes';
+import { Scenario } from './generated_apis/Api';
 
-export const initScenarios: Scenarios = profile as Scenarios;
+export const initScenarios = profile as Scenario[];

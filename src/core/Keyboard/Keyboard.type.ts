@@ -1,4 +1,4 @@
-import type { KeyMapItem } from '../CoreTypes';
+import { KeyMapItem } from "../../generated_apis/Api";
 import {ButtonSize} from "./OneButton/OneButton";
 
 export interface KeyboardItem {
