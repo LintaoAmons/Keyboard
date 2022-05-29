@@ -45,12 +45,16 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
 
     const loadData = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const newConfigId = parseInt(e.target.value, 10);
-        console.log(newConfigId);
+        setConfigId(newConfigId);
         const fetchData = async () => {
-            const response = await new Api().keyboardConfig.getById(newConfigId);
-            const data = (await response.json()) as KeyboardConfig;
-            setConfigId(newConfigId);
-            setConfig(data.scenarios);
+            try {
+                const response = await new Api().keyboardConfig.getById(newConfigId);
+                const data = (await response.json()) as KeyboardConfig;
+                setConfig(data.scenarios);
+            } catch (error) {
+                // TODO error handling maybe popup window
+                console.log('something went wrong');
+            }
         };
 
         fetchData();
