@@ -8,23 +8,23 @@
    2. 易搜索
    3. 配置序列化，可简单上传下载
 
-# Try with Docker
+# Try it ｜ 来试试
 
-- copy the following command and run it in your terminal
-    ```bash
-    $ docker run -d -p 3000:80 lintao0o0/keyboard:0.2.6
-    ```
-- then go to `http://localhost:3000`
+[点这里 | Click here](https://oatnil.top/keyboard/)
+
+# 后端项目
+
+[github](https://github.com/LintaoAmons/keyboard-backend)
 
 # TODO
 - [x] Add scenario
 - [x] fix scenario switch highlight
-- [ ] 用户可以保存修改以及直接从系统中调出自己的配置（不用粘贴进来）
+- [x] 用户可以保存修改以及直接从系统中调出自己的配置（不用粘贴进来）
   - [x] Backend impl (https://github.com/LintaoAmons/keyboard-backend)
   - [x] 提升开发体验
     - [x] Api generate from openApi 
     - [x] Nginx reverse proxy
-  - [ ] replace `core/type` with generated type
+  - [x] replace `core/type` with generated type
 - [ ] key sequence shortcuts visualization
 - [ ] string type keycode to enum
 - [ ] highlightMe button --> clickable row
