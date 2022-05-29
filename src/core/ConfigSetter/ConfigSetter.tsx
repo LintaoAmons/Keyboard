@@ -36,7 +36,7 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
     const saveData = () => {
         const keyboardConfig: KeyboardConfig = {
             id: configId,
-            createdAt: moment().format("yyyy-MM-DD[T]hh:mm:ss[Z]"),
+            createdAt: moment().format('yyyy-MM-DD[T]hh:mm:ss[Z]'),
             createdBy: 'web',
             scenarios,
         };
@@ -44,7 +44,8 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
     };
 
     const loadData = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newConfigId = parseInt(e.target.value, 2);
+        const newConfigId = parseInt(e.target.value, 10);
+        console.log(newConfigId);
         const fetchData = async () => {
             const response = await new Api().keyboardConfig.getById(newConfigId);
             const data = (await response.json()) as KeyboardConfig;
