@@ -12,6 +12,11 @@
 
 [点这里 | Click here](https://oatnil.top/keyboard/)
 
+## 前端only版本
+前端Only的版本为 `0.2.7` 版本，需要的话，可以checkout到 `11bd66e71c596d107cfb359be0dc3311197fadb1` commit
+
+对应的docker镜像 `docker pull lintao0o0/keyboard:0.2.7`
+
 # 后端项目
 
 [github](https://github.com/LintaoAmons/keyboard-backend)
