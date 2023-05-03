@@ -1,4 +1,4 @@
-import type {FC} from 'react';
+import type { FC } from 'react';
 import styles from './OneButton.module.scss';
 
 export interface OneButtonProps {
@@ -54,10 +54,12 @@ const OneButton: FC<OneButtonProps> = (props) => {
         return styles.showHighlight;
     };
 
-    const calculateStyle = () => `${hideButton === true ? styles.hidden : null} 
-                ${buttonSize()}
-                ${showHighlight()}
-                `;
+    const calculateStyle =
+        () => `flex items-center justify-center mx-1 h-12 bg-white border border-black
+            ${hideButton === true ? 'invisible' : null} 
+            ${buttonSize()}
+            ${showHighlight()}
+            `;
 
     return (
         <div className={calculateStyle()}>

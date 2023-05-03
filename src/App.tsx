@@ -32,7 +32,7 @@ function App() {
   useEffect(initHighlight, [targetScenario]);
 
   return (
-    <div className="App">
+    <div className="flex flex-col items-center justify-between p-4">
       <Title />
       <Keyboard config={targetScenario.config} highlightConfig={highlightConfig} />
       <ConfigSetter
