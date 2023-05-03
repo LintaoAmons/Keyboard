@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import Keyboard from './core/Keyboard/Keyboard';
 import { KeyMapOverview } from './core/KeyMapOverview/KeyMapOverview';
-import './App.css';
 import { KeyboardConfig, Scenario } from './core/CoreTypes';
 import { ConfigSetter } from './core/ConfigSetter/ConfigSetter';
 import Title from './core/Title/Title';
