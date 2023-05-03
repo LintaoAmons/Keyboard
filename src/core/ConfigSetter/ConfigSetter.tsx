@@ -31,16 +31,16 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
 
     return (
         <div className="flex flex-col items-start ">
-            <h2 className="text-5xl mx-3 self-center">Config</h2>
+            <h2 className="text-4xl m-3 self-center">Config</h2>
 
             <label
-                className="block m-3 text-sm font-medium text-gray-900 dark:text-white"
+                className="block ml-3 text-sm font-medium"
                 htmlFor="scenarios"
-                id="scenarios">
+                id="scenarios-label">
                 Choose Scenario:{' '}
             </label>
             <select
-                className="m-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="mb-3 mx-3 border text-sm rounded-lg block w-full p-2.5"
                 value={targetScenario.name}
                 name="scenarios"
                 id="scenarios"
@@ -55,7 +55,7 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
             <textarea
                 id="config"
                 name="config"
-                className="block mx-3 w-full h-screen text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block mx-3 w-full h-screen text-sm rounded-lg border"
                 placeholder="Paste your config here."
                 defaultValue={JSON.stringify(keyboardConfig)} // TODO: beautify json
                 onBlur={handleChange}

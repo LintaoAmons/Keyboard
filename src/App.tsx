@@ -41,7 +41,7 @@ function App() {
                     setHighlight={setHighlightConfig}
                 />
             </div>
-            <div className="flex flex-col items-center justify-between p-4">
+            <div className="flex flex-col items-center justify-center p-4">
                 <Title />
                 <Keyboard config={targetScenario.config} highlightConfig={highlightConfig} />
                 <KeyMapOverview scenario={targetScenario} highlightFunction={highLightSpecific} />
