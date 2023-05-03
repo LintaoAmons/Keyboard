@@ -1,4 +1,4 @@
 import profile from './profiles/init-profile.json';
-import { Scenarios } from './core/CoreTypes';
+import { KeyboardConfig } from './core/CoreTypes';
 
-export const initScenarios: Scenarios = profile as Scenarios;
+export const initConfig: KeyboardConfig = profile as KeyboardConfig;

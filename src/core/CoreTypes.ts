@@ -1,4 +1,8 @@
-export type Scenarios = Scenario[]
+export interface KeyboardConfig {
+    name: string
+    version?: string
+    scenarios: Scenario[]
+}
 
 export interface Scenario {
     name: string
