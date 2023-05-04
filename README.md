@@ -1,4 +1,4 @@
-# Try here: https://0035c942.keyboard-7p1.pages.dev/
+# Try here: https://keyboard-7p1.pages.dev/
 
 # TODO
 - [x] deploy to cloudflare

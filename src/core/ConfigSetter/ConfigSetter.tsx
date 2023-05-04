@@ -57,7 +57,7 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
                 name="config"
                 className="block mx-3 w-full h-screen text-sm rounded-lg border"
                 placeholder="Paste your config here."
-                defaultValue={JSON.stringify(keyboardConfig)} // TODO: beautify json
+                defaultValue={JSON.stringify(keyboardConfig, null, 2)}
                 onBlur={handleChange}
             />
         </div>

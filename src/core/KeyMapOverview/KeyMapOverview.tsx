@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import styles from './KeyMapOverview.module.scss';
 import { Scenario } from '../CoreTypes';
 import { TypeConverter } from '../util/TypeConverter';
 
@@ -23,7 +22,7 @@ const KeyMapOverview: FC<KeyMapOverviewProps> = (props) => {
     const renderConfigItems: () => JSX.Element = () => {
         const items = Array.from(scenario.config.values());
         return (
-            <table className="table-fixed">
+            <table className="table-fixed w-full">
                 <thead>
                     <tr>
                         <th className='border-2'>Keycode</th>
@@ -57,8 +56,7 @@ const KeyMapOverview: FC<KeyMapOverviewProps> = (props) => {
     };
 
     return (
-        <div className={styles.container}>
-            <h1 className={styles.header}>OVERVIEW</h1>
+        <div className='flex w-full'>
             {renderConfigItems()}
         </div>
     );
