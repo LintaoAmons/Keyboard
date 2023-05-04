@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import styles from './KeyMapOverview.module.scss';
-import { KeyMapItem, Scenario } from '../CoreTypes';
+import { Scenario } from '../CoreTypes';
 import { TypeConverter } from '../util/TypeConverter';
 
 interface KeyMapOverviewProps {
@@ -20,36 +20,39 @@ const KeyMapOverview: FC<KeyMapOverviewProps> = (props) => {
         }
     };
 
-    const renderConfigItem: (item: KeyMapItem) => JSX.Element = (item) => (
-        <div
-            className={styles.item}
-            key={`overview-${scenario.name}-${item.keycode}-${item.modifiers}`}>
-            <span className={styles.keycode}>{item.keycode}</span>
-            <span className={styles.modifiers}>{item.modifiers?.join(',')}</span>
-            <span className={styles.description}>{item.description}</span>
-            <span className={styles.achievedBy}>{item.achieveBy}</span>
-            <button onClick={() => handleClick(item.keycode)} value={item.keycode}>
-                highlight me
-            </button>
-        </div>
-    );
-
-    const renderConfigItemHeader: () => JSX.Element = () => (
-        <div className={styles.item}>
-            <span className={styles.keycode}>Keycode</span>
-            <span className={styles.modifiers}>Modifiers</span>
-            <span className={styles.description}>Description</span>
-            <span className={styles.achievedBy}>AchieveBy</span>
-        </div>
-    );
-
     const renderConfigItems: () => JSX.Element = () => {
         const items = Array.from(scenario.config.values());
         return (
-            <div className={styles.itemsContainer}>
-                {renderConfigItemHeader()}
-                {items.map((ele) => renderConfigItem(ele))}
-            </div>
+            <table className="table-fixed">
+                <thead>
+                    <tr>
+                        <th className='border-2'>Keycode</th>
+                        <th className='border-2'>Modifiers</th>
+                        <th className='border-2'>Description</th>
+                        <th className='border-2'>AchieveBy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {items.map((ele) => (
+                        <tr
+                            className='hover:bg-black hover:text-white'
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => handleClick(ele.keycode)}
+                            onKeyDown={(event) => {
+                                if (event.key === 'Enter' || event.key === ' ') {
+                                    handleClick(ele.keycode);
+                                }
+                            }}
+                            key={`overview-${scenario.name}-${ele.keycode}-${ele.modifiers}`}>
+                            <td className='border-x-2 text-center'>{ele.keycode}</td>
+                            <td className='border-x-2 text-center'>{ele.modifiers?.join(',')}</td>
+                            <td className='border-x-2 text-center'>{ele.description}</td>
+                            <td className='border-x-2 text-center'>{ele.achieveBy}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         );
     };
 

@@ -32,7 +32,7 @@ function App() {
 
     return (
         <div className="flex flex-row">
-            <div className="w-72 border-r border-solid border-2 pr-5">
+            <div className="w-2/12 border-r border-solid border-2 pr-5">
                 <ConfigSetter
                     keyboardConfig={keyboardConfig}
                     setConfig={setKeyboardConfig}
@@ -41,7 +41,7 @@ function App() {
                     setHighlight={setHighlightConfig}
                 />
             </div>
-            <div className="flex flex-col items-center justify-center p-4">
+            <div className="w-10/12 flex flex-col items-center p-4">
                 <Title />
                 <Keyboard config={targetScenario.config} highlightConfig={highlightConfig} />
                 <KeyMapOverview scenario={targetScenario} highlightFunction={highLightSpecific} />
