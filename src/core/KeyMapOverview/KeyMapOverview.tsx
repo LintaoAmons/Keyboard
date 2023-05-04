@@ -5,10 +5,14 @@ import { TypeConverter } from '../util/TypeConverter';
 interface KeyMapOverviewProps {
     scenario: Scenario;
     highlightFunction: (keycodes: string[]) => void;
+    onDeleteKeybinding: (index: number) => void;
 }
 
-const KeyMapOverview: FC<KeyMapOverviewProps> = (props) => {
-    const { scenario, highlightFunction } = props;
+const KeyMapOverview: FC<KeyMapOverviewProps> = ({
+    scenario,
+    highlightFunction,
+    onDeleteKeybinding,
+}) => {
     const handleClick = (value: string) => {
         const configItem = scenario.config.find((i) => i.keycode === value);
         if (configItem && configItem.modifiers) {
@@ -25,16 +29,18 @@ const KeyMapOverview: FC<KeyMapOverviewProps> = (props) => {
             <table className="table-fixed w-full">
                 <thead>
                     <tr>
-                        <th className='border-2'>Keycode</th>
-                        <th className='border-2'>Modifiers</th>
-                        <th className='border-2'>Description</th>
-                        <th className='border-2'>AchieveBy</th>
+                        <th className="border-2 w-1/12">Keycode</th>
+                        <th className="border-2 w-2/12">Modifiers</th>
+                        <th className="border-2 w-5/12">Description</th>
+                        <th className="border-2 w-2/12">AchieveBy</th>
+                        <th className="border-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {items.map((ele) => (
+                    {items.map((ele, index) => (
                         <tr
-                            className='hover:bg-black hover:text-white'
+                            className={`hover:bg-black hover:text-white 
+                            ${index === items.length - 1 ? 'border-b' : ''}`}
                             role="button"
                             tabIndex={0}
                             onClick={() => handleClick(ele.keycode)}
@@ -44,10 +50,24 @@ const KeyMapOverview: FC<KeyMapOverviewProps> = (props) => {
                                 }
                             }}
                             key={`overview-${scenario.name}-${ele.keycode}-${ele.modifiers}`}>
-                            <td className='border-x-2 text-center'>{ele.keycode}</td>
-                            <td className='border-x-2 text-center'>{ele.modifiers?.join(',')}</td>
-                            <td className='border-x-2 text-center'>{ele.description}</td>
-                            <td className='border-x-2 text-center'>{ele.achieveBy}</td>
+                            <td className="border-x-2 text-center">{ele.keycode}</td>
+                            <td className="border-x-2 text-center">{ele.modifiers?.join(',')}</td>
+                            <td className="border-x-2 text-left pl-3">{ele.description}</td>
+                            <td className="border-x-2 text-center">{ele.achieveBy}</td>
+                            <td className="border-x-2 text-center">
+                                <button
+                                    className="w-24 mr-2 py-1 px-2 rounded border-2"
+                                    onClick={() => {
+                                        /* Add "Edit" button functionality here */
+                                    }}>
+                                    Edit
+                                </button>
+                                <button
+                                    className="w-24 py-1 px-2 rounded border-2"
+                                    onClick={() => onDeleteKeybinding(index)}>
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
@@ -55,11 +75,7 @@ const KeyMapOverview: FC<KeyMapOverviewProps> = (props) => {
         );
     };
 
-    return (
-        <div className='flex w-full'>
-            {renderConfigItems()}
-        </div>
-    );
+    return <div className="flex w-full">{renderConfigItems()}</div>;
 };
 
 export { KeyMapOverview };

@@ -30,6 +30,33 @@ function App() {
 
     useEffect(initHighlight, [targetScenario]);
 
+    const onDeleteKeybinding = (index: number) => {
+        setCurrentScenario((prevScenario) => {
+            const newConfig = prevScenario.config.filter((_, i) => i !== index);
+            return {
+                ...prevScenario,
+                config: newConfig,
+            };
+        });
+
+        setKeyboardConfig((prevConfig) => {
+            const newScenarios = prevConfig.scenarios.map((scenario) => {
+                if (scenario.name === currentScenario.name) {
+                    return {
+                        ...scenario,
+                        config: currentScenario.config.filter((_, i) => i !== index),
+                    };
+                }
+                return scenario;
+            });
+
+            return {
+                ...prevConfig,
+                scenarios: newScenarios,
+            };
+        });
+    };
+
     return (
         <div className="flex flex-row">
             <div className="w-2/12 border-r border-solid border-2 pr-5">
@@ -44,7 +71,11 @@ function App() {
             <div className="w-10/12 flex flex-col items-center p-4">
                 <Title />
                 <Keyboard config={targetScenario.config} highlightConfig={highlightConfig} />
-                <KeyMapOverview scenario={targetScenario} highlightFunction={highLightSpecific} />
+                <KeyMapOverview
+                    scenario={targetScenario}
+                    highlightFunction={highLightSpecific}
+                    onDeleteKeybinding={onDeleteKeybinding}
+                />
             </div>
         </div>
     );
