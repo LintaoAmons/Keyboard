@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { FC } from 'react';
 import { Scenario } from '../CoreTypes';
 import { TypeConverter } from '../util/TypeConverter';
 
@@ -55,13 +55,6 @@ const KeyMapOverview: FC<KeyMapOverviewProps> = ({
                             <td className="border-x-2 text-left pl-3">{ele.description}</td>
                             <td className="border-x-2 text-center">{ele.achieveBy}</td>
                             <td className="border-x-2 text-center">
-                                <button
-                                    className="w-24 mr-2 py-1 px-2 rounded border-2"
-                                    onClick={() => {
-                                        /* Add "Edit" button functionality here */
-                                    }}>
-                                    Edit
-                                </button>
                                 <button
                                     className="w-24 py-1 px-2 rounded border-2"
                                     onClick={() => onDeleteKeybinding(index)}>
