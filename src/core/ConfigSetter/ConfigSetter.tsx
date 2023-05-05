@@ -3,6 +3,7 @@ import { Scenario, KeyboardConfig, KeyMapItem } from '../CoreTypes';
 import { KeybindingModal } from './KeybindingModal';
 
 interface ConfigSetterProps {
+    profiles: KeyboardConfig[];
     keyboardConfig: KeyboardConfig;
     setConfig: Dispatch<SetStateAction<KeyboardConfig>>;
     targetScenario: Scenario;
@@ -11,7 +12,14 @@ interface ConfigSetterProps {
 }
 
 const ConfigSetter: FC<ConfigSetterProps> = (props) => {
-    const { keyboardConfig, setConfig, targetScenario, setCurrentScenario, setHighlight } = props;
+    const {
+        profiles,
+        keyboardConfig,
+        setConfig,
+        targetScenario,
+        setCurrentScenario,
+        setHighlight,
+    } = props;
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     useEffect(() => {
@@ -124,18 +132,39 @@ const ConfigSetter: FC<ConfigSetterProps> = (props) => {
         <div className="flex flex-col items-start ">
             <h2 className="text-4xl m-3 self-center">Config</h2>
 
-            <select
-                className="mb-3 mx-3 border text-sm rounded-lg block w-full p-2.5"
-                value={targetScenario.name}
-                name="scenarios"
-                id="scenarios"
-                onChange={handleChangeScenarios}>
-                {keyboardConfig.scenarios.map((it) => (
-                    <option value={it.name} key={`scenario-${it.name}`}>
-                        {it.name}
-                    </option>
-                ))}
-            </select>
+            <label htmlFor="profiles" className="flex w-full items-baseline mx-3">
+                Profiles
+                <select
+                    className="mb-3 mx-3 border text-sm rounded-lg block w-full p-2.5"
+                    value={keyboardConfig.name}
+                    name="profiles"
+                    id="profiles"
+                    onChange={() => {
+                        // TODO
+                    }}>
+                    {profiles.map((it) => (
+                        <option value={it.name} key={`profile-${it.name}`}>
+                            {it.name}
+                        </option>
+                    ))}
+                </select>
+            </label>
+
+            <label htmlFor="scenarios" className="flex w-full items-baseline mx-3">
+                Scenarios
+                <select
+                    className=" mb-3 mx-3 border text-sm rounded-lg block w-full p-2.5"
+                    value={targetScenario.name}
+                    name="scenarios"
+                    id="scenarios"
+                    onChange={handleChangeScenarios}>
+                    {keyboardConfig.scenarios.map((it) => (
+                        <option value={it.name} key={`scenario-${it.name}`}>
+                            {it.name}
+                        </option>
+                    ))}
+                </select>
+            </label>
 
             <div className="flex flex-col w-full mx-3 ">
                 <div className="flex justify-around mb-2 w-full">

@@ -61,6 +61,7 @@ function App() {
         <div className="flex flex-row">
             <div className="w-2/12 border-r border-solid border-2 pr-5">
                 <ConfigSetter
+                    profiles={[keyboardConfig, { name: 'TODO', scenarios: [] }]}
                     keyboardConfig={keyboardConfig}
                     setConfig={setKeyboardConfig}
                     targetScenario={targetScenario}
