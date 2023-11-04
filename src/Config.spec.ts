@@ -10,10 +10,14 @@ const defaultConfig: KeyboardConfig = {
                 keycode: 'a',
                 description: 'Press a',
                 achieveBy: 'a'
-            },]
+            },
+            {
+                keycode: 'b',
+                description: 'Press b',
+                achieveBy: 'b'
+            }]
     }]
 }
-
 
 describe('Config', () => {
     let config: Config
