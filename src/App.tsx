@@ -1,4 +1,3 @@
-import { createContext } from "react";
 import { Config, ConfigContext } from "./Config";
 import ConfigSetter from "./ConfigSetter";
 import Keyboard from "./Keyboard";
