@@ -3,16 +3,19 @@ import { KeyMapItem } from "./Config";
 export function bgColor(style: string, highlightLevel: number): string {
     switch (highlightLevel) {
         case 1:
-            style += " bg-fuchsia-100";
+            style += " bg-purple-500";
             break;
         case 2:
-            style += " bg-fuchsia-300";
+            style += " bg-purple-300";
             break;
         case 3:
-            style += " bg-yellow-500";
+            style += " bg-purple-200";
             break;
         case 4:
-            style += " bg-red-500";
+            style += " bg-purple-100";
+            break;
+        case 5:
+            style += " bg-blue-300"
             break;
         case 0:
             break;
@@ -27,8 +30,8 @@ export function genHighlightLevelMap(highlightedItem: KeyMapItem): Map<string, n
 
     if (highlightedItem.keybinding) {
         highlightedItem.keybinding.forEach((keybinding, index) => {
-            highlighMapping.set(keybinding.keycode.toLowerCase(), index+1)
-            keybinding.modifiers?.forEach(it => highlighMapping.set(it.toLowerCase(), index+1))
+            highlighMapping.set(keybinding.keycode.toLowerCase(), index + 1)
+            keybinding.modifiers?.forEach(it => highlighMapping.set(it.toLowerCase(), 5))
         })
     }
 

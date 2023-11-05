@@ -21,23 +21,28 @@ describe('toKeyboardLayout', () => {
 });
 
 describe('bgColor function', () => {
-    it('should append bg-fuchsia-300 for highlightLevel 1', () => {
+    it('should append bg-fuchsia-300 for highlightLevel 2', () => {
         const style = bgColor("text-white", 2);
-        expect(style).toBe("text-white bg-fuchsia-300");
+        expect(style).toBe("text-white bg-purple-300");
     });
 
-    it('should append bg-yellow-500 for highlightLevel 2', () => {
+    it('should append bg-yellow-500 for highlightLevel 3', () => {
         const style = bgColor("text-black", 3);
-        expect(style).toBe("text-black bg-yellow-500");
+        expect(style).toBe("text-black bg-purple-200");
     });
 
-    it('should append bg-red-500 for highlightLevel 3', () => {
+    it('should append bg-red-500 for highlightLevel 4', () => {
         const style = bgColor("text-blue", 4);
-        expect(style).toBe("text-blue bg-red-500");
+        expect(style).toBe("text-blue bg-purple-100");
     });
 
-    it('should not append anything for highlightLevels other than 1, 2, 3 or 4', () => {
-        const style = bgColor("text-green", 5);
+    it('should append bg-blue-300 for highlightLevel 5 for modifiers', () => {
+        const style = bgColor("text-blue", 5);
+        expect(style).toBe("text-blue bg-blue-300");
+    });
+
+    it('should not append anything for highlightLevels other than 1, 2, 3, 4 or 4', () => {
+        const style = bgColor("text-green", 6);
         expect(style).toBe("text-green");
     });
 });
@@ -56,8 +61,8 @@ describe('getHighlightLevel', () => {
         const expectedHighlighMapping = new Map(
             [
                 ["a", 1],
-                ["cmd", 1],
-                ["shift", 1],
+                ["cmd", 5],
+                ["shift", 5],
                 ["b", 2]
             ],
 
