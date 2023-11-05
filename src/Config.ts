@@ -43,6 +43,13 @@ export const defaultConfig: KeyboardConfig = {
     }]
 }
 
+export function findActiveSenario(config: KeyboardConfig, scenarioName: string | undefined): Scenario | undefined {
+    if (scenarioName == undefined) {
+        return undefined
+    }
+    return config.scenarios.find(it => it.name == scenarioName)
+}
+
 
 export class Config {
     keyboardConfig: KeyboardConfig

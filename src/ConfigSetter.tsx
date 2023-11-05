@@ -1,11 +1,13 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { TERipple, TESelect, TETextarea } from "tw-elements-react";
 import { SelectData } from "tw-elements-react/dist/types/forms/Select/types";
-import { Config, ConfigContext } from "./Config";
+import { Config, ConfigContext, findActiveSenario, KeyboardConfig } from "./Config";
 
 export default function ConfigSetter(): JSX.Element {
 
     const { config, profile, setConfig } = useContext(ConfigContext);
+    const defaultContent = JSON.stringify(config.keyboardConfig, null, 2)
+    const [textAreaContent, setTextAreaContent] = useState(defaultContent);
 
     // TODO: add profile and delete profile
     const profiles = [
@@ -28,8 +30,24 @@ export default function ConfigSetter(): JSX.Element {
     const handleScenarioOptionSelect = (data: SelectData) => {
         setConfig((prevConfig) => ({
             ...prevConfig,
-            activeScenario: prevConfig.keyboardConfig.scenarios.find(it => it.name == data.text) || prevConfig.activeScenario
+            activeScenario: findActiveSenario(prevConfig.keyboardConfig, data.text) || prevConfig.activeScenario
         }))
+    }
+
+
+    const handleConfigInputAreaBlur = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        try {
+            const newConfig = JSON.parse(e.target.value) as KeyboardConfig;
+            setConfig((prevConfig) => ({
+                ...prevConfig,
+                keyboardConfig: newConfig,
+                activeScenario: findActiveSenario(newConfig, prevConfig.activeScenario.name) || prevConfig.activeScenario
+            }))
+            setTextAreaContent((prev) => JSON.stringify(newConfig, null, 2))
+        } catch (e: any) {
+            console.error("Error parsing JSON:", e);
+        }
+
     }
 
 
@@ -79,17 +97,32 @@ export default function ConfigSetter(): JSX.Element {
                     </button>
                 </TERipple>
             </div>
+            <div className="block max-w-sm rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                <form>
+                    <div className="flex justify-center">
+                        <div className="relative mb-3 xl:w-96">
+                            <TETextarea 
+                                className="h-screen"
+                                id="Current Config" 
+                                label="Message"
+                                onChange={(e: any) => setTextAreaContent(e.target.value)}
+                                onBlur={handleConfigInputAreaBlur}
+                                value={textAreaContent}
 
-            <div className="flex justify-center mt-6">
-                <div className="relative mb-3 xl:w-96">
-                    <TETextarea
-                        id="textareaConfig"
-                        className="h-screen"
-                        label="Current Config"
-                        rows={4}
-                        value={JSON.stringify(config.keyboardConfig, null, 2)}
-                    ></TETextarea>
-                </div>
+                            ></TETextarea>
+                        </div>
+                    </div>
+
+                    {/* <!--Submit button--> */}
+                    <TERipple rippleColor="light" className="w-full">
+                        <button
+                            type="button"
+                            className="block w-full rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]]"
+                        >
+                            Subscribe
+                        </button>
+                    </TERipple>
+                </form>
             </div>
 
         </div>
