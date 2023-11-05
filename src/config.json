@@ -1,0 +1,81 @@
+{
+  "name": "Default",
+  "version": "0.1",
+  "scenarios": [
+    {
+      "name": "Vim",
+      "KeymapItems": [
+        {
+          "keybinding": [
+            {
+              "keycode": "q",
+              "modifiers": [
+                "CTRL"
+              ]
+            }
+          ],
+          "description": "select project"
+        },
+        {
+          "keybinding": [
+            {
+              "keycode": "space"
+            },
+            {
+              "keycode": "f"
+            },
+            {
+              "keycode": "m"
+            }
+          ],
+          "description": "格式化"
+        }
+      ]
+    },
+    {
+      "name": "Default",
+      "KeymapItems": [
+        {
+          "keybinding": [
+            {
+              "keycode": "b",
+              "modifiers": [
+                "CMD",
+                "CTRL"
+              ]
+            },
+            {
+              "keycode": "c"
+            }
+          ],
+          "description": "Press a",
+          "achieveBy": "a"
+        },
+        {
+          "keybinding": [
+            {
+              "keycode": "b",
+              "modifiers": [
+                "CMD"
+              ]
+            },
+            {
+              "keycode": "c"
+            }
+          ],
+          "description": "Press a",
+          "achieveBy": "a"
+        },
+        {
+          "keybinding": [
+            {
+              "keycode": "a"
+            }
+          ],
+          "description": "Press b",
+          "achieveBy": "b"
+        }
+      ]
+    }
+  ]
+}

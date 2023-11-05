@@ -1,4 +1,8 @@
 import { createContext } from "react"
+import defaultConfigJson from "./config.json"
+
+const defaultConfig = defaultConfigJson as KeyboardConfig
+
 
 export enum Modifier {
     CMD = 'CMD',
@@ -11,36 +15,6 @@ export enum Modifier {
 
 export function isModifier(keycode: string): boolean {
     return Object.values(Modifier).map(v => v.toLowerCase()).includes(keycode.toLowerCase() as string)
-}
-
-export const defaultConfig: KeyboardConfig = {
-    name: 'Default',
-    version: '0.1',
-    scenarios: [{
-        name: 'Default',
-        KeymapItems: [
-            {
-                keybinding: [
-                    { keycode: 'b', modifiers: [Modifier.CMD, Modifier.CTRL] },
-                    { keycode: 'c' }
-                ],
-                description: 'Press a',
-                achieveBy: 'a'
-            },
-            {
-                keybinding: [
-                    { keycode: 'b', modifiers: [Modifier.CMD] },
-                    { keycode: 'c' }
-                ],
-                description: 'Press a',
-                achieveBy: 'a'
-            },
-            {
-                keybinding: [{ keycode: 'a' }],
-                description: 'Press b',
-                achieveBy: 'b'
-            }]
-    }]
 }
 
 export function findActiveSenario(config: KeyboardConfig, scenarioName: string | undefined): Scenario | undefined {
