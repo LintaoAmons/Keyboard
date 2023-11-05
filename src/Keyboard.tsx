@@ -1,4 +1,5 @@
 import { isModifier, Modifier } from "./Config";
+import { bgColor } from "./KeyboardStyleCalculation";
 
 const KeyboardSizeUnit = 1.5
 
@@ -47,9 +48,10 @@ export interface KeyboardLayout {
 
 interface KeyProps {
   keyData: KeyboardKey;
+  highlightLevel: number;
 }
 
-const Key: React.FC<KeyProps> = ({ keyData }) => {
+const Key: React.FC<KeyProps> = ({ keyData, highlightLevel }) => {
   const { keycode, size, tags } = keyData;
 
   const width = {
@@ -61,13 +63,15 @@ const Key: React.FC<KeyProps> = ({ keyData }) => {
   }
 
 
-  var style = "flex items-center justify-center mx-1 h-12 bg-white "
+  var style = "flex items-center justify-center mx-1 h-12 "
+
   if (isModifier(keycode)) {
     style += "border-blue-500 border-2 border-dashed"
   } else {
     style += "border-black border"
   }
 
+  style = bgColor(style, highlightLevel)
 
   return <div className={style} style={width}>{keycode}</div>;
 }
@@ -94,7 +98,7 @@ export default function Keyboard(): JSX.Element {
       {layout.map((row, rowIndex) => (
         <div key={`row-${rowIndex}`} className="flex my-1">
           {row.map((keyData, keyIndex) => (
-            <Key key={`key-${keyIndex}`} keyData={keyData} />
+            <Key key={`key-${keyIndex}`} keyData={keyData} highlightLevel={1} />
           ))}
         </div>
       ))}
