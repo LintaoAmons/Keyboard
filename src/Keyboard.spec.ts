@@ -23,7 +23,7 @@ describe('toKeyboardLayout', () => {
 describe('bgColor function', () => {
     it('should append bg-fuchsia-300 for highlightLevel 2', () => {
         const style = bgColor("text-white", 2);
-        expect(style).toBe("text-white bg-purple-300");
+        expect(style).toBe("text-white bg-pink-300");
     });
 
     it('should append bg-yellow-500 for highlightLevel 3', () => {

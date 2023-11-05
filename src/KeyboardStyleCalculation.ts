@@ -6,7 +6,7 @@ export function bgColor(style: string, highlightLevel: number): string {
             style += " bg-purple-500";
             break;
         case 2:
-            style += " bg-purple-300";
+            style += " bg-pink-300";
             break;
         case 3:
             style += " bg-purple-200";
