@@ -9,7 +9,7 @@ export enum Modifier {
     HYPER = 'HYPER',
 }
 
-const defaultConfig: KeyboardConfig = {
+export const defaultConfig: KeyboardConfig = {
     name: 'Default',
     version: '0.1',
     scenarios: [{

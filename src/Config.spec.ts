@@ -1,26 +1,4 @@
-import { Config, KeyboardConfig, Modifier } from './Config'; // Update the import path to match your project structure
-
-const defaultConfig: KeyboardConfig = {
-    name: 'Default',
-    version: '0.1',
-    scenarios: [{
-        name: 'Default',
-        KeymapItems: [
-            {
-                keybinding: [
-                    { keycode: 'b', modifiers: [Modifier.CMD] },
-                    { keycode: 'c' }
-                ],
-                description: 'Press a',
-                achieveBy: 'a'
-            },
-            {
-                keybinding: [{ keycode: 'a' }],
-                description: 'Press b',
-                achieveBy: 'b'
-            }]
-    }]
-}
+import { Config, defaultConfig } from './Config'; // Update the import path to match your project structure
 
 describe('Config', () => {
     let config: Config
