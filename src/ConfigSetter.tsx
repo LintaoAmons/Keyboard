@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { TERipple, TESelect } from "tw-elements-react";
+import { TERipple, TESelect, TETextarea } from "tw-elements-react";
 import { SelectData } from "tw-elements-react/dist/types/forms/Select/types";
 import { Config, ConfigContext } from "./Config";
 
@@ -80,6 +80,11 @@ export default function ConfigSetter(): JSX.Element {
                 </TERipple>
             </div>
 
+            <div className="flex justify-center">
+                <div className="relative mb-3 xl:w-96">
+                    <TETextarea id="textareaConfig" className="h-fit" label="Current Config" rows={4}></TETextarea>
+                </div>
+            </div>
 
         </div>
     )

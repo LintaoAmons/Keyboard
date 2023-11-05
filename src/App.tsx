@@ -10,9 +10,9 @@ export default function App(): JSX.Element {
 
     return (
         <ConfigContext.Provider value={value}>
-            <div className="flex flex-row">
+            <div className="flex flex-row h-screen">
 
-                <div className="w-2/12 border-r border-solid border-2 pr-5">
+                <div className="border-r border-solid border-2 pr-5">
                     <ConfigSetter />
                 </div>
 
