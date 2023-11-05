@@ -12,7 +12,7 @@ export default function App(): JSX.Element {
         <ConfigContext.Provider value={value}>
             <div className="flex flex-row h-screen">
 
-                <div className="border-r border-solid border-2 pr-5">
+                <div className="border-r border-solid border-2">
                     <ConfigSetter />
                 </div>
 

@@ -34,7 +34,7 @@ export default function ConfigSetter(): JSX.Element {
 
 
     return (
-        <div className="flex flex-col items-start ">
+        <div className="flex flex-col px-3 h-screen" >
             <h2 className="text-4xl m-3 self-center">Config</h2>
 
             <label htmlFor="profiles" className="flex w-full items-baseline mx-3">
@@ -80,9 +80,15 @@ export default function ConfigSetter(): JSX.Element {
                 </TERipple>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-6">
                 <div className="relative mb-3 xl:w-96">
-                    <TETextarea id="textareaConfig" className="h-fit" label="Current Config" rows={4}></TETextarea>
+                    <TETextarea
+                        id="textareaConfig"
+                        className="h-screen"
+                        label="Current Config"
+                        rows={4}
+                        value={JSON.stringify(config.keyboardConfig, null, 2)}
+                    ></TETextarea>
                 </div>
             </div>
 
