@@ -1,3 +1,5 @@
+import { isModifier, Modifier } from "./Config";
+
 const KeyboardSizeUnit = 1.5
 
 export class KeyboardKey {
@@ -54,10 +56,18 @@ const Key: React.FC<KeyProps> = ({ keyData }) => {
     width: `${KeyboardSizeUnit * size}rem`,
   }
 
-  var style = `flex items-center justify-center mx-1 h-12 bg-white border border-black`
   if (keycode === '') {
-    style = ""
+    return <div style={width}>{keycode}</div>;
   }
+
+
+  var style = "flex items-center justify-center mx-1 h-12 bg-white "
+  if (isModifier(keycode)) {
+    style += "border-blue-500 border-2 border-dashed"
+  } else {
+    style += "border-black border"
+  }
+
 
   return <div className={style} style={width}>{keycode}</div>;
 }
@@ -69,7 +79,7 @@ const lintaosKeyboard: KeyboardLayout = {
     [
       ['esc', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '=', 'backspace,4'],
       ['tab,3', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '|,3'],
-      ['caps,4', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'enter,4'],
+      ['ctrl,4', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'enter,4'],
       ['shift,5', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shift,6'],
       ['', '', 'alt', 'cmd', 'space,14', 'cmd', 'alt'],
     ]

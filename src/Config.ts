@@ -9,6 +9,10 @@ export enum Modifier {
     HYPER = 'HYPER',
 }
 
+export function isModifier(keycode: string): boolean {
+    return Object.values(Modifier).map(v => v.toLowerCase()).includes(keycode.toLowerCase() as string)
+}
+
 export const defaultConfig: KeyboardConfig = {
     name: 'Default',
     version: '0.1',
