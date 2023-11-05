@@ -95,10 +95,13 @@ export interface KeyStroke {
 
 export interface KeyboardContext {
     config: Config
-     setConfig: React.Dispatch<React.SetStateAction<Config>>}
+    profile: string
+    setConfig: React.Dispatch<React.SetStateAction<Config>>
+}
 
 export const ConfigContext = createContext({
     config: Config.getConfig(),
+    profile: "Default",
     setConfig: (config: Config) => { console.log(config) }
 } as KeyboardContext);
 

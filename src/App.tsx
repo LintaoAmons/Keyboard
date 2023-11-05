@@ -6,7 +6,7 @@ import KeymapOverview from "./KeymapOverview";
 
 export default function App(): JSX.Element {
     const [ config, setConfig ] = useState(Config.getConfig())
-    const value = {config, setConfig}
+    const value = {config, profile: "Default",setConfig}
 
     return (
         <ConfigContext.Provider value={value}>
