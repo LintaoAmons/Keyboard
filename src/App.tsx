@@ -1,25 +1,28 @@
+import { useState } from "react";
 import { Config, ConfigContext } from "./Config";
 import ConfigSetter from "./ConfigSetter";
 import Keyboard from "./Keyboard";
 import KeymapOverview from "./KeymapOverview";
 
 export default function App(): JSX.Element {
+    const [ config, setConfig ] = useState(Config.getConfig())
+    const value = {config, setConfig}
 
-  return (
-    <ConfigContext.Provider value={Config.getConfig()}>
-      <div className="flex flex-row">
+    return (
+        <ConfigContext.Provider value={value}>
+            <div className="flex flex-row">
 
-        <div className="w-2/12 border-r border-solid border-2 pr-5">
-          <ConfigSetter />
-        </div>
+                <div className="w-2/12 border-r border-solid border-2 pr-5">
+                    <ConfigSetter />
+                </div>
 
-        <div className="w-10/12 flex flex-col items-center p-4">
-          <h1 className='text-4xl'>Lintao's Keyboard</h1>
-          <Keyboard />
-          <KeymapOverview />
+                <div className="w-10/12 flex flex-col items-center p-4">
+                    <h1 className='text-4xl'>Lintao's Keyboard</h1>
+                    <Keyboard />
+                    <KeymapOverview />
 
-        </div>
-      </div>
-    </ConfigContext.Provider>
-  );
+                </div>
+            </div>
+        </ConfigContext.Provider>
+    );
 }

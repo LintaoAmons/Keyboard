@@ -1,10 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TERipple } from "tw-elements-react";
-import { ConfigContext } from "./Config";
+import { ConfigContext, KeyMapItem } from "./Config";
 
 export default function KeymapOverview(): JSX.Element {
 
-    const config = useContext(ConfigContext);
+    const { config, setConfig } = useContext(ConfigContext);
+
+    const handleClick = (item: KeyMapItem) => {
+        setConfig((prevConfig) => ({
+            ...prevConfig,
+            highlightedItem: item,
+        }));
+    };
 
     return (
         <div className="flex flex-col">
@@ -26,6 +33,7 @@ export default function KeymapOverview(): JSX.Element {
                                 {
                                     config.activeScenario.KeymapItems.map((item, _) => (
                                         <tr
+                                            onClick={() => handleClick(item)}
                                             className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
                                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                                                 {item.keybinding ? item.keybinding.map((key, index) =>

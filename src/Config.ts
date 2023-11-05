@@ -93,5 +93,12 @@ export interface KeyStroke {
     modifiers?: Modifier[]
 }
 
-export const ConfigContext = createContext(Config.getConfig());
+export interface KeyboardContext {
+    config: Config
+     setConfig: React.Dispatch<React.SetStateAction<Config>>}
+
+export const ConfigContext = createContext({
+    config: Config.getConfig(),
+    setConfig: (config: Config) => { console.log(config) }
+} as KeyboardContext);
 

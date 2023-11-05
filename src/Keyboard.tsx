@@ -54,7 +54,6 @@ interface KeyProps {
 
 const Key: React.FC<KeyProps> = ({ keyData, highlightLevel }) => {
   const { keycode, size, tags } = keyData;
-  console.log(keycode, highlightLevel)
 
   const width = {
     width: `${KeyboardSizeUnit * size}rem`,
@@ -95,7 +94,9 @@ const lintaosKeyboard: KeyboardLayout = {
 export default function Keyboard(): JSX.Element {
   const layout = lintaosKeyboard.layout
 
-  const { keyboardConfig, activeScenario, highlightedItem } = useContext(ConfigContext);
+  const { config, setConfig } = useContext(ConfigContext);
+  const { keyboardConfig, activeScenario, highlightedItem } = config;
+
   const highlightLevelMap = genHighlightLevelMap(highlightedItem)
 
   return (
