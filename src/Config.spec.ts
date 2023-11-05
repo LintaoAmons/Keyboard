@@ -1,4 +1,4 @@
-import { Config, KeyboardConfig } from './Config'; // Update the import path to match your project structure
+import { Config, KeyboardConfig, Modifier } from './Config'; // Update the import path to match your project structure
 
 const defaultConfig: KeyboardConfig = {
     name: 'Default',
@@ -7,12 +7,15 @@ const defaultConfig: KeyboardConfig = {
         name: 'Default',
         KeymapItems: [
             {
-                keycode: 'a',
+                keybinding: [
+                    { keycode: 'b', modifiers: [Modifier.CMD] },
+                    { keycode: 'c' }
+                ],
                 description: 'Press a',
                 achieveBy: 'a'
             },
             {
-                keycode: 'b',
+                keybinding: [{ keycode: 'a' }],
                 description: 'Press b',
                 achieveBy: 'b'
             }]

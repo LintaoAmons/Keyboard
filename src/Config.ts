@@ -1,5 +1,14 @@
 import { createContext } from "react"
 
+export enum Modifier {
+    CMD = 'CMD',
+    CTRL = 'CTRL',
+    SHIFT = 'SHIFT',
+    ALT = 'ALT',
+    TAB = 'TAB',
+    HYPER = 'HYPER',
+}
+
 const defaultConfig: KeyboardConfig = {
     name: 'Default',
     version: '0.1',
@@ -7,12 +16,23 @@ const defaultConfig: KeyboardConfig = {
         name: 'Default',
         KeymapItems: [
             {
-                keycode: 'a',
+                keybinding: [
+                    { keycode: 'b', modifiers: [Modifier.CMD, Modifier.CTRL] },
+                    { keycode: 'c' }
+                ],
                 description: 'Press a',
                 achieveBy: 'a'
             },
             {
-                keycode: 'b',
+                keybinding: [
+                    { keycode: 'b', modifiers: [Modifier.CMD] },
+                    { keycode: 'c' }
+                ],
+                description: 'Press a',
+                achieveBy: 'a'
+            },
+            {
+                keybinding: [{ keycode: 'a' }],
                 description: 'Press b',
                 achieveBy: 'b'
             }]
@@ -59,19 +79,15 @@ export interface Scenario {
 }
 
 export interface KeyMapItem {
-    keycode: string
-    modifiers?: Modifier[]
+    keybinding?: KeyStroke[]
     description: string
     achieveBy?: string
 }
 
-export enum Modifier {
-    CMD = 'CMD',
-    CTRL = 'CTRL',
-    SHIFT = 'SHIFT',
-    ALT = 'ALT',
-    TAB = 'TAB',
-    HYPER = 'HYPER',
+export interface KeyStroke {
+    keycode: string
+    modifiers?: Modifier[]
 }
 
 export const ConfigContext = createContext(Config.getConfig());
+
