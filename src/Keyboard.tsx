@@ -20,6 +20,10 @@ export function toKeyboardLayout(layoutString: string[][]): KeyboardKey[][] {
       let size = 2;
 
       // Step 2
+      if (key === ',') {
+        return new KeyboardKey(",");
+      }
+
       if (key.includes(',')) {
         const parts = key.split(',');
         keycode = parts[0];
@@ -46,11 +50,16 @@ interface KeyProps {
 const Key: React.FC<KeyProps> = ({ keyData }) => {
   const { keycode, size, tags } = keyData;
 
-  const width = `${KeyboardSizeUnit * size}rem`;
+  const width = {
+    width: `${KeyboardSizeUnit * size}rem`,
+  }
 
-  const style = `flex items-center justify-center mx-1 h-12 bg-white border border-black w-[${width}]`
+  var style = `flex items-center justify-center mx-1 h-12 bg-white border border-black`
+  if (keycode === '') {
+    style = ""
+  }
 
-  return <div className={style}>{keycode}</div>;
+  return <div className={style} style={width}>{keycode}</div>;
 }
 
 
@@ -60,8 +69,8 @@ const lintaosKeyboard: KeyboardLayout = {
     [
       ['esc', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '=', 'backspace,4'],
       ['tab,3', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '|,3'],
-      ['caps,4', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'enter,5'],
-      ['shift,5', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shift,5'],
+      ['caps,4', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'enter,4'],
+      ['shift,5', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shift,6'],
       ['', '', 'alt', 'cmd', 'space,14', 'cmd', 'alt'],
     ]
   ),
@@ -71,14 +80,14 @@ export default function Keyboard(): JSX.Element {
   const layout = lintaosKeyboard.layout
 
   return (
-    <>
+    <div className="flex-col">
       {layout.map((row, rowIndex) => (
-        <div key={`row-${rowIndex}`} className="flex">
+        <div key={`row-${rowIndex}`} className="flex my-1">
           {row.map((keyData, keyIndex) => (
             <Key key={`key-${keyIndex}`} keyData={keyData} />
           ))}
         </div>
       ))}
-    </>
+    </div>
   )
 }
