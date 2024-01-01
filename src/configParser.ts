@@ -35,7 +35,7 @@ export function toKeyboardLayout(layoutString: string[][]): KeyboardKey[][] {
 }
 
 const defaultKeyboardLayout =
-    JSON.parse(`{"keyboardLayout": {
+    JSON.parse(`{
     "name": "Lintaos keyboard",
     "layout": [
       ["esc", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "-", "=", "backspace,grow"],
@@ -44,27 +44,18 @@ const defaultKeyboardLayout =
       ["shift,5", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift,grow"],
       ["", "", "alt", "cmd", "space,14", "hyper", "alt"]
     ]
-}}
-`)
+}`)
 
 export function parseJsonConfig(raw: any): KeyboardConfig {
-    var layout
-    if (raw.keyboardLayout && raw.keyboardLayout.layout) {
-        layout = {
-            name: raw.keyboardLayout.name,
-            layout: toKeyboardLayout(raw.keyboardLayout.layout)
-        }
-    } else {
-        layout = {
-            name: defaultKeyboardLayout.name,
-            layout: toKeyboardLayout(defaultKeyboardLayout.layout)
-        }
-    }
+    const keyboardLayout = raw.layout ? raw.layout : defaultKeyboardLayout
 
     return {
         name: raw.name,
         version: raw.version,
-        keyboardLayout: layout,
+        keyboardLayout: {
+            name: keyboardLayout.name,
+            layout: toKeyboardLayout(keyboardLayout.layout)
+        },
         scenarios: raw.scenarios
     }
 }

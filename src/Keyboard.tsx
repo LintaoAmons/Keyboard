@@ -1,5 +1,6 @@
 import { CSSProperties, useContext } from "react";
-import { ConfigContext, isModifier, KeyboardKey } from "./Config";
+import { ConfigContext } from "./App";
+import { isModifier, KeyboardKey } from "./Config";
 import { bgColor, genHighlightLevelMap, getHighlightLevel } from "./KeyboardStyleCalculation";
 
 const KeyboardSizeUnit = 1.5

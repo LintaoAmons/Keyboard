@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { TERipple } from "tw-elements-react";
-import { ConfigContext, KeyMapItem } from "./Config";
+import { ConfigContext } from "./App";
+import { KeyMapItem } from "./Config";
 
 export default function KeymapOverview(): JSX.Element {
 

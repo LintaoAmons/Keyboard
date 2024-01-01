@@ -1,7 +1,5 @@
-import { createContext } from "react"
 import defaultConfigJson from "./config.json"
 import { parseJsonConfig } from "./configParser"
-
 
 
 export enum Modifier {
@@ -91,16 +89,3 @@ export interface KeyStroke {
     keycode: string
     modifiers?: Modifier[]
 }
-
-export interface KeyboardContext {
-    config: Config
-    profile: string
-    setConfig: React.Dispatch<React.SetStateAction<Config>>
-}
-
-export const ConfigContext = createContext({
-    config: Config.getConfig(),
-    profile: "Default",
-    setConfig: (config: Config) => { console.log(config) }
-} as KeyboardContext);
-
