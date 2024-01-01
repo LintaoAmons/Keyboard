@@ -102,7 +102,7 @@ export default function Keyboard(): JSX.Element {
   return (
     <div className="flex-col">
       {layout.map((row, rowIndex) => (
-        <div key={`row-${rowIndex}`} className="flex my-1">
+        <div key={`row-${rowIndex}`} className="flex my-1 md:w-full">
           {row.map((keyData, keyIndex) => (
             <Key key={`key-${keyIndex}`} keyData={keyData} highlightLevel={getHighlightLevel(highlightLevelMap, keyData.keycode)} />
           ))}
