@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { CSSProperties, useContext } from "react";
 import { ConfigContext, isModifier } from "./Config";
 import { KeyboardKey, KeyboardLayout, toKeyboardLayout } from "./configParser";
 import { bgColor, genHighlightLevelMap, getHighlightLevel } from "./KeyboardStyleCalculation";
@@ -13,8 +13,14 @@ interface KeyProps {
 const Key: React.FC<KeyProps> = ({ keyData, highlightLevel }) => {
   const { keycode, size, tags } = keyData;
 
-  const width = {
+  var width: CSSProperties = {
     width: `${KeyboardSizeUnit * size}rem`,
+  };
+
+  // Check if 'grow' tag is present and true
+  if (tags.get('grow') === true) {
+    // Modify the width style to include 'grow'
+    width = { ...width, flexGrow: 1 };
   }
 
   if (keycode === '') {
@@ -40,10 +46,10 @@ const lintaosKeyboard: KeyboardLayout = {
   name: 'Lintaos keyboard',
   layout: toKeyboardLayout(
     [
-      ['esc', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '=', 'backspace,4'],
-      ['tab,3', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '|,3'],
-      ['ctrl,4', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'enter,4'],
-      ['shift,5', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shift,6'],
+      ['esc', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '=', 'backspace,grow'],
+      ['tab,3', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '|,grow'],
+      ['ctrl,4', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'enter,grow'],
+      ['shift,5', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shift,grow'],
       ['', '', 'alt', 'cmd', 'space,14', 'hyper', 'alt'],
     ]
   ),
