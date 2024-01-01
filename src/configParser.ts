@@ -1,19 +1,4 @@
-export interface KeyboardLayout {
-  name: string;
-  layout: KeyboardKey[][];
-}
-
-export class KeyboardKey {
-    keycode: string;
-    size: number;
-    tags: Map<string, string | boolean>;
-
-    constructor(keycode: string = '', size: number = 2, tags: Map<string, string | boolean> = new Map()) {
-        this.keycode = keycode;
-        this.size = size;
-        this.tags = tags;
-    }
-}
+import { KeyboardKey } from "./Config";
 
 export function toKeyboardLayout(layoutString: string[][]): KeyboardKey[][] {
     return layoutString.map(row => {

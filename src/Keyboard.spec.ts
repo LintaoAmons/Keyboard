@@ -1,5 +1,5 @@
-import { KeyMapItem, KeyStroke, Modifier } from "./Config";
-import { KeyboardKey, toKeyboardLayout } from "./configParser";
+import { KeyboardKey, KeyMapItem, KeyStroke, Modifier } from "./Config";
+import {  toKeyboardLayout } from "./configParser";
 import { bgColor, genHighlightLevelMap, getHighlightLevel } from "./KeyboardStyleCalculation";
 
 describe('toKeyboardLayout', () => {

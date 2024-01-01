@@ -30,7 +30,7 @@ export class Config {
     activeScenario: Scenario
     highlightedItem: KeyMapItem
 
-    private static instance: Config = new Config(defaultConfig)
+    private static instance: Config
 
     private constructor(config: KeyboardConfig) {
         this.keyboardConfig = config
@@ -39,7 +39,7 @@ export class Config {
     }
 
     static getConfig(): Config {
-        if (!Config.instance.keyboardConfig) {
+        if (!Config.instance) {
             Config.instance = new Config(defaultConfig)
         }
         return Config.instance
@@ -56,6 +56,23 @@ export interface KeyboardConfig {
     name: string
     version?: string
     scenarios: Scenario[]
+}
+
+export interface KeyboardLayout {
+  name: string;
+  layout: KeyboardKey[][];
+}
+
+export class KeyboardKey {
+    keycode: string;
+    size: number;
+    tags: Map<string, string | boolean>;
+
+    constructor(keycode: string = '', size: number = 2, tags: Map<string, string | boolean> = new Map()) {
+        this.keycode = keycode;
+        this.size = size;
+        this.tags = tags;
+    }
 }
 
 export interface Scenario {

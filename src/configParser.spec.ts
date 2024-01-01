@@ -1,4 +1,5 @@
-import { KeyboardKey, toKeyboardLayout } from "./configParser";
+import { KeyboardKey } from "./Config";
+import {  toKeyboardLayout } from "./configParser";
 
 describe('toKeyboardLayout', () => {
     test('should correctly parse a simple layout', () => {

@@ -1,34 +1,7 @@
 import { Config, isModifier, KeyboardConfig, Modifier } from './Config'; // Update the import path to match your project structure
+import defaultConfigJson from "./config.json"
 
-export const defaultConfig: KeyboardConfig = {
-    name: 'Default',
-    version: '0.1',
-    scenarios: [{
-        name: 'Default',
-        KeymapItems: [
-            {
-                keybinding: [
-                    { keycode: 'b', modifiers: [Modifier.CMD, Modifier.CTRL] },
-                    { keycode: 'c' }
-                ],
-                description: 'Press a',
-                achieveBy: 'a'
-            },
-            {
-                keybinding: [
-                    { keycode: 'b', modifiers: [Modifier.CMD] },
-                    { keycode: 'c' }
-                ],
-                description: 'Press a',
-                achieveBy: 'a'
-            },
-            {
-                keybinding: [{ keycode: 'a' }],
-                description: 'Press b',
-                achieveBy: 'b'
-            }]
-    }]
-}
+const defaultConfig = defaultConfigJson as KeyboardConfig
 
 describe('Config', () => {
     let config: Config
