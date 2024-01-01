@@ -1,51 +1,9 @@
 import { useContext } from "react";
 import { ConfigContext, isModifier } from "./Config";
+import { KeyboardKey, KeyboardLayout, toKeyboardLayout } from "./configParser";
 import { bgColor, genHighlightLevelMap, getHighlightLevel } from "./KeyboardStyleCalculation";
 
 const KeyboardSizeUnit = 1.5
-
-export class KeyboardKey {
-  keycode: string;
-  size: number;
-  tags: string[];
-
-  constructor(keycode: string = '', size: number = 2, tags: string[] = []) {
-    this.keycode = keycode;
-    this.size = size;
-    this.tags = tags;
-  }
-}
-
-export function toKeyboardLayout(layoutString: string[][]): KeyboardKey[][] {
-  // Step 1
-  return layoutString.map(row => {
-    return row.map(key => {
-      let keycode = '';
-      let size = 2;
-
-      // Step 2
-      if (key === ',') {
-        return new KeyboardKey(",");
-      }
-
-      if (key.includes(',')) {
-        const parts = key.split(',');
-        keycode = parts[0];
-        size = Number(parts[1]);
-      } else {
-        // Step 3
-        keycode = key;
-      }
-
-      // Step 4
-      return new KeyboardKey(keycode, size, []);
-    });
-  });
-}
-export interface KeyboardLayout {
-  name: string;
-  layout: KeyboardKey[][];
-}
 
 interface KeyProps {
   keyData: KeyboardKey;

@@ -1,4 +1,9 @@
-export class KeyboardKeyNew {
+export interface KeyboardLayout {
+  name: string;
+  layout: KeyboardKey[][];
+}
+
+export class KeyboardKey {
     keycode: string;
     size: number;
     tags: Map<string, string | boolean>;
@@ -10,7 +15,7 @@ export class KeyboardKeyNew {
     }
 }
 
-export function toKeyboardLayoutNew(layoutString: string[][]): KeyboardKeyNew[][] {
+export function toKeyboardLayout(layoutString: string[][]): KeyboardKey[][] {
     return layoutString.map(row => {
         return row.map(key => {
             let keycode = '';
@@ -18,7 +23,7 @@ export function toKeyboardLayoutNew(layoutString: string[][]): KeyboardKeyNew[][
             let tags = new Map<string, string | boolean>();
 
             if (key === ',') {
-                return new KeyboardKeyNew(",");
+                return new KeyboardKey(",");
             }
 
             const parts = key.split(',');
@@ -39,12 +44,12 @@ export function toKeyboardLayoutNew(layoutString: string[][]): KeyboardKeyNew[][
                 }
             }
 
-            return new KeyboardKeyNew(keycode, size, tags);
+            return new KeyboardKey(keycode, size, tags);
         });
     });
 }
 
 export interface KeyboardLayout {
     name: string;
-    layout: KeyboardKeyNew[][];
+    layout: KeyboardKey[][];
 }

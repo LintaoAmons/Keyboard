@@ -1,5 +1,5 @@
 import { KeyMapItem, KeyStroke, Modifier } from "./Config";
-import { KeyboardKey, toKeyboardLayout } from "./Keyboard";
+import { KeyboardKey, toKeyboardLayout } from "./configParser";
 import { bgColor, genHighlightLevelMap, getHighlightLevel } from "./KeyboardStyleCalculation";
 
 describe('toKeyboardLayout', () => {
@@ -12,8 +12,8 @@ describe('toKeyboardLayout', () => {
         const result = toKeyboardLayout(layoutStrings);
 
         const expected = [
-            [new KeyboardKey('a', 2, []), new KeyboardKey('b', 3, []), new KeyboardKey('c', 2, [])],
-            [new KeyboardKey('d', 2, []), new KeyboardKey('e', 4, []), new KeyboardKey('f', 2, [])]
+            [new KeyboardKey('a', 2), new KeyboardKey('b', 3), new KeyboardKey('c', 2)],
+            [new KeyboardKey('d', 2), new KeyboardKey('e', 4), new KeyboardKey('f', 2)]
         ];
 
         expect(result).toEqual(expected);
