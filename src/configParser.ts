@@ -47,7 +47,7 @@ const defaultKeyboardLayout =
 }`)
 
 export function parseJsonConfig(raw: any): KeyboardConfig {
-    const keyboardLayout = raw.layout ? raw.layout : defaultKeyboardLayout
+    const keyboardLayout = raw.keyboardLayout ? raw.keyboardLayout : defaultKeyboardLayout
 
     return {
         name: raw.name,

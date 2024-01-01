@@ -39,7 +39,7 @@ export default function ConfigSetter(): JSX.Element {
 
   const handleConfigInputAreaBlur = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     try {
-      const newConfig = parseJsonConfig(e.target.value)
+      const newConfig = parseJsonConfig(JSON.parse(e.target.value))
       setConfig((prevConfig) => ({
         ...prevConfig,
         keyboardConfig: newConfig,
