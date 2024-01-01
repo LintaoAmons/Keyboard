@@ -1,6 +1,16 @@
 {
   "name": "Default",
   "version": "0.1",
+  "keyboardLayout": {
+    "name": "Lintaos keyboard",
+    "layout": [
+      ["esc", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "-", "=", "backspace,grow"],
+      ["tab,3", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "|,grow"],
+      ["ctrl,4", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter,grow"],
+      ["shift,5", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift,grow"],
+      ["", "", "alt", "cmd", "space,14", "hyper", "alt"]
+    ]
+  },
   "scenarios": [
     {
       "name": "Vim",

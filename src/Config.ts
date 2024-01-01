@@ -1,7 +1,7 @@
 import { createContext } from "react"
 import defaultConfigJson from "./config.json"
+import { parseJsonConfig } from "./configParser"
 
-const defaultConfig = defaultConfigJson as KeyboardConfig
 
 
 export enum Modifier {
@@ -40,7 +40,7 @@ export class Config {
 
     static getConfig(): Config {
         if (!Config.instance) {
-            Config.instance = new Config(defaultConfig)
+            Config.instance = new Config(parseJsonConfig(defaultConfigJson))
         }
         return Config.instance
     }
@@ -52,15 +52,9 @@ export class Config {
 
 }
 
-export interface KeyboardConfig {
-    name: string
-    version?: string
-    scenarios: Scenario[]
-}
-
 export interface KeyboardLayout {
-  name: string;
-  layout: KeyboardKey[][];
+    name: string;
+    layout: KeyboardKey[][];
 }
 
 export class KeyboardKey {
@@ -73,6 +67,13 @@ export class KeyboardKey {
         this.size = size;
         this.tags = tags;
     }
+}
+
+export interface KeyboardConfig {
+    name: string
+    version?: string
+    keyboardLayout: KeyboardLayout
+    scenarios: Scenario[]
 }
 
 export interface Scenario {
