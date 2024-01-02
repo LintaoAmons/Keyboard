@@ -36,7 +36,7 @@ export default function App(): JSX.Element {
         </div>
 
         <div className="w-10/12 flex flex-col items-center p-4">
-          <h1 className='text-4xl'>Lintao's Keyboard</h1>
+          <h1 className='text-4xl my-3'>{config.keyboardConfig.name}</h1>
           <Keyboard />
           <KeymapOverview />
 
