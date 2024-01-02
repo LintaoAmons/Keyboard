@@ -1,4 +1,4 @@
-import defaultConfigJson from "./config.new.json"
+import defaultConfigJson from "./configs/default.json"
 import { parseJsonConfig } from "./configParser"
 
 

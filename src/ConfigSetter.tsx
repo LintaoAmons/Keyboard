@@ -4,7 +4,7 @@ import { SelectData } from "tw-elements-react/dist/types/forms/Select/types";
 import { ConfigContext } from "./App";
 import { findActiveSenario } from "./Config";
 import { parseJsonConfig } from "./configParser";
-import defaultConfigJson from "./config.new.json"
+import defaultConfigJson from "./configs/default.json"
 import JsonView from "@uiw/react-json-view";
 
 
