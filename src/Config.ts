@@ -1,4 +1,4 @@
-import defaultConfigJson from "./config.json"
+import defaultConfigJson from "./config.new.json"
 import { parseJsonConfig } from "./configParser"
 
 
@@ -55,6 +55,12 @@ export interface KeyboardLayout {
     layout: KeyboardKey[][];
 }
 
+export interface KeyboardLayoutJson {
+    name: string;
+    layout: string[];
+    // ["a,b,c,d,d,c", "\,,."]
+}
+
 export class KeyboardKey {
     keycode: string;
     size: number;
@@ -74,12 +80,26 @@ export interface KeyboardConfig {
     scenarios: Scenario[]
 }
 
-export interface Scenario {
+export interface KeyboardConfigJson {
     name: string
-    KeymapItems: KeyMapItem[]
+    version?: string
+    // TODO: can't convert config to string representation yet
+    keyboardLayout?: KeyboardLayoutJson
+    scenarios: ScenarioJson[]
 }
 
-export interface KeyMapItem {
+export interface Scenario {
+    name: string
+    KeymapItems: KeyMapItem[] // TODO: List of String when json
+}
+
+export interface ScenarioJson {
+    name: string
+    keymapItems: string[]
+}
+
+export interface KeyMapItem { 
+    // TODO: keybinding not nullable; description to nullable
     keybinding?: KeyStroke[]
     description: string
     achieveBy?: string
