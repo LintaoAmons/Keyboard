@@ -57,7 +57,7 @@ export interface KeyboardLayout {
 
 export interface KeyboardLayoutJson {
     name: string;
-    layout: string[];
+    layout: string[][];
     // ["a,b,c,d,d,c", "\,,."]
 }
 
