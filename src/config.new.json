@@ -81,7 +81,9 @@
             "name": "Vim",
             "keymapItems": [
                 "<q-C>|description|achieved by",
-                "<C-p>|find files|telescope"
+                "space,f,m|format|conform.nvim",
+                "<C-p>|find files|telescope",
+                "<C-M-p>|find commands|telescope"
             ]
         },
         {
