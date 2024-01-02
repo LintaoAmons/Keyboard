@@ -1,0 +1,88 @@
+{
+    "name": "Submit Pr to share your config",
+    "version": "0.1",
+    "keyboardLayout": {
+        "name": "Submit Pr to share your config",
+        "layout": [
+            [
+                "esc",
+                "0",
+                "1",
+                "7",
+                "8",
+                "9",
+                "-",
+                "=",
+                "backspace,grow"
+            ],
+            [
+                "tab,3",
+                "q",
+                "w",
+                "e",
+                "r",
+                "t",
+                "o",
+                "p",
+                "[",
+                "]",
+                "|,grow"
+            ],
+            [
+                "ctrl,4",
+                "aa",
+                "s",
+                "d",
+                "f",
+                "g",
+                "h",
+                "jjj",
+                "k",
+                "l",
+                ";",
+                "'",
+                "enter,grow"
+            ],
+            [
+                "shift,5",
+                "z",
+                "x",
+                "c",
+                "v",
+                "b",
+                "n",
+                "m",
+                ",",
+                ".",
+                "/",
+                "shift,grow"
+            ],
+            [
+                "",
+                "",
+                "alt",
+                "cmd",
+                "space,14",
+                "hyper",
+                "alt"
+            ]
+        ]
+    },
+    "scenarios": [
+        {
+            "name": "Vim",
+            "keymapItems": [
+                "<q-C>|description|achieved by",
+                "space,f,m|format|conform.nvim",
+                "<C-p>|find files|telescope",
+                "<C-M-p>|find commands|telescope"
+            ]
+        },
+        {
+            "name": "Default",
+            "keymapItems": [
+                "\\,,f,<H-m>"
+            ]
+        }
+    ]
+}
