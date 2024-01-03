@@ -1,4 +1,4 @@
-import {  KeyboardKey, KeyMapItem, KeyStroke, Modifier } from "./Config";
+import { KeyboardKey, KeyMapItem, KeyStroke, Modifier } from "./Config";
 import { keyMapItemToString, parseKeyMapItemFromString, parseKeyStroke, toKeyboardLayout } from "./configParser";
 
 describe('toKeyboardLayout', () => {
@@ -61,7 +61,7 @@ describe('keyMapItemToString', () => {
             ],
             description: "mydes",
             achieveBy: "achieveBy"
-        }, "<C-S-space>,f,<H-m>|mydes|achieveBy"],
+        }, "<C-S-space>,f,<H-m>|mydes||achieveBy"],
 
         // Test case 4
         [{
@@ -90,8 +90,42 @@ describe('keyMapItemToString', () => {
                 { keycode: "a", modifiers: [Modifier.HYPER] }
             ],
             description: ""
-        }, "z,<C-S-M-k>,<H-a>"]
-        // Add more test cases as needed
+        }, "z,<C-S-M-k>,<H-a>"],
+
+        [{
+            keybinding: [
+                { keycode: "z" },
+                { keycode: "k", modifiers: [Modifier.CTRL, Modifier.SHIFT, Modifier.CMD] },
+                { keycode: "a", modifiers: [Modifier.HYPER] }
+            ],
+            description: "",
+            achieveBy: "vim",
+        }, "z,<C-S-M-k>,<H-a>|||vim"],
+
+        [{
+            keybinding: [
+                { keycode: "z" },
+            ],
+            description: "desc",
+            conditions: ["mode1", "mode2"],
+            achieveBy: "vim",
+        }, "z|desc|mode1,mode2|vim"],
+
+        [{
+            keybinding: [
+                { keycode: "z" },
+            ],
+            conditions: ["mode1", "mode2"],
+            achieveBy: "vim",
+        }, "z||mode1,mode2|vim"],
+
+        [{
+            keybinding: [
+                { keycode: "z" },
+            ],
+            conditions: ["mode1", "mode2"],
+        }, "z||mode1,mode2"],
+
     ])('converts KeyMapItem to string correctly', (input, expected) => {
         expect(keyMapItemToString(input)).toBe(expected);
     });
@@ -105,11 +139,13 @@ describe('parseKeyMapItemFromString', () => {
             console.log(input)
             const expected = {
                 keybinding: [
-                    { keycode: "," },
-                    { keycode: "f" },
+                    { keycode: ",", modifiers: undefined },
+                    { keycode: "f", modifiers: undefined },
                     { keycode: "m", modifiers: ["HYPER"] }
                 ],
-                description: ""
+                description: "",
+                conditions: [""],
+                achieveBy: "",
             };
             expect(parseKeyMapItemFromString(input)).toEqual(expected);
         });
@@ -118,18 +154,20 @@ describe('parseKeyMapItemFromString', () => {
             const input = "f,\\,,<m-H>";
             const expected = {
                 keybinding: [
-                    { keycode: "f" },
-                    { keycode: "," },
+                    { keycode: "f", modifiers: undefined },
+                    { keycode: ",", modifiers: undefined },
                     { keycode: "m", modifiers: ["HYPER"] }
                 ],
-                description: ""
+                description: "",
+                conditions: [""],
+                achieveBy: "",
             };
             expect(parseKeyMapItemFromString(input)).toEqual(expected);
         });
     })
 
     it('parses string "<space-C-S>,f,<m-H>|mydes|achieveBy" to KeyMapItem correctly', () => {
-        const input = "<space-C-S>,f,<m-H>|mydes|achieveBy";
+        const input = "<space-C-S>,f,<m-H>|mydes||achieveBy";
         const expected = {
             keybinding: [
                 { keycode: "space", modifiers: ["CTRL", "SHIFT"] },
@@ -137,6 +175,7 @@ describe('parseKeyMapItemFromString', () => {
                 { keycode: "m", modifiers: ["HYPER"] }
             ],
             description: "mydes",
+            conditions: [""],
             achieveBy: "achieveBy"
         };
         expect(parseKeyMapItemFromString(input)).toEqual(expected);
@@ -148,9 +187,11 @@ describe('parseKeyMapItemFromString', () => {
         const expected: KeyMapItem = {
             keybinding: [
                 { keycode: "d", modifiers: [Modifier.CTRL, Modifier.ALT] },
-                { keycode: "x" }
+                { keycode: "x", modifiers: undefined }
             ],
-            description: ""
+            description: "",
+            conditions: [""],
+            achieveBy: ""
         };
         expect(parseKeyMapItemFromString(input)).toEqual(expected);
     });
@@ -161,9 +202,11 @@ describe('parseKeyMapItemFromString', () => {
             keybinding: [
                 { keycode: "f", modifiers: [Modifier.CMD] },
                 { keycode: "space", modifiers: [Modifier.ALT] },
-                { keycode: "b" }
+                { keycode: "b", modifiers: undefined }
             ],
-            description: ""
+            description: "",
+            achieveBy: "",
+            conditions: [""]
         };
         expect(parseKeyMapItemFromString(input)).toEqual(expected);
     });
@@ -172,14 +215,66 @@ describe('parseKeyMapItemFromString', () => {
         const input = "z,<C-S-M-k>,<H-a>";
         const expected: KeyMapItem = {
             keybinding: [
-                { keycode: "z" },
+                { keycode: "z", modifiers: undefined },
                 { keycode: "k", modifiers: [Modifier.CTRL, Modifier.SHIFT, Modifier.CMD] },
                 { keycode: "a", modifiers: [Modifier.HYPER] }
             ],
-            description: ""
+            description: "",
+            achieveBy: "",
+            conditions: [""]
         };
         expect(parseKeyMapItemFromString(input)).toEqual(expected);
     });
+
+    describe("with conditions", () => {
+
+        test("parse `<H-a>||visual-mode,normal-mode`", () => {
+            const input = "<H-a>|description|visual-mode,normal-mode"
+            const expected: KeyMapItem = {
+                keybinding: [
+                    { keycode: "a", modifiers: [Modifier.HYPER] },
+                ],
+                conditions: ["visual-mode", "normal-mode"],
+                description: "description",
+                achieveBy: "",
+            };
+            const result = parseKeyMapItemFromString(input)
+
+            expect(result).toEqual(expected)
+        })
+
+        test("parse `<H-a>,b|description|visual-mode,normal-mode|vim`", () => {
+            const input = "<H-a>,b|description|visual-mode,normal-mode|vim"
+            const expected: KeyMapItem = {
+                keybinding: [
+                    { keycode: "a", modifiers: [Modifier.HYPER] },
+                    { keycode: "b", modifiers: undefined }
+                ],
+                description: "description",
+                conditions: ["visual-mode", "normal-mode"],
+                achieveBy: "vim",
+            };
+            const result = parseKeyMapItemFromString(input)
+
+            expect(result).toEqual(expected)
+        })
+
+        test("parse `<H-a>,b|||vim`", () => {
+            const input = "<H-a>,b|||vim"
+            const expected: KeyMapItem = {
+                keybinding: [
+                    { keycode: "a", modifiers: [Modifier.HYPER] },
+                    { keycode: "b", modifiers: undefined }
+                ],
+                description: "",
+                conditions: [""],
+                achieveBy: "vim",
+            };
+            const result = parseKeyMapItemFromString(input)
+
+            expect(result).toEqual(expected)
+        })
+    })
 })
 
 describe("parseKeyStroke", () => {

@@ -23,6 +23,7 @@ export default function KeymapOverview(): JSX.Element {
                                 <tr>
                                     <th scope="col" className="px-6 py-4">Keybinding</th>
                                     <th scope="col" className="px-6 py-4">Description</th>
+                                    <th scope="col" className="px-6 py-4">Conditions</th>
                                     <th scope="col" className="px-6 py-4">AchieveBy</th>
                                     <th scope="col" className="px-6 py-4">Actions</th>
                                 </tr>
@@ -44,6 +45,15 @@ export default function KeymapOverview(): JSX.Element {
                                                     ) : ""}
                                                 </td>
                                                 <td className="whitespace-nowrap px-6 py-4">{item.description}</td>
+                                                <td className="whitespace-nowrap px-6 py-4 flex flex-col">
+                                                    {item.conditions
+                                                        ? item.conditions.filter(it => it !== "").map((condi, index) => (
+                                                            <span className="bg-gray-100 px-2 mb-1 rounded border border-gray-600 text-black text-sm" key={index} >
+                                                                {condi}
+                                                            </span>))
+                                                        : ""
+                                                    }
+                                                </td>
                                                 <td className="whitespace-nowrap px-6 py-4">{item.achieveBy}</td>
                                                 <td className="border-x-2 text-center">
                                                     <TERipple className="mx-2">

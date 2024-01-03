@@ -37,19 +37,30 @@ export function toKeyboardLayout(layoutString: string[][]): KeyboardKey[][] {
 }
 
 export function keyMapItemToString(keyMapItem: KeyMapItem): string {
-    let result = keyMapItem.keybinding!.map(k => {
+    let result = keyMapItem.keybinding.map(k => {
         // Escape commas in the keycode
         let keycode = k.keycode === ',' ? '\\,' : k.keycode;
         let modifiers = k.modifiers ? k.modifiers.map(m => modifierToString(m)).join('-') : '';
         return modifiers ? `<${modifiers}-${keycode}>` : keycode;
     }).join(',');
 
-    if (keyMapItem.description) {
-        result += `|${keyMapItem.description}`;
+    // Conditionally append description, conditions, and achieveBy with pipes
+    let hasDescription = 'description' in keyMapItem && keyMapItem.description !== '';
+    let hasConditions = 'conditions' in keyMapItem && keyMapItem.conditions!.length > 0;
+    let hasAchieveBy = 'achieveBy' in keyMapItem && keyMapItem.achieveBy !== '';
+
+    if (hasDescription || hasConditions || hasAchieveBy) {
+        result += `|${keyMapItem.description || ''}`;
     }
-    if (keyMapItem.achieveBy) {
+
+    if (hasConditions || hasAchieveBy) {
+        result += `|${Array.isArray(keyMapItem.conditions) ? keyMapItem.conditions.join(',') : keyMapItem.conditions || ''}`;
+    }
+
+    if (hasAchieveBy) {
         result += `|${keyMapItem.achieveBy}`;
     }
+
     return result;
 }
 
@@ -66,7 +77,7 @@ function modifierToString(modifier: Modifier): string {
 }
 
 export function parseKeyMapItemFromString(str: string): KeyMapItem {
-    const [keys, description = '', achieveBy] = str.split('|');
+    const [keys, description = "", rawConditions = "", achieveBy = ""] = str.split('|');
 
     const commaPlaceHolder = "♞"
     const escaped = keys.replaceAll("\\,", commaPlaceHolder)
@@ -77,9 +88,15 @@ export function parseKeyMapItemFromString(str: string): KeyMapItem {
         return parseKeyStroke(k)
     });
 
+    const escapedConditions = rawConditions.replaceAll("\\,", commaPlaceHolder)
+    const conditions = escapedConditions.split(",").map(c => {
+        return c.replaceAll(commaPlaceHolder, ",")
+    })
+
     return {
         keybinding: keyBindings,
         description,
+        conditions,
         achieveBy
     };
 }

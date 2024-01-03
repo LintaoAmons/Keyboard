@@ -15,10 +15,10 @@
         {
             "name": "Vim",
             "keymapItems": [
-                "<q-C>|description|achieved by",
-                "space,f,m|format|conform.nvim",
-                "<C-p>|find files|telescope",
-                "<C-M-p>|find commands|telescope"
+                "<q-C>|description",
+                "space,f,m|format|normal-mode,vitual-mode|conform.nvim",
+                "<C-p>|find files|normal-mode,vitual-mode|telescope",
+                "<C-M-p>|find commands||telescope"
             ]
         },
         {

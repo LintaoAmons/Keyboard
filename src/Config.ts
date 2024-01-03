@@ -48,7 +48,6 @@ export interface KeyboardLayout {
 export interface KeyboardLayoutJson {
     name: string;
     layout: string[][];
-    // ["a,b,c,d,d,c", "\,,."]
 }
 
 export class KeyboardKey {
@@ -80,7 +79,7 @@ export interface KeyboardConfigJson {
 
 export interface Scenario {
     name: string
-    KeymapItems: KeyMapItem[] // TODO: List of String when json
+    KeymapItems: KeyMapItem[]
 }
 
 export interface ScenarioJson {
@@ -89,9 +88,9 @@ export interface ScenarioJson {
 }
 
 export interface KeyMapItem {
-    // TODO: keybinding not nullable; description to nullable
-    keybinding?: KeyStroke[]
-    description: string
+    keybinding: KeyStroke[]
+    description?: string
+    conditions?: string[]
     achieveBy?: string
 }
 
