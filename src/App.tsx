@@ -67,7 +67,7 @@ export default function App(): JSX.Element {
                     <a
                         href="https://github.com/LintaoAmons/Keyboard/"
                         className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-                    >Create a PR to share your keybindings</a>
+                    >Create a PR to share your keybindings | 提交一个 PR 来分享你的快捷键</a>
 
                     <div className="md:hidden">
                         <ConfigSetter />
