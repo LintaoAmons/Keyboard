@@ -4,68 +4,11 @@
     "keyboardLayout": {
         "name": "Submit Pr to share your config",
         "layout": [
-            [
-                "esc",
-                "0",
-                "1",
-                "7",
-                "8",
-                "9",
-                "-",
-                "=",
-                "backspace,grow"
-            ],
-            [
-                "tab,3",
-                "q",
-                "w",
-                "e",
-                "r",
-                "t",
-                "o",
-                "p",
-                "[",
-                "]",
-                "|,grow"
-            ],
-            [
-                "ctrl,4",
-                "aa",
-                "s",
-                "d",
-                "f",
-                "g",
-                "h",
-                "jjj",
-                "k",
-                "l",
-                ";",
-                "'",
-                "enter,grow"
-            ],
-            [
-                "shift,5",
-                "z",
-                "x",
-                "c",
-                "v",
-                "b",
-                "n",
-                "m",
-                ",",
-                ".",
-                "/",
-                "shift,grow"
-            ],
-            [
-                "",
-                "",
-                "alt",
-                "cmd",
-                "space,14",
-                "hyper",
-                "alt"
-            ]
+            [ "esc", "0", "1", "7", "8", "9", "-", "=", "backspace,grow" ],
+            [ "tab,3", "q", "w", "e", "r", "t", "o", "p", "[", "]", "|,grow" ],
+            [ "ctrl,4", "aa", "s", "d", "f", "g", "h", "jjj", "k", "l", ";", "'", "enter,grow" ],
+            [ "shift,5", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift,grow" ],
+            [ "", "", "alt", "cmd", "space,14", "hyper", "alt" ]
         ]
     },
     "scenarios": [
