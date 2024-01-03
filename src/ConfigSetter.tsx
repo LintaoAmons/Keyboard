@@ -69,11 +69,11 @@ export default function ConfigSetter(): JSX.Element {
     }
 
     return (
-        <div className="flex flex-col px-3 h-screen" >
+        <div className="flex flex-col px-3 md:h-screen w-full md:w-3/12" >
             <h2 className="text-4xl m-3 self-center">Config</h2>
 
-            <label htmlFor="profiles" className="flex w-full items-baseline mx-3">
-                <div className="flex justify-center">
+            <div className="md:flex-col flex">
+                <label htmlFor="profiles" className="flex w-full items-baseline mx-3">
                     <div className="relative mb-3 md:w-96 pt-5">
                         <TESelect
                             data={configOptions}
@@ -82,11 +82,9 @@ export default function ConfigSetter(): JSX.Element {
                             value={activeKeyboardConfigName}
                         />
                     </div>
-                </div>
-            </label>
+                </label>
 
-            <label htmlFor="scenarios" className="flex w-full items-baseline mx-3">
-                <div className="flex justify-center">
+                <label htmlFor="scenarios" className="flex w-full items-baseline mx-3">
                     <div className="relative mb-3 md:w-96 pt-5">
                         <TESelect
                             data={scenarioOptions}
@@ -95,10 +93,10 @@ export default function ConfigSetter(): JSX.Element {
                             value={activeScenarioName}
                         />
                     </div>
-                </div>
-            </label>
+                </label>
+            </div>
 
-            <div className="inline-flex" role="group">
+            <div className="mb-2 ml-2" role="group">
                 <TERipple rippleColor="light">
                     <button
                         type="button"
@@ -126,9 +124,11 @@ export default function ConfigSetter(): JSX.Element {
                         Add Scenario
                     </button>
                 </TERipple>
+                <h2 className="md:hidden text-rose-700">Rotate your phone to get better view</h2>
+                <h2 className="md:hidden text-rose-700">横屏获得更好效果(作者太菜)</h2>
             </div>
 
-            <div className="flex justify-center mt-5">
+            <div className="flex justify-center mt-5 hidden md:block">
                 <div className="relative mb-3 xl:w-96">
                     <JsonView value={JSON.parse(currentConfigJsonString)} displayDataTypes={false} collapsed={3} enableClipboard={false} />
                 </div>

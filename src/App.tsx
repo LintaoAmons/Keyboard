@@ -56,16 +56,23 @@ export default function App(): JSX.Element {
         <ConfigContext.Provider value={value}>
             <div className="flex flex-row h-screen">
 
-                <div className="border-r border-solid border-2">
+                <div className="border-r border-solid border-2 md:block hidden">
                     <ConfigSetter />
                 </div>
 
-                <div className="w-10/12 flex flex-col items-center p-4">
+                <div className="w-full md:w-10/12 flex flex-col items-center p-4">
                     <h1 className='text-4xl my-3'>{activeKeyboardConfigName}</h1>
+
+
                     <a
                         href="https://github.com/LintaoAmons/Keyboard/"
                         className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
                     >Create a PR to share your keybindings</a>
+
+                    <div className="md:hidden">
+                        <ConfigSetter />
+                    </div>
+
                     <Keyboard />
                     <KeymapOverview />
 
