@@ -1,4 +1,4 @@
-import { Config, KeyboardKey, KeyMapItem, KeyStroke, Modifier } from "./Config";
+import {  KeyboardKey, KeyMapItem, KeyStroke, Modifier } from "./Config";
 import { keyMapItemToString, parseKeyMapItemFromString, parseKeyStroke, toKeyboardLayout } from "./configParser";
 
 describe('toKeyboardLayout', () => {

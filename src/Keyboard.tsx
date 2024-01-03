@@ -1,6 +1,6 @@
 import { CSSProperties, useContext } from "react";
 import { ConfigContext } from "./App";
-import { isModifier, KeyboardKey } from "./Config";
+import { getActiveKeyboardConfig, isModifier, KeyboardKey } from "./Config";
 import { bgColor, genHighlightLevelMap, getHighlightLevel } from "./KeyboardStyleCalculation";
 
 const KeyboardSizeUnit = 1.5
@@ -45,22 +45,20 @@ const Key: React.FC<KeyProps> = ({ keyData, highlightLevel }) => {
 
 export default function Keyboard(): JSX.Element {
 
-    const { config, setConfig } = useContext(ConfigContext);
-    const { keyboardConfig, activeScenario, highlightedItem } = config;
+    const { configs, activeKeyboardConfigName, highlightedItem } = useContext(ConfigContext);
 
     const highlightLevelMap = genHighlightLevelMap(highlightedItem)
 
-    const layout = config.keyboardConfig.keyboardLayout.layout
-
     return (
         <div className="flex-col">
-            {layout.map((row, rowIndex) => (
-                <div key={`row-${rowIndex}`} className="flex my-1 md:w-full">
-                    {row.map((keyData, keyIndex) => (
-                        <Key key={`key-${keyIndex}`} keyData={keyData} highlightLevel={getHighlightLevel(highlightLevelMap, keyData.keycode)} />
-                    ))}
-                </div>
-            ))}
+            {getActiveKeyboardConfig(configs, activeKeyboardConfigName).keyboardLayout.layout
+                .map((row, rowIndex) => (
+                    <div key={`row-${rowIndex}`} className="flex my-1 md:w-full">
+                        {row.map((keyData, keyIndex) => (
+                            <Key key={`key-${keyIndex}`} keyData={keyData} highlightLevel={getHighlightLevel(highlightLevelMap, keyData.keycode)} />
+                        ))}
+                    </div>
+                ))}
         </div>
     )
 }

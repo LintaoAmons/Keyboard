@@ -1,5 +1,6 @@
 import { parseCommandLine } from "typescript";
 import { KeyboardConfig, KeyboardConfigJson, KeyboardKey, KeyMapItem, KeyStroke, Modifier } from "./Config";
+import configs from "./configs/configs";
 
 export function toKeyboardLayout(layoutString: string[][]): KeyboardKey[][] {
     return layoutString.map(row => {
@@ -179,6 +180,8 @@ export function convertConfigToJsonString(config: KeyboardConfig): KeyboardConfi
             }
         })
     }
+}
 
-
+export function convertConfigs(configs: KeyboardConfigJson[]): KeyboardConfig[] {
+    return configs.map(it => parseJsonConfig(it))
 }

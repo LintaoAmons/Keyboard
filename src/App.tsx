@@ -1,47 +1,72 @@
 import React from "react";
 import { createContext, useState } from "react";
-import { Config } from "./Config";
+import { KeyboardConfig, KeyMapItem } from "./Config";
 import ConfigSetter from "./ConfigSetter";
 import Keyboard from "./Keyboard";
 import KeymapOverview from "./KeymapOverview";
+import configJsonList from "./configs/configs";
+import { convertConfigs } from "./configParser";
 
-// Get initial config implementation
-const initialConfig = Config.getConfig();
 
 // Define the shape of your context
 interface ConfigContextType {
-  config: typeof initialConfig;
-  profile: string;
-  setConfig: React.Dispatch<React.SetStateAction<typeof initialConfig>>;
+    configs: KeyboardConfig[];
+    setConfigs: React.Dispatch<React.SetStateAction<KeyboardConfig[]>>,
+    activeKeyboardConfigName: string;
+    setActiveKeyboardConfigName: React.Dispatch<React.SetStateAction<string>>;
+    activeScenarioName: string;
+    setActiveScenarioName: React.Dispatch<React.SetStateAction<string>>;
+    highlightedItem: KeyMapItem;
+    setHighlightedItem: React.Dispatch<React.SetStateAction<KeyMapItem>>;
 }
 
 // Create the context with a default value
-export const ConfigContext = createContext<ConfigContextType>({
-  config: initialConfig,
-  profile: "Default",
-  // Provide a placeholder function for setConfig
-  setConfig: () => { },
+const initConfigs: KeyboardConfig[] = convertConfigs(configJsonList)
+const defaultConfig = initConfigs[0]
+export const ConfigContext: React.Context<ConfigContextType> = createContext<ConfigContextType>({
+    configs: initConfigs,
+    setConfigs: () => { },
+    activeKeyboardConfigName: "",
+    setActiveKeyboardConfigName: () => { },
+    activeScenarioName: "",
+    setActiveScenarioName: () => { },
+    highlightedItem: {} as KeyMapItem,
+    setHighlightedItem: () => { }
 });
 
+
 export default function App(): JSX.Element {
-  const [config, setConfig] = useState(Config.getConfig())
-  const value = { config, profile: "Default", setConfig }
+    const [configs, setConfigs] = useState(initConfigs)
+    const [activeKeyboardConfigName, setActiveKeyboardConfigName] = useState(defaultConfig.name)
+    const [activeScenarioName, setActiveScenarioName] = useState(defaultConfig.scenarios[0].name)
+    const [highlightedItem, setHighlightedItem] = useState(defaultConfig.scenarios[0].KeymapItems[0])
 
-  return (
-    <ConfigContext.Provider value={value}>
-      <div className="flex flex-row h-screen">
+    const value = {
+        configs,
+        setConfigs,
+        activeKeyboardConfigName,
+        setActiveKeyboardConfigName,
+        activeScenarioName,
+        setActiveScenarioName,
+        highlightedItem,
+        setHighlightedItem,
+    }
 
-        <div className="border-r border-solid border-2">
-          <ConfigSetter />
-        </div>
+    return (
+        <ConfigContext.Provider value={value}>
+            <div className="flex flex-row h-screen">
 
-        <div className="w-10/12 flex flex-col items-center p-4">
-          <h1 className='text-4xl my-3'>{config.keyboardConfig.name}</h1>
-          <Keyboard />
-          <KeymapOverview />
+                <div className="border-r border-solid border-2">
+                    <ConfigSetter />
+                </div>
 
-        </div>
-      </div>
-    </ConfigContext.Provider>
-  );
+                <div className="w-10/12 flex flex-col items-center p-4">
+                    <h1 className='text-4xl my-3'>{activeKeyboardConfigName}</h1>
+                    <Keyboard />
+                    <KeymapOverview />
+
+                </div>
+            </div>
+        </ConfigContext.Provider>
+    );
 }

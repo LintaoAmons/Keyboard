@@ -1,5 +1,5 @@
-import defaultConfigJson from "./configs/default.json"
 import { parseJsonConfig } from "./configParser"
+import defaultConfigJson from "./configs/default.json"
 
 
 export enum Modifier {
@@ -15,39 +15,29 @@ export function isModifier(keycode: string): boolean {
     return Object.values(Modifier).map(v => v.toLowerCase()).includes(keycode.toLowerCase() as string)
 }
 
-export function findActiveSenario(config: KeyboardConfig, scenarioName: string | undefined): Scenario | undefined {
-    if (scenarioName == undefined) {
-        return undefined
+export function getActiveKeyboardConfigJson(configs: KeyboardConfigJson[], activeKeyboardConfigName: string): KeyboardConfigJson {
+    const activeConfig = configs.find(config => config.name === activeKeyboardConfigName)
+    if (activeConfig === undefined) {
+        return configs[0]
     }
-    return config.scenarios.find(it => it.name == scenarioName)
+    return activeConfig
 }
 
-
-export class Config {
-    keyboardConfig: KeyboardConfig
-    activeScenario: Scenario
-    highlightedItem: KeyMapItem
-
-    private static instance: Config
-
-    private constructor(config: KeyboardConfig) {
-        this.keyboardConfig = config
-        this.activeScenario = config.scenarios[0]
-        this.highlightedItem = config.scenarios[0].KeymapItems[0]
+export function getActiveKeyboardConfig(configs: KeyboardConfig[], activeKeyboardConfigName: string): KeyboardConfig {
+    const activeConfig = configs.find(config => config.name === activeKeyboardConfigName)
+    if (activeConfig === undefined) {
+        return configs[0]
     }
+    return activeConfig
+}
 
-    static getConfig(): Config {
-        if (!Config.instance) {
-            Config.instance = new Config(parseJsonConfig(defaultConfigJson))
-        }
-        return Config.instance
+export function getActiveSenario(configs: KeyboardConfig[], activeKeyboardConfigName: string, activeScenarioName: string): Scenario {
+    const activeConfig = getActiveKeyboardConfig(configs, activeKeyboardConfigName)
+    const activeScenario = activeConfig.scenarios.find(scenario => scenario.name === activeScenarioName)
+    if (activeScenario === undefined) {
+        return activeConfig.scenarios[0]
     }
-
-    static setConfig(config: KeyboardConfig): Config {
-        Config.instance = new Config(config)
-        return Config.instance
-    }
-
+    return activeScenario
 }
 
 export interface KeyboardLayout {
@@ -98,7 +88,7 @@ export interface ScenarioJson {
     keymapItems: string[]
 }
 
-export interface KeyMapItem { 
+export interface KeyMapItem {
     // TODO: keybinding not nullable; description to nullable
     keybinding?: KeyStroke[]
     description: string
