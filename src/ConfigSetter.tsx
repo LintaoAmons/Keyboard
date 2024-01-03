@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react"
-import { TERipple, TESelect, TETextarea } from "tw-elements-react";
+import { useContext,  useState } from "react"
+import { TERipple, TESelect } from "tw-elements-react";
 import { SelectData } from "tw-elements-react/dist/types/forms/Select/types";
 import { ConfigContext } from "./App";
 import { parseJsonConfig } from "./configParser";
@@ -128,7 +128,7 @@ export default function ConfigSetter(): JSX.Element {
                 <h2 className="md:hidden text-rose-700">横屏获得更好效果(作者太菜)</h2>
             </div>
 
-            <div className="flex justify-center mt-5 hidden md:block">
+            <div className="md:flex justify-center mt-5 hidden">
                 <div className="relative mb-3 xl:w-96">
                     <JsonView value={JSON.parse(currentConfigJsonString)} displayDataTypes={false} collapsed={3} enableClipboard={false} />
                 </div>
