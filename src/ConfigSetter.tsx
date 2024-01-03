@@ -96,7 +96,7 @@ export default function ConfigSetter(): JSX.Element {
                 </label>
             </div>
 
-            <div className="mb-2 ml-2" role="group">
+            <div className="flex justify-between mb-2 ml-2" role="group">
                 <TERipple rippleColor="light">
                     <button
                         type="button"
