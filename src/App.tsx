@@ -62,6 +62,10 @@ export default function App(): JSX.Element {
 
                 <div className="w-10/12 flex flex-col items-center p-4">
                     <h1 className='text-4xl my-3'>{activeKeyboardConfigName}</h1>
+                    <a
+                        href="https://github.com/LintaoAmons/Keyboard/"
+                        className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+                    >Create a PR to share your keybindings</a>
                     <Keyboard />
                     <KeymapOverview />
 
