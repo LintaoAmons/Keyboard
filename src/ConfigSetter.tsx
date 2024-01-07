@@ -43,15 +43,15 @@ export default function ConfigSetter(): JSX.Element {
         try {
             const userInput = window.prompt("Please copy your configuration:");
             if (userInput) {
-                const newConfig = parseJsonConfig(JSON.parse(userInput))
+                const newConfig = JSON.parse(userInput)
                 setConfigs((prevConfigs) => {
-                    // Check if the item already exists
-                    const existingItemIndex = prevConfigs.findIndex(config => config.name === newConfig.name);
+                    // Check if the config already exists
+                    const existingConfigIndex = prevConfigs.findIndex(config => config.name === newConfig.name);
 
-                    if (existingItemIndex >= 0) {
+                    if (existingConfigIndex >= 0) {
                         // Item found - replace it
                         return prevConfigs.map((config, index) =>
-                            index === existingItemIndex ? newConfig : config
+                            index === existingConfigIndex ? newConfig : config
                         );
                     } else {
                         // Item not found - push it

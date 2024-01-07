@@ -1,17 +1,17 @@
 import React from "react";
 import { createContext, useState } from "react";
-import { KeyboardConfig, KeyMapItem } from "./Config";
+import { KeyboardConfig, KeyboardConfigJson, KeyMapItem } from "./Config";
 import ConfigSetter from "./ConfigSetter";
 import Keyboard from "./Keyboard";
 import KeymapOverview from "./KeymapOverview";
 import configJsonList from "./configs/configs";
-import { convertConfigs } from "./configParser";
+import { convertConfigs, parseJsonConfig } from "./configParser";
 
 
 // Define the shape of your context
 interface ConfigContextType {
-    configs: KeyboardConfig[];
-    setConfigs: React.Dispatch<React.SetStateAction<KeyboardConfig[]>>,
+    configs: KeyboardConfigJson[];
+    setConfigs: React.Dispatch<React.SetStateAction<KeyboardConfigJson[]>>,
     activeKeyboardConfigName: string;
     setActiveKeyboardConfigName: React.Dispatch<React.SetStateAction<string>>;
     activeScenarioName: string;
@@ -21,8 +21,9 @@ interface ConfigContextType {
 }
 
 // Create the context with a default value
-const initConfigs: KeyboardConfig[] = convertConfigs(configJsonList)
+const initConfigs: KeyboardConfigJson[] = configJsonList
 const defaultConfig = initConfigs[0]
+const parsedConfig = parseJsonConfig(defaultConfig)
 export const ConfigContext: React.Context<ConfigContextType> = createContext<ConfigContextType>({
     configs: initConfigs,
     setConfigs: () => { },
@@ -39,7 +40,7 @@ export default function App(): JSX.Element {
     const [configs, setConfigs] = useState(initConfigs)
     const [activeKeyboardConfigName, setActiveKeyboardConfigName] = useState(defaultConfig.name)
     const [activeScenarioName, setActiveScenarioName] = useState(defaultConfig.scenarios[0].name)
-    const [highlightedItem, setHighlightedItem] = useState(defaultConfig.scenarios[0].KeymapItems[0])
+    const [highlightedItem, setHighlightedItem] = useState(parsedConfig.scenarios[0].KeymapItems[0])
 
     const value = {
         configs,

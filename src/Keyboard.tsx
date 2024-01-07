@@ -1,6 +1,6 @@
 import { CSSProperties, useContext } from "react";
 import { ConfigContext } from "./App";
-import { getActiveKeyboardConfig, isModifier, KeyboardKey } from "./Config";
+import { getActiveKeyboardConfig, getActiveKeyboardConfigFromJson, isModifier, KeyboardKey } from "./Config";
 import { bgColor, genHighlightLevelMap, getHighlightLevel } from "./KeyboardStyleCalculation";
 
 const KeyboardSizeUnit = 1.5
@@ -51,7 +51,7 @@ export default function Keyboard(): JSX.Element {
 
     return (
         <div className="flex-col">
-            {getActiveKeyboardConfig(configs, activeKeyboardConfigName).keyboardLayout.layout
+            {getActiveKeyboardConfigFromJson(configs, activeKeyboardConfigName).keyboardLayout.layout
                 .map((row, rowIndex) => (
                     <div key={`row-${rowIndex}`} className="flex my-1 md:w-full">
                         {row.map((keyData, keyIndex) => (

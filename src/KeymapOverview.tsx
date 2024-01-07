@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { TERipple } from "tw-elements-react";
 import { ConfigContext } from "./App";
-import { getActiveSenario, KeyMapItem } from "./Config";
+import { getActiveSenario, getActiveSenarioFromJson, KeyMapItem } from "./Config";
 
 export default function KeymapOverview(): JSX.Element {
 
@@ -16,7 +16,7 @@ export default function KeymapOverview(): JSX.Element {
     setFilterContent(() => e.target.value)
   }
 
-  const keymapItems = getActiveSenario(configs, activeKeyboardConfigName, activeScenarioName)
+  const keymapItems = getActiveSenarioFromJson(configs, activeKeyboardConfigName, activeScenarioName)
     .KeymapItems
 
 

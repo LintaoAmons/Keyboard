@@ -31,8 +31,25 @@ export function getActiveKeyboardConfig(configs: KeyboardConfig[], activeKeyboar
     return activeConfig
 }
 
+export function getActiveKeyboardConfigFromJson(configs: KeyboardConfigJson[], activeKeyboardConfigName: string): KeyboardConfig {
+    const activeConfig = configs.find(config => config.name === activeKeyboardConfigName)
+    if (activeConfig === undefined) {
+        return parseJsonConfig(configs[0])
+    }
+    return parseJsonConfig(activeConfig)
+}
+
 export function getActiveSenario(configs: KeyboardConfig[], activeKeyboardConfigName: string, activeScenarioName: string): Scenario {
     const activeConfig = getActiveKeyboardConfig(configs, activeKeyboardConfigName)
+    const activeScenario = activeConfig.scenarios.find(scenario => scenario.name === activeScenarioName)
+    if (activeScenario === undefined) {
+        return activeConfig.scenarios[0]
+    }
+    return activeScenario
+}
+
+export function getActiveSenarioFromJson(configs: KeyboardConfigJson[], activeKeyboardConfigName: string, activeScenarioName: string): Scenario {
+    const activeConfig = parseJsonConfig(getActiveKeyboardConfigJson(configs, activeKeyboardConfigName))
     const activeScenario = activeConfig.scenarios.find(scenario => scenario.name === activeScenarioName)
     if (activeScenario === undefined) {
         return activeConfig.scenarios[0]
