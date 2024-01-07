@@ -11,4 +11,5 @@
 
 - React & TS & jest
 - Tailwindcss
+- Fuse.js
 
