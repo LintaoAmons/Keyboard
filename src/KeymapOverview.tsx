@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { TERipple } from "tw-elements-react";
 import { ConfigContext } from "./App";
-import { getActiveSenario, getActiveSenarioFromJson, KeyMapItem } from "./Config";
+import { getActiveSenario, getActiveSenarioFromJson, getActiveSenarioJson, KeyMapItem } from "./Config";
+import { filterKeymapItems } from "./KeymapItemsFilter";
 
 export default function KeymapOverview(): JSX.Element {
 
@@ -16,16 +17,14 @@ export default function KeymapOverview(): JSX.Element {
     setFilterContent(() => e.target.value)
   }
 
-  const keymapItems = getActiveSenarioFromJson(configs, activeKeyboardConfigName, activeScenarioName)
-    .KeymapItems
-
+  const keymapItems = filterKeymapItems(getActiveSenarioJson(configs, activeKeyboardConfigName, activeScenarioName), filterContent)
 
   return (
     <div className="flex flex-col">
 
       <div className="mb-4 flex items-center mt-6">
         <label className="block text-gray-700 text-sm font-bold ml-6 mr-3" htmlFor="filter">
-          Filter
+          FuzzyFinder: 
         </label>
         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           onChange={handleFilterChange}
