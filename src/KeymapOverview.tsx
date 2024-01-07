@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TERipple } from "tw-elements-react";
 import { ConfigContext } from "./App";
 import { getActiveSenario, KeyMapItem } from "./Config";
@@ -6,10 +6,15 @@ import { getActiveSenario, KeyMapItem } from "./Config";
 export default function KeymapOverview(): JSX.Element {
 
   const { configs, activeKeyboardConfigName, activeScenarioName, setHighlightedItem } = useContext(ConfigContext);
+  const [filterContent, setFilterContent] = useState("")
 
   const handleClick = (item: KeyMapItem) => {
     setHighlightedItem(() => item)
   };
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterContent(() => e.target.value)
+  }
 
 
   return (
@@ -19,7 +24,11 @@ export default function KeymapOverview(): JSX.Element {
         <label className="block text-gray-700 text-sm font-bold ml-6 mr-3" htmlFor="filter">
           Filter
         </label>
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="filter" type="text" />
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          onChange={handleFilterChange}
+          id="filter"
+          value={filterContent}
+          type="text" />
       </div>
 
       <table className="min-w-full text-left text-sm font-light">
