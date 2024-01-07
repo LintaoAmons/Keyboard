@@ -155,6 +155,68 @@
             ]
         },
         {
+            "name": "Diffview.nvim default Keymaps",
+            "keymapItems": [
+                "space,e|Bring focus to the file panel|normal-mode,view-window",
+                "space,b|Toggle the file panel|normal-mode,view-window",
+                "g,<C-x>|Cycle through available layouts|normal-mode,view-window",
+                "[,x|In the merge-tool: jump to the previous conflict|normal-mode,view-window",
+                "],x|In the merge-tool: jump to the next conflict|normal-mode,view-window",
+                "space,c,o|Choose the OURS version of a conflict|normal-mode,view-window",
+                        "space,c,t|Choose the THEIRS version of a conflict|normal-mode,view-window",
+                "space,c,b|Choose the BASE version of a conflict|normal-mode,view-window",
+                "space,c,a|Choose all the versions of a conflict|normal-mode,view-window",
+                "d,x|Delete the conflict region|normal-mode,view-window",
+                "space,c,<C-o>|Choose the OURS version of a conflict for the whole file|normal-mode,view-window",
+                "space,c,<C-t>|Choose the THEIRS version of a conflict for the whole file|normal-mode,view-window",
+                "space,c,<C-b>|Choose the BASE version of a conflict for the whole file|normal-mode,view-window",
+                "space,c,<C-a>|Choose all the versions of a conflict for the whole file|normal-mode,view-window",
+                "d,<C-x>|Delete the conflict region for the whole file|normal-mode,view-window",
+                        "j|Bring the cursor to the next file entry|normal-mode,file_panel",
+                "<T-j>|Bring the cursor to the next file entry|normal-mode,file_panel",
+                "k|Bring the cursor to the previous file entry|normal-mode,file_panel",
+                "<T-k>|Bring the cursor to the previous file entry|normal-mode,file_panel",
+                "<enter>|Open the diff for the selected entry|normal-mode,file_panel",
+                "o|Open the diff for the selected entry|normal-mode,file_panel",
+                "s|Stage / unstage the selected entry|normal-mode,file_panel",
+                "<S-s>|Stage all entries|normal-mode,file_panel",
+
+
+                "<S-u>|Unstage all entries|normal-mode,file_panel",
+                "<S-x>|Restore entry to the state on the left side|normal-mode,file_panel",
+                "<S-l>|Open the commit log panel|normal-mode,file_panel",
+                "z,o|Expand fold|normal-mode,file_panel",
+                "h|Collapse fold|normal-mode,file_panel",
+
+                "z,c|Collapse fold|normal-mode,file_panel",
+                "z,a|Toggle fold|normal-mode,file_panel",
+                "z,<S-r>|Expand all folds|normal-mode,file_panel",
+                "z,<S-m>|Collapse all folds|normal-mode,file_panel",
+                "<C-b>|Scroll the view up|normal-mode,file_panel",
+                "<C-f>|Scroll the view down|normal-mode,file_panel",
+                "g,f|Open the file in the previous tabpage|normal-mode,file_panel",
+
+                "<C-w>,<C-f>|Open the file in a new split|normal-mode,file_panel",
+                "<C-w>,g,f|Open the file in a new tabpage|normal-mode,file_panel",
+                "i|Toggle between 'list' and 'tree' views|normal-mode,file_panel",
+                "f|Flatten empty subdirectories in tree listing style|normal-mode,file_panel",
+                "<S-r>|Update stats and entries in the file list|normal-mode,file_panel",
+                "space,e|Bring focus to the file panel|normal-mode,file_panel",
+                "space,b|Toggle the file panel|normal-mode,file_panel",
+                "g,<C-x>|Cycle available layouts|normal-mode,file_panel",
+                "[,x|Go to the previous conflict|normal-mode,file_panel",
+
+                "],x|Go to the next conflict|normal-mode,file_panel",
+                "g,<S-/>|Open the help panel|normal-mode,file_panel",
+                "space,c,<S-o>|Choose the OURS version of a conflict for the whole file|normal-mode,file_panel",
+                "space,c,<S-t>|Choose the THEIRS version of a conflict for the whole file|normal-mode,file_panel",
+                "space,c,<S-b>|Choose the BASE version of a conflict for the whole file|normal-mode,file_panel",
+                "space,c,<S-a>|Choose all the versions of a conflict for the whole file|normal-mode,file_panel",
+                "d,<S-x>|Delete the conflict region for the whole file|normal-mode,file_panel",
+                "l|Open the diff for the selected entry|normal-mode,file_panel"
+            ]
+        },
+        {
             "name": "Default",
             "keymapItems": [
                 "\\,,f,<H-m>"
