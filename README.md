@@ -9,7 +9,6 @@
 
 ## Tech stack
 
-- React & TS & jest
-- Tailwindcss
-- Fuse.js
-
+-   React & TS & jest
+-   Tailwindcss
+-   Fuse.js
