@@ -52,7 +52,8 @@ export default function KeymapOverview(): JSX.Element {
                     type="text"
                 />
             </div>
-
+            <div className="table-scroll">
+            <div>
             <table className="min-w-full text-left text-sm font-light">
                 <thead className="border-b font-medium dark:border-neutral-500">
                     <tr>
@@ -134,6 +135,8 @@ export default function KeymapOverview(): JSX.Element {
                     ))}
                 </tbody>
             </table>
+            </div>
+            </div>
         </div>
     )
 }
