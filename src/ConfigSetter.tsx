@@ -2,7 +2,6 @@ import { useContext, useState } from 'react'
 import { TERipple, TESelect } from 'tw-elements-react'
 import { SelectData } from 'tw-elements-react/dist/types/forms/Select/types'
 import { ConfigContext } from './App'
-import { parseJsonConfig } from './configParser'
 import JsonView from '@uiw/react-json-view'
 import configJsons from './configs/configs'
 

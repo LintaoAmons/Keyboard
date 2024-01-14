@@ -1,5 +1,4 @@
 import { parseJsonConfig } from './configParser'
-import defaultConfigJson from './configs/default.json'
 
 export enum Modifier {
     CMD = 'CMD',

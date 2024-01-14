@@ -1,11 +1,11 @@
 import React from 'react'
 import { createContext, useState } from 'react'
-import { KeyboardConfig, KeyboardConfigJson, KeyMapItem } from './Config'
+import { KeyboardConfigJson, KeyMapItem } from './Config'
 import ConfigSetter from './ConfigSetter'
 import Keyboard from './Keyboard'
 import KeymapOverview from './KeymapOverview'
 import configJsonList from './configs/configs'
-import { convertConfigs, parseJsonConfig } from './configParser'
+import { parseJsonConfig } from './configParser'
 
 // Define the shape of your context
 interface ConfigContextType {

@@ -1,7 +1,6 @@
 import { CSSProperties, useContext } from 'react'
 import { ConfigContext } from './App'
 import {
-    getActiveKeyboardConfig,
     getActiveKeyboardConfigFromJson,
     isModifier,
     KeyboardKey,

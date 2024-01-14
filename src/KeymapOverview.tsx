@@ -1,9 +1,7 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { TERipple } from 'tw-elements-react'
 import { ConfigContext } from './App'
 import {
-    getActiveSenario,
-    getActiveSenarioFromJson,
     getActiveSenarioJson,
     KeyMapItem,
 } from './Config'

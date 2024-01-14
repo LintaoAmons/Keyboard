@@ -1,4 +1,3 @@
-import { parseCommandLine } from 'typescript'
 import {
     KeyboardConfig,
     KeyboardConfigJson,
@@ -7,7 +6,6 @@ import {
     KeyStroke,
     Modifier,
 } from './Config'
-import configs from './configs/configs'
 
 export function toKeyboardLayout(layoutString: string[][]): KeyboardKey[][] {
     return layoutString.map((row) => {
