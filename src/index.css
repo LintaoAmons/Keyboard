@@ -12,3 +12,9 @@
 
 @tailwind components;
 @tailwind utilities;
+
+table{
+    overflow-y:scroll;
+    height:420px;
+    display:block;
+ }
