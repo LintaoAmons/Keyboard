@@ -319,6 +319,22 @@ describe('parseKeyMapItemFromString', () => {
 
             expect(result).toEqual(expected)
         })
+
+        test('parse `],D|Jump to the last diagnostic in the current buffer`', () => {
+            const input = '],D|Jump to the last diagnostic in the current buffer'
+            const expected: KeyMapItem = {
+                keybinding: [
+                    { keycode: ']', modifiers: undefined },
+                    { keycode: 'D', modifiers: undefined },
+                ],
+                description: 'Jump to the last diagnostic in the current buffer',
+                conditions: [''],
+                achieveBy: '',
+            }
+            const result = parseKeyMapItemFromString(input)
+
+            expect(result).toEqual(expected)
+        })
     })
 })
 

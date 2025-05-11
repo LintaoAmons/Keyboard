@@ -131,6 +131,14 @@ export function parseKeyMapItemFromString(str: string): KeyMapItem {
 
 export function parseKeyStroke(input: string): KeyStroke {
     try {
+        // If input length is 1, treat it directly as keycode
+        if (input.length === 1) {
+            return {
+                keycode: input,
+                modifiers: undefined,
+            }
+        }
+
         // Remove < and > characters and then split by '-'
         var parts = input.replace(/[<>]/g, '').split('-')
 
