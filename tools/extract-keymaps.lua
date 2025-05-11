@@ -1,3 +1,5 @@
+-- :source %
+-- to generate the 
 -- Function to extract keymap configurations from Neovim and convert them to a list of keymap items
 function extractKeymaps()
 	-- Get all keymaps for normal mode
@@ -38,25 +40,61 @@ function extractKeymaps()
 			end
 		end
 		local formattedLhs = table.concat(keystrokes, ","):gsub(" ", "<leader>")
-		::continue::
 		-- Use rhs or desc for description, fallback to "anonymous function" if neither is available
-		local description = keymap.desc or keymap.rhs or "anonymous function"
+		local description = keymap.desc or keymap.rhs or "anonymous function, please add desc to your keybinding settings"
 		-- Format the keymap item string
 		local keymapItem = formattedLhs .. "|" .. description
 		table.insert(result, keymapItem)
+		::continue::
 	end
 
 	return result
 end
 
+-- Template Lua table representing the structure of default.json
+local configTemplate = {
+    name = "Generated",
+    version = "0.1",
+    keyboardLayout = {
+        name = "Lintao's keyboard",
+        layout = {
+            {
+                "esc", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "⬅️,grow"
+            },
+            {
+                "tab,3", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "|,grow"
+            },
+            {
+                "ctrl,4", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter,grow"
+            },
+            {
+                "shift,5", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift,grow"
+            },
+            {
+                "", "", "alt", "cmd", "space,14", "hyper", "alt"
+            }
+        }
+    },
+    scenarios = {
+        {
+            name = "Vim Generated",
+            keymapItems = {}  -- This will be populated with the extracted keymaps
+        }
+    }
+}
+
 -- Convert the extracted keymaps to JSON and write to a file
 local keymaps = extractKeymaps()
-local json = vim.fn.json_encode(keymaps)
-local file = io.open("keymaps.json", "w")
+-- Assign the extracted keymaps to the template
+configTemplate.scenarios[1].keymapItems = keymaps
+
+-- Convert the entire config to JSON
+local json = vim.fn.json_encode(configTemplate)
+local file = io.open("src/configs/generated.json", "w")
 if file then
-	file:write(json)
-	file:close()
-	print("Keymaps have been written to keymaps.json")
+    file:write(json)
+    file:close()
+    print("Configuration has been written to src/configs/generated.json")
 else
-	print("Error: Could not open file for writing")
+    print("Error: Could not open file for writing")
 end
