@@ -335,6 +335,23 @@ describe('parseKeyMapItemFromString', () => {
 
             expect(result).toEqual(expected)
         })
+
+        test('parse `y,s,s|Add a surrounding pair around the current line (normal mode)`', () => {
+            const input = 'y,s,s|Add a surrounding pair around the current line (normal mode)'
+            const expected: KeyMapItem = {
+                keybinding: [
+                    { keycode: 'y', modifiers: undefined },
+                    { keycode: 's', modifiers: undefined },
+                    { keycode: 's', modifiers: undefined },
+                ],
+                description: 'Add a surrounding pair around the current line (normal mode)',
+                conditions: [''],
+                achieveBy: '',
+            }
+            const result = parseKeyMapItemFromString(input)
+
+            expect(result).toEqual(expected)
+        })
     })
 })
 

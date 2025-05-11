@@ -10,7 +10,8 @@ function extractKeymaps()
 		-- Split lhs into individual keystrokes, considering <xx> as single keys and <Plug> as a whole key
 		local keystrokes = {}
 		if lhs:sub(1, 6) == "<Plug>" then
-			table.insert(keystrokes, lhs)
+			-- Skip processing for <Plug> keymaps
+			goto continue
 		else
 			local i = 1
 			while i <= #lhs do
@@ -37,6 +38,7 @@ function extractKeymaps()
 			end
 		end
 		local formattedLhs = table.concat(keystrokes, ","):gsub(" ", "<leader>")
+		::continue::
 		-- Use rhs or desc for description, fallback to "anonymous function" if neither is available
 		local description = keymap.desc or keymap.rhs or "anonymous function"
 		-- Format the keymap item string
