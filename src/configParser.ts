@@ -92,77 +92,99 @@ function modifierToString(modifier: Modifier): string {
 }
 
 export function parseKeyMapItemFromString(str: string): KeyMapItem {
-    const [keys, description = '', rawConditions = '', achieveBy = ''] =
-        str.split('|')
+    try {
+        const [keys, description = '', rawConditions = '', achieveBy = ''] = str.split('|')
 
-    const commaPlaceHolder = '♞'
-    const escaped = keys.replaceAll('\\,', commaPlaceHolder)
-    const keyBindings = escaped.split(',').map((k) => {
-        if (k === commaPlaceHolder) {
-            return { keycode: ',' }
+        const commaPlaceHolder = '♞'
+        const escaped = keys.replaceAll('\\,', commaPlaceHolder)
+        const keyBindings = escaped.split(',').map((k) => {
+            if (k === commaPlaceHolder) {
+                return { keycode: ',' }
+            }
+            try {
+                return parseKeyStroke(k)
+            } catch (error) {
+                console.error(`Error parsing keystroke "${k}" in keymap item "${str}":`, error)
+                return { keycode: 'ERROR' }
+            }
+        })
+
+        const escapedConditions = rawConditions.replaceAll('\\,', commaPlaceHolder)
+        const conditions = escapedConditions.split(',').map((c) => {
+            return c.replaceAll(commaPlaceHolder, ',')
+        })
+
+        return {
+            keybinding: keyBindings,
+            description,
+            conditions,
+            achieveBy,
         }
-        return parseKeyStroke(k)
-    })
-
-    const escapedConditions = rawConditions.replaceAll('\\,', commaPlaceHolder)
-    const conditions = escapedConditions.split(',').map((c) => {
-        return c.replaceAll(commaPlaceHolder, ',')
-    })
-
-    return {
-        keybinding: keyBindings,
-        description,
-        conditions,
-        achieveBy,
+    } catch (error) {
+        console.error(`Error parsing keymap item "${str}":`, error)
+        return {
+            keybinding: [{ keycode: 'ERROR' }],
+            description: 'Parsing failed',
+        }
     }
 }
 
 export function parseKeyStroke(input: string): KeyStroke {
-    // Remove < and > characters and then split by '-'
-    var parts = input.replace(/[<>]/g, '').split('-')
+    try {
+        // Remove < and > characters and then split by '-'
+        var parts = input.replace(/[<>]/g, '').split('-')
 
-    let modifiers = []
-    let keycode = ''
+        let modifiers = []
+        let keycode = ''
 
-    for (let part of parts) {
-        switch (part) {
-            case 'C':
-                modifiers.push(Modifier.CTRL)
-                break
-            case 'M':
-                modifiers.push(Modifier.CMD)
-                break
-            case 'S':
-                modifiers.push(Modifier.SHIFT)
-                break
-            case 'A':
-                modifiers.push(Modifier.ALT)
-                break
-            case 'H':
-                modifiers.push(Modifier.HYPER)
-                break
-            case 'T':
-                modifiers.push(Modifier.TAB)
-                break
-            default:
-                // If not a recognized modifier, assume it's the keycode
-                if (!keycode) {
-                    keycode = part
-                } else {
-                    // If keycode is already set, it's an error
-                    throw new Error(`Invalid keystroke format: [${input}]`)
-                }
-                break
+        for (let part of parts) {
+            switch (part) {
+                case 'C':
+                    modifiers.push(Modifier.CTRL)
+                    break
+                case 'M':
+                    modifiers.push(Modifier.CMD)
+                    break
+                case 'D':
+                    modifiers.push(Modifier.CMD)
+                    break
+                case 'S':
+                    modifiers.push(Modifier.SHIFT)
+                    break
+                case 'A':
+                    modifiers.push(Modifier.ALT)
+                    break
+                case 'H':
+                    modifiers.push(Modifier.HYPER)
+                    break
+                case 'T':
+                    modifiers.push(Modifier.TAB)
+                    break
+                default:
+                    // If not a recognized modifier, assume it's the keycode
+                    if (!keycode) {
+                        keycode = part
+                    } else {
+                        // If keycode is already set, it's an error
+                        console.error(`Invalid keystroke format: [${input}] - Multiple keycodes detected`)
+                        return { keycode: 'ERROR' }
+                    }
+                    break
+            }
         }
-    }
 
-    if (!keycode) {
-        throw new Error(`No keycode found in keystroke [${input}]`)
-    }
+        if (!keycode) {
+            console.error(`No keycode found in keystroke [${input}]`)
+            return { keycode: 'ERROR' }
+        }
 
-    return {
-        keycode: keycode,
-        modifiers: modifiers.length > 0 ? modifiers : undefined,
+        return {
+            keycode: keycode,
+            modifiers: modifiers.length > 0 ? modifiers : undefined,
+        }
+    } catch (error) {
+        console.error(`Error parsing keystroke [${input}]:`, error)
+        return { keycode: 'ERROR' }
     }
 }
 
