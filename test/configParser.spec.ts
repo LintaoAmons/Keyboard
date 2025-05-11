@@ -1,10 +1,10 @@
-import { KeyboardKey, KeyMapItem, KeyStroke, Modifier } from './Config'
+import { KeyboardKey, KeyMapItem, KeyStroke, Modifier } from '../src/Config'
 import {
     keyMapItemToString,
     parseKeyMapItemFromString,
     parseKeyStroke,
     toKeyboardLayout,
-} from './configParser'
+} from '../src/configParser'
 
 describe('toKeyboardLayout', () => {
     test('should correctly parse a simple layout', () => {

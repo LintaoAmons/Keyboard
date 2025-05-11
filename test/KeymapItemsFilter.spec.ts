@@ -1,5 +1,5 @@
-import { KeyMapItem, ScenarioJson } from './Config'
-import { filterKeymapItems } from './KeymapItemsFilter'
+import { KeyMapItem, ScenarioJson } from '../src/Config'
+import { filterKeymapItems } from '../src/KeymapItemsFilter'
 
 const scenario: ScenarioJson = {
     name: 'test',
