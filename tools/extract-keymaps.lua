@@ -23,7 +23,14 @@ function extractKeymaps()
     return result
 end
 
--- Convert the extracted keymaps to JSON and print it
+-- Convert the extracted keymaps to JSON and write to a file
 local keymaps = extractKeymaps()
 local json = vim.fn.json_encode(keymaps)
-print(json)
+local file = io.open("keymaps.json", "w")
+if file then
+    file:write(json)
+    file:close()
+    print("Keymaps have been written to keymaps.json")
+else
+    print("Error: Could not open file for writing")
+end
