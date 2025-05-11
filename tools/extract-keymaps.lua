@@ -17,7 +17,13 @@ function extractKeymaps()
 				if lhs:sub(i, i) == "<" then
 					local endIndex = lhs:find(">", i)
 					if endIndex then
-						local key = lhs:sub(i, endIndex):gsub("H", "h")
+						local key = lhs:sub(i, endIndex)
+						-- Convert the last character before '>' to lowercase if it's uppercase
+						local lastCharIndex = endIndex - 1
+						local lastChar = key:sub(lastCharIndex, lastCharIndex)
+						if lastChar:match("%u") then
+							key = key:sub(1, lastCharIndex - 1) .. lastChar:lower() .. key:sub(lastCharIndex + 1)
+						end
 						table.insert(keystrokes, key)
 						i = endIndex + 1
 					else
