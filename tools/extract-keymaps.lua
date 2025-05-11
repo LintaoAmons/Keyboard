@@ -23,8 +23,7 @@ function extractKeymaps()
     return result
 end
 
--- Print the extracted keymaps for debugging or usage
+-- Convert the extracted keymaps to JSON and print it
 local keymaps = extractKeymaps()
-for _, item in ipairs(keymaps) do
-    print(item)
-end
+local json = vim.fn.json_encode(keymaps)
+print(json)
