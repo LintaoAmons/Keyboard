@@ -7,10 +7,28 @@ function extractKeymaps()
     for _, keymap in ipairs(keymaps) do
         -- Replace spaces with <leader> in lhs
         local lhs = keymap.lhs
-        -- Split lhs into individual characters
+        -- Split lhs into individual keystrokes, considering <xx> as single keys and <Plug> as a whole key
         local keystrokes = {}
-        for i = 1, #lhs do
-            table.insert(keystrokes, lhs:sub(i, i))
+        if lhs:sub(1, 6) == "<Plug>" then
+            table.insert(keystrokes, lhs)
+        else
+            local i = 1
+            while i <= #lhs do
+                if lhs:sub(i, i) == "<" then
+                    local endIndex = lhs:find(">", i)
+                    if endIndex then
+                        local key = lhs:sub(i, endIndex)
+                        table.insert(keystrokes, key)
+                        i = endIndex + 1
+                    else
+                        table.insert(keystrokes, lhs:sub(i, i))
+                        i = i + 1
+                    end
+                else
+                    table.insert(keystrokes, lhs:sub(i, i))
+                    i = i + 1
+                end
+            end
         end
         local formattedLhs = table.concat(keystrokes, ","):gsub(" ", "<leader>")
         -- Use rhs or desc for description, fallback to "anonymous function" if neither is available
