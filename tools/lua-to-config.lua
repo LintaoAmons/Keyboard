@@ -2,21 +2,6 @@
 
 local M = {}
 
--- Helper function to escape special characters in strings for JSON
-local function json_escape(str)
-    if not str then return "" end
-    local escapes = {
-        ['"'] = '\\"',
-        ['\\'] = '\\\\',
-        ['\b'] = '\\b',
-        ['\f'] = '\\f',
-        ['\n'] = '\\n',
-        ['\r'] = '\\r',
-        ['\t'] = '\\t'
-    }
-    return str:gsub('["\\\b\f\n\r\t]', escapes)
-end
-
 -- 1. get keymap configs lua table by using vim.api.nvim_get_keymap('n')
 -- 2. generate keymapItems out of the table elements.
   -- lhs ->     keybinding: KeyStroke[],replace " " to "<leader>"
@@ -43,6 +28,7 @@ end
   -->
   "<leader>,s,s|:Namu symbols<CR>"
 
+-- write the function with no input, and the output is a list of those mapped elements
 
 
 
