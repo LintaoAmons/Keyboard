@@ -1,8 +1,6 @@
 import { KeyboardConfigJson } from '../Config'
-import Default from './default.json'
-import PrExample from './pr-example.json'
 import Generated from './generated.json'
 
-const configs: KeyboardConfigJson[] = [Default, PrExample, Generated]
+const configs: KeyboardConfigJson[] = [Generated]
 
 export default configs
