@@ -1,11 +1,10 @@
 # Try here: https://keyboard-7p1.pages.dev/
 
-## Commit a PR to share your keyboard to us
+## Generate config from your nvim
 
-1. create a config json file under `./src/configs/`
-2. modify `./src/configs/configs.ts` to add your config into the configs list
+you can generate the config by sourcing the script `tools/extract-keymaps.lua` inside nvim
 
-> you are take this [PR](https://github.com/LintaoAmons/Keyboard/pull/5) as a reference
+and then load the config to visualise your keymappings
 
 ## Tech stack
 
