@@ -1,6 +1,6 @@
 import { KeyMapItem, ScenarioJson } from './Config'
 import Fuse from 'fuse.js'
-import { parseKeyMapItemFromString } from './configParser'
+import { parseKeyMapItemFromString } from './utils/parsingUtils'
 
 export function filterKeymapItems(
     scenario: ScenarioJson,

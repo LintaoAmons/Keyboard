@@ -4,7 +4,7 @@ import {
     parseKeyMapItemFromString,
     parseKeyStroke,
     toKeyboardLayout,
-} from '../src/configParser'
+} from '../src/utils/parsingUtils'
 
 describe('toKeyboardLayout', () => {
     test('should correctly parse a simple layout', () => {

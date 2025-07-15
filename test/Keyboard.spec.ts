@@ -1,5 +1,5 @@
 import { KeyboardKey, KeyMapItem, KeyStroke, Modifier } from '../src/Config'
-import { toKeyboardLayout } from '../src/configParser'
+import { toKeyboardLayout } from '../src/utils/parsingUtils'
 import {
     bgColor,
     genHighlightLevelMap,
