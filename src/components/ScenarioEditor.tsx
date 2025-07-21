@@ -126,16 +126,6 @@ const ScenarioEditor: React.FC<ScenarioEditorProps> = ({
                             <p className="mt-1 text-sm text-red-600">{errorMessage}</p>
                         )}
                     </div>
-                    
-                    <div className="bg-blue-50 rounded-md p-3">
-                        <h4 className="text-sm font-medium text-blue-700 mb-2">Examples</h4>
-                        <div className="text-sm text-blue-600 space-y-1">
-                            <div>• "Normal Mode" - For regular text editing</div>
-                            <div>• "Insert Mode" - For text insertion</div>
-                            <div>• "Visual Mode" - For text selection</div>
-                            <div>• "Command Mode" - For command execution</div>
-                        </div>
-                    </div>
                 </div>
                 
                 <div className="flex justify-end gap-2 mt-6">
