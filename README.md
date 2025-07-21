@@ -1,5 +1,7 @@
 # Keyboard Configuration Visualizer 🎯
 
+![keyboard](https://github.com/user-attachments/assets/98f37c4d-cae4-4cbc-9b22-57786c391134)
+
 <!-- mtoc-start -->
 
 * [🎯 Project Goals](#-project-goals)
