@@ -10,6 +10,7 @@ import {
     getMultipleHighlightLevels,
     genKeyFilterHighlightLevelMap 
 } from './KeyboardStyleCalculation'
+import { genFlameIntensityMap, getFlameColor } from './FlameGraphUtils'
 import Key from './components/Key'
 
 
@@ -43,14 +44,23 @@ export default function Keyboard(): JSX.Element {
 
     const filteredKeybindings = getFilteredKeybindings();
 
+    // Calculate flame intensities for multiSelectMode
+    const flameIntensityMap = (() => {
+        // Only calculate flame intensities for multiSelectMode (not key filter or normal modes)
+        if (multiSelectMode && !keyClickMode && highlightedItems.length > 0) {
+            return genFlameIntensityMap(highlightedItems);
+        }
+        return null;
+    })();
+
     // Determine which highlighting mode to use (priority order: key filter > multi-select > single select)
     const highlightLevelMap = (() => {
         // Key filter mode has highest priority
         if (keyClickMode && clickedKey && filteredKeybindings.length > 0) {
             return genKeyFilterHighlightLevelMap(filteredKeybindings);
         } 
-        // Multi-select mode has second priority
-        else if (multiSelectMode && highlightedItems.length > 0) {
+        // Traditional multi-select mode (when flames are not used)
+        else if (multiSelectMode && highlightedItems.length > 0 && !flameIntensityMap) {
             return genMultipleHighlightLevelMap(highlightedItems);
         } 
         // Single select mode is default
@@ -86,27 +96,31 @@ export default function Keyboard(): JSX.Element {
                 config.name
             ).keyboardLayout.layout.map((row, rowIndex) => (
                 <div key={`row-${rowIndex}`} className="flex my-1 w-full">
-                    {row.map((keyData, keyIndex) => (
-                        <Key
-                            key={`key-${keyIndex}`}
-                            keyData={keyData}
-                            highlightLevel={!isKeyFilterMode && !isMultiSelectMode
-                                ? getHighlightLevel(
-                                    highlightLevelMap as Map<string, number>,
-                                    keyData.keycode
-                                )
-                                : 0
-                            }
-                            highlightLevels={isKeyFilterMode || isMultiSelectMode
-                                ? getMultipleHighlightLevels(
-                                    highlightLevelMap as Map<string, number[]>,
-                                    keyData.keycode
-                                )
-                                : []
-                            }
-                            isKeyFilterMode={isKeyFilterMode}
-                        />
-                    ))}
+                    {row.map((keyData, keyIndex) => {
+                        const flameIntensity = flameIntensityMap?.get(keyData.keycode.toLowerCase())?.intensity || 0;
+                        return (
+                            <Key
+                                key={`key-${keyIndex}`}
+                                keyData={keyData}
+                                highlightLevel={!isKeyFilterMode && !multiSelectMode
+                                    ? getHighlightLevel(
+                                        highlightLevelMap as Map<string, number>,
+                                        keyData.keycode
+                                    )
+                                    : 0
+                                }
+                                highlightLevels={isKeyFilterMode || (multiSelectMode && !flameIntensityMap)
+                                    ? getMultipleHighlightLevels(
+                                        highlightLevelMap as Map<string, number[]>,
+                                        keyData.keycode
+                                    )
+                                    : []
+                                }
+                                isKeyFilterMode={isKeyFilterMode}
+                                flameIntensity={flameIntensityMap ? flameIntensity : undefined}
+                            />
+                        );
+                    })}
                 </div>
             ))}
         </div>

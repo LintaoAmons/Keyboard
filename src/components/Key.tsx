@@ -1,6 +1,7 @@
 import React, { CSSProperties, useContext } from 'react';
 import { isModifier, KeyboardKey } from '../Config';
 import { bgColor, bgColorMultiple } from '../KeyboardStyleCalculation';
+import { getFlameColor } from '../FlameGraphUtils';
 import { KEYBOARD_SIZE_UNIT, STYLES } from '../constants';
 import { ConfigContext } from '../contexts/ConfigContext';
 
@@ -9,9 +10,10 @@ interface KeyProps {
     highlightLevel: number;
     highlightLevels?: number[];
     isKeyFilterMode?: boolean;
+    flameIntensity?: number; // 0-1 for flame graph intensity in multiSelectMode
 }
 
-const Key: React.FC<KeyProps> = ({ keyData, highlightLevel, highlightLevels = [], isKeyFilterMode = false }) => {
+const Key: React.FC<KeyProps> = ({ keyData, highlightLevel, highlightLevels = [], isKeyFilterMode = false, flameIntensity }) => {
     const { keycode, size, tags } = keyData;
     const { setClickedKey, keyClickMode, clickedKey, editMode, setKeyClickNewKeybinding } = useContext(ConfigContext);
 
@@ -59,6 +61,11 @@ const Key: React.FC<KeyProps> = ({ keyData, highlightLevel, highlightLevels = []
             className += STYLES.MODIFIER_BORDER;
         } else {
             className += STYLES.REGULAR_BORDER;
+        }
+
+        // Apply flame color in multiSelectMode when flameIntensity is provided
+        if (flameIntensity !== undefined && flameIntensity > 0) {
+            return `${className} ${getFlameColor(flameIntensity)}`;
         }
 
         // Use multiple highlight levels if available, otherwise use single highlight
