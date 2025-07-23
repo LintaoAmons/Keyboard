@@ -80,7 +80,7 @@
     {
       "name": "Vim Terminal Workflow",
       "keymapItems": [
-        "space,t,t|New Termnial|norm|waiting-for-dev/ergoterm.nvim",
+        "space,t,t|toggle base terminal|norm|waiting-for-dev/ergoterm.nvim",
         "space,t,o|new_terminal_cwd_buffer_dir|norm|waiting-for-dev/ergoterm.nvim",
         "space,t,p|new_terminal_cwd_project_root|norm|waiting-for-dev/ergoterm.nvim",
         "<C-t>|Run script|neo-tree|neo-tree & waiting-for-dev/ergoterm.nvim",
