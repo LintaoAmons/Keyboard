@@ -81,12 +81,22 @@
       "name": "Vim Terminal Workflow",
       "keymapItems": [
         "space,t,t|New Termnial|norm|waiting-for-dev/ergoterm.nvim",
-        "space,s,l|Send current line to last focused terminal|n|waiting-for-dev/ergoterm.nvim",
-        "space,s,k|Send selected text to last focused terminal|n|waiting-for-dev/ergoterm.nvim",
         "space,t,o|new_terminal_cwd_buffer_dir|norm|waiting-for-dev/ergoterm.nvim",
         "space,t,p|new_terminal_cwd_project_root|norm|waiting-for-dev/ergoterm.nvim",
-        "<C-t>|Run script|neo-tree|neo-tree & Snacks.terminal(to be replaced by waiting-for-dev/ergoterm.nvim)",
-        "c,t|new terminal, cwd current node|neotree|ergoterm & neotree"
+        "<C-t>|Run script|neo-tree|neo-tree & waiting-for-dev/ergoterm.nvim",
+        "c,t|new terminal, cwd current node|neotree|ergoterm & neotree",
+
+        "space,a,j|Termnial Picker|n|waiting-for-dev/ergoterm.nvim",
+        "<C-s>|Open in horizontal split|TerminalPicker|waiting-for-dev/ergoterm.nvim",
+        "<C-v>|Open in vertical split|TerminalPicker|waiting-for-dev/ergoterm.nvim",
+        "<C-f>|Open in float window|TerminalPicker|waiting-for-dev/ergoterm.nvim",
+        "<C-t>|Open in tab|TerminalPicker|waiting-for-dev/ergoterm.nvim",
+        "<C-d>|delete target terminal|TerminalPicker|waiting-for-dev/ergoterm.nvim",
+
+        "space,s,l|Send current line to last focused terminal|n|waiting-for-dev/ergoterm.nvim",
+        "space,s,k|Send selected text to last focused terminal|n|waiting-for-dev/ergoterm.nvim",
+        "space,s,o|Cd to buffer directory in the last focused terminal|n|waiting-for-dev/ergoterm.nvim",
+        "space,s,i|Ccd to project root of current buf in the last focused terminal|n|waiting-for-dev/ergoterm.nvim"
       ]
     },
     {
