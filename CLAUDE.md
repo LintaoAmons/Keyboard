@@ -1,166 +1,147 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # Keyboard Configuration Visualizer
 
 ## Project Overview
 This is a React-based keyboard configuration visualizer that displays keyboard layouts and their associated keybindings. The application allows users to view, edit, and manage different keyboard configurations and scenarios.
 
-## Architecture Decisions
+## Build and Development Commands
 
-### 1. Desktop-Only Layout
-
-**Decision**: The application supports **desktop-only layout** instead of responsive mobile/desktop design.
-
-**Rationale**:
-- **Complexity reduction**: Eliminates the need for complex responsive breakpoints and mobile-specific logic
-- **Better user experience**: Keyboard layouts are inherently better suited for desktop/laptop viewing
-- **Maintenance simplicity**: Single layout reduces CSS complexity and testing requirements
-- **Target audience**: Users configuring keyboard shortcuts are primarily desktop users
-
-### 2. Single Configuration Structure
-
-**Decision**: Simplified data structure from multiple profiles to **single configuration** with scenarios.
-
-**Rationale**:
-- **Simplicity**: Removes the complexity of managing multiple keyboard profiles
-- **Focus**: Users typically work with one keyboard layout but multiple scenarios (vim modes, etc.)
-- **localStorage efficiency**: Single config reduces storage complexity
-- **Better UX**: Eliminates profile selection confusion, focuses on scenario management
-
-### Implementation Changes
-
-#### Desktop-Only Layout:
-1. **Removed Tailwind responsive prefixes**: No more `md:`, `xl:`, or `sm:` classes
-2. **Removed mobile detection**: Eliminated JavaScript-based mobile detection in `SidebarToggle.tsx`
-3. **Removed mobile-specific UI**: Removed rotation messages and mobile-specific layouts
-4. **Simplified sidebar logic**: Desktop sidebar is always available (can be toggled)
-5. **JsonView always visible**: Configuration preview is always shown
-
-#### Single Configuration Structure:
-1. **Removed profile concept**: No more `configs` array, single `config` object
-2. **Default config loading**: `generated.json` is automatically loaded into localStorage on init
-3. **Simplified localStorage**: Single config storage instead of array
-4. **Removed profile selection UI**: No more profile dropdown, only scenario selection
-5. **Context simplification**: ConfigContext now manages single config state
-
-### Technical Details
-
-#### Key Components Affected:
-- `App.tsx`: Removed responsive classes, updated to use single config
-- `ConfigSetter.tsx`: Removed profile UI, simplified to show only scenarios
-- `SidebarToggle.tsx`: Removed mobile detection and window resize listeners
-- `Keyboard.tsx`: Removed responsive classes, updated to use single config
-- `KeymapOverview.tsx`: Updated to use single config structure
-- `EditModeControls.tsx`: Updated to use single config functions
-- `ConfigContext.tsx`: Completely refactored to manage single config
-- `localStorage.ts`: Updated to store single config instead of array
-
-#### Data Structure:
-**Before (Multiple Profiles)**:
-```typescript
-configs: KeyboardConfigJson[] = [
-  { name: "Profile 1", scenarios: [...] },
-  { name: "Profile 2", scenarios: [...] }
-]
+### Core Commands
+```bash
+npm run dev        # Start Vite development server with hot reload
+npm run build      # Build for production using Vite
+npm test           # Run tests with vitest
+npm run preview    # Preview production build locally
 ```
 
-**After (Single Configuration)**:
+### Important Notes
+- Always run `npm test` and `npm run build` after making changes to ensure code quality and verify the build works correctly
+- Node.js version 18 is required (specified in package.json engines)
+
+## Architecture
+
+### Tech Stack
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite (replaces Create React App)
+- **Styling**: TailwindCSS
+- **State Management**: React Context (ConfigContext)
+- **Testing**: Vitest + React Testing Library + jsdom
+- **Icons**: Lucide React
+
+### Key Architectural Decisions
+
+#### 1. Desktop-Only Layout
+The application is designed **exclusively for desktop** - no responsive mobile layout:
+- Eliminates responsive breakpoints and mobile-specific logic
+- Uses fixed width classes: `w-96`, `w-3/12`, `w-10/12`, `w-full`
+- **Never use Tailwind responsive prefixes**: `md:`, `lg:`, `xl:`, `sm:`
+- Minimum supported viewport: 1024px width
+
+#### 2. Single Configuration Structure
+Simplified from multiple profiles to **single configuration** with scenarios:
+- Single `config` object instead of `configs` array
+- Default config (`generated.json`) automatically loaded into localStorage on init
+- Users work with one keyboard layout but multiple scenarios (vim modes, etc.)
+
+### Data Structure
 ```typescript
 config: KeyboardConfigJson = {
   name: "Generated",
+  keyboardLayout: { name: "...", layout: [...] },
   scenarios: [
     { name: "Vim Generated", keymapItems: [...] }
   ]
 }
 ```
 
-#### Layout Structure:
-```
-App (flex-row h-screen)
-├── SidebarToggle (fixed position)
-├── MultiSelectControls (fixed position)
-├── KeyClickControls (fixed position)
-├── EditModeControls (fixed position)
-├── ConfigSetter (w-3/12, refined sidebar)
-│   ├── Header Section (config name)
-│   ├── Scenario Management (selection + actions)
-│   ├── Configuration Actions (copy/load)
-│   └── Configuration Preview (JsonView)
-└── Main Content (w-10/12 or w-full)
-    ├── Keyboard Layout
-    └── Keymap Overview
-```
+### Core Components
 
-#### Refined Sidebar Design:
-- **Structure**: Organized into logical sections with clear visual hierarchy
-- **Header**: Clean config name display with truncation for long names
-- **Scenario Management**: Labeled section with intuitive action buttons
-- **Configuration Actions**: Separated copy/load functions with clear icons
-- **Preview Section**: Scrollable JsonView with proper styling and spacing
-- **Visual Design**: 
-  - Light gray background (`bg-gray-50`)
-  - White sections with subtle borders
-  - Proper padding and spacing (`px-6 py-4`)
-  - Shadow effects for depth
-  - Responsive button layouts
+#### State Management (ConfigContext)
+- **Location**: `src/contexts/ConfigContext.tsx`
+- Central state management for single config
+- Handles localStorage persistence, scenario management, keybinding CRUD
+- Key functions: `saveConfig()`, `loadConfig()`, `exportConfig()`, `importConfig()`
 
-#### Fixed Dimensions:
-- **Sidebar**: `w-3/12` (25% width) when visible
-- **Main content**: `w-10/12` (83.33% width) when sidebar visible, `w-full` when hidden
-- **JsonView**: Contained within scrollable section with monospace font
+#### Main Layout Components
+- **App.tsx**: Root component with desktop-only flex layout
+- **ConfigSetter.tsx**: Sidebar (w-3/12) with scenario management and JSON preview  
+- **Keyboard.tsx**: Main keyboard visualization
+- **KeymapOverview.tsx**: Keybinding list display
 
-## Development Guidelines
+#### Control Components
+- **EditModeControls**: Edit mode toggle and management
+- **MultiSelectControls**: Multi-select mode for batch operations
+- **KeyClickControls**: Key click filtering functionality
+- **SidebarToggle**: Desktop sidebar visibility toggle
 
-### CSS Classes
-- Use fixed width classes: `w-96`, `w-3/12`, `w-10/12`, `w-full`
-- Avoid Tailwind responsive prefixes: `md:`, `lg:`, `xl:`, `sm:`
-- Use standard flex and grid classes without breakpoints
+### Configuration Management
 
-### Component Design
-- Design components for desktop viewport (1024px+ width)
-- Use fixed positioning for floating controls
-- Maintain consistent spacing and padding
-
-### Testing
-- Test on desktop browsers only
-- Minimum supported viewport: 1024px width
-- Focus on desktop keyboard and mouse interactions
-
-## Build and Development
-
-### Commands
-```bash
-npm run dev        # Start development server
-npm run build      # Build for production
-npm test           # Run tests with vitest
-npm run preview    # Preview production build
-```
-
-### Build Process
-Always run `npm test` and `npm run build` after making changes to ensure code quality and verify the build works correctly.
-
-## Configuration Management
-
-### Features
+#### Key Features
 - **Single Configuration**: One keyboard layout with multiple scenarios
-- **Scenario Management**: Add, edit, duplicate, and delete scenarios
-- **Keybinding Editor**: Modal-based keybinding editing with validation
-- **Edit Mode Key Clicking**: Click any key on the keyboard to add new keybindings
-- **Multi-Select Mode**: Select multiple keybindings for batch operations
+- **Scenario Management**: Add, edit, duplicate, and delete scenarios within config
+- **Edit Mode Key Clicking**: Click any key on keyboard to add new keybindings
+- **Multi-Select Mode**: Select multiple keybindings for batch operations  
 - **Key Click Filtering**: Click keys to filter keybindings containing that key
-- **Import/Export**: JSON-based configuration import/export
-- **LocalStorage**: Persistent single configuration storage
-- **Real-time Preview**: Live preview of keybinding changes
-- **Default Loading**: Automatically loads `generated.json` on first run
+- **localStorage**: Persistent single configuration storage with versioning
 
-### Data Flow
-1. **Initialization**: App loads `generated.json` as default config
-2. **localStorage Check**: If no stored config, saves default to localStorage
+#### Data Flow
+1. **Initialization**: App loads `src/configs/generated.json` as default config
+2. **localStorage Check**: If no stored config, saves default to localStorage  
 3. **State Management**: Single config object managed by ConfigContext
 4. **Scenario Selection**: Users switch between scenarios within the config
 5. **Persistence**: Changes automatically tracked and saved to localStorage
 
 ### File Structure
-- `src/contexts/ConfigContext.tsx`: Central single config state management
-- `src/components/`: All UI components
-- `src/configs/generated.json`: Default configuration loaded on init
-- `src/utils/localStorage.ts`: Single config storage utilities
-- `src/utils/`: Utility functions for parsing and config management
+```
+src/
+├── contexts/ConfigContext.tsx     # Central state management
+├── Config.ts                      # TypeScript interfaces
+├── configParser.ts                # JSON config parsing
+├── utils/
+│   ├── localStorage.ts            # Single config storage utilities
+│   ├── configUtils.ts             # Config manipulation utilities
+│   ├── parsingUtils.ts            # Keymap parsing utilities
+│   └── keybindingUtils.ts         # Keybinding utilities
+├── components/                    # UI components
+└── configs/generated.json         # Default configuration
+```
+
+### Neovim Integration
+
+The project includes a Lua script for extracting Neovim keymaps:
+
+#### Neovim Keymap Extraction
+```bash
+# Inside nvim, run:
+:source tools/extract-keymaps.lua
+# Generates src/configs/generated.json with your Neovim keybindings
+```
+
+**Script Location**: `tools/extract-keymaps.lua`
+- Extracts normal mode keymaps from Neovim
+- Converts to application's JSON format
+- Skips `<Plug>` keymaps
+- Uses keymap descriptions or falls back to "anonymous function" message
+
+### Development Guidelines
+
+#### CSS and Styling
+- **Desktop-only**: Use fixed dimensions, never responsive classes
+- **Layout**: `flex-row h-screen` for main layout
+- **Sidebar**: `w-3/12` when visible, transitions with `duration-300`
+- **Colors**: TailwindCSS with custom flame graph color system
+
+#### Component Design  
+- Design for desktop viewport (1024px+ width)
+- Use fixed positioning for floating controls
+- Follow existing patterns in component structure
+- Check neighboring files for framework choices and conventions
+
+#### Testing
+- Tests located in `test/` directory
+- Uses Vitest + React Testing Library + jsdom environment  
+- Test command: `npm test`
+- Setup file: `test/setup.ts`
